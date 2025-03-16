@@ -914,76 +914,138 @@
         </section>
 
         <!-- FAQ Section -->
-        <section id="faq" class="tw-py-24 tw-bg-gray-50">
-            <div class="tw-container tw-mx-auto tw-px-4">
-                <div class="tw-text-center tw-mb-16">
-                    <h2 class="tw-text-3xl md:tw-text-4xl tw-font-bold tw-mb-4">Frequently Asked <span class="tw-text-primary">Questions</span></h2>
-                    <p class="tw-text-gray-600 tw-max-w-3xl tw-mx-auto">
-                        Find answers to commonly asked questions about our services, payment methods, and more.
+        <section id="faq" class="tw-py-20 tw-px-6 lg:tw-px-12 tw-relative tw-overflow-hidden tw-bg-gray-50/80">
+            <!-- Background Elements -->
+            <div class="tw-absolute tw-inset-0 tw-bg-grid-pattern tw-bg-[size:40px_40px] tw-opacity-30 tw-z-0"></div>
+            <div class="tw-absolute tw-top-40 -tw-left-20 tw-w-60 tw-h-60 tw-bg-primary-100 tw-rounded-full tw-filter tw-blur-[100px] tw-opacity-40 tw-animate-float"></div>
+            
+            <div class="tw-max-w-7xl tw-mx-auto tw-relative tw-z-10">
+                <div class="tw-flex tw-flex-col tw-items-center tw-mb-14">
+                    <!-- Section Badge -->
+                    <div class="tw-bg-primary tw-bg-opacity-10 tw-backdrop-blur-sm tw-rounded-full tw-px-4 tw-py-1.5 tw-flex tw-items-center tw-justify-center tw-mb-4 tw-border tw-border-primary-200">
+                        <span class="tw-text-primary tw-font-semibold tw-text-sm">Unlocking Answers →</span>
+                    </div>
+                    
+                    <!-- Heading -->
+                    <h2 class="tw-text-3xl md:tw-text-4xl tw-font-bold tw-text-center tw-text-gray-900 tw-mb-4">
+                        Your Top <span class="tw-text-primary">Questions</span> Answered
+                    </h2>
+                    
+                    <!-- Subheading -->
+                    <p class="tw-text-lg tw-text-gray-600 tw-text-center tw-max-w-2xl">
+                        Everything you need to know about TINPED SMM services
                     </p>
                 </div>
                 
-                <div class="faq-container">
+                <!-- FAQ Accordion - Two-column layout -->
+                <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-6">
                     @php
-                    $faqs = [
+                    $faqItems = [
                         [
-                            'question' => 'Is it safe to use Tinped SMM services?',
-                            'answer' => 'Yes, our services are completely safe to use. We never require your account passwords or sensitive information. We use only white-hat methods that comply with social media platform guidelines.'
+                            "question" => "What is SMM and how does it work?",
+                            "answer" => "Social Media Marketing (SMM) involves promoting your content or brand through social media platforms. TINPED SMM provides services like followers, likes, views, and comments to boost your social media presence and increase engagement on your profiles."
                         ],
                         [
-                            'question' => 'How quickly will I see results?',
-                            'answer' => 'Most of our services start within 30 minutes of placing an order. Delivery times vary depending on the service and quantity ordered, but most orders are completed within 24-48 hours.'
+                            "question" => "How fast will I receive my order?",
+                            "answer" => "Delivery times vary based on the service and order size. Most orders begin processing instantly, with small orders completing within minutes to a few hours. Larger orders may take 24-48 hours to complete. You can always check your order status in real-time through your dashboard."
                         ],
                         [
-                            'question' => 'Do you offer refills if followers drop?',
-                            'answer' => 'Yes, we offer a 30-day refill guarantee for most of our services. If you notice any drop in the engagement we\'ve provided, simply contact our support team and we\'ll refill it for free.'
+                            "question" => "Are the followers/likes/views real?",
+                            "answer" => "We provide high-quality engagement that looks natural and authentic. While we use various methods to deliver services, we prioritize quality to ensure your profiles remain safe and the engagement appears organic."
                         ],
                         [
-                            'question' => 'What payment methods do you accept?',
-                            'answer' => 'We accept various payment methods including credit/debit cards, PayPal, cryptocurrencies (Bitcoin, Ethereum), Apple Pay, Google Pay, and bank transfers.'
+                            "question" => "Will I get banned for using your services?",
+                            "answer" => "No, our services are designed to be safe for your accounts. We deliver engagement at a natural pace and follow platform guidelines to minimize any risks. We've served over 56,000 customers without issues."
                         ],
                         [
-                            'question' => 'Will using your services get my account banned?',
-                            'answer' => 'No, our services are designed to appear natural and organic. We gradually deliver engagement to mimic natural growth patterns, which minimizes any risk to your account.'
+                            "question" => "What payment methods do you accept?",
+                            "answer" => "We accept a wide variety of payment methods including credit/debit cards (Visa, Mastercard), digital wallets (PayPal, Google Pay, Apple Pay), bank transfers, and cryptocurrencies (Bitcoin, Ethereum)."
                         ],
                         [
-                            'question' => 'Can I cancel an order after placing it?',
-                            'answer' => 'Once an order has been placed and is in progress, it cannot be canceled. However, if the order hasn\'t started processing yet, you can contact our support team to request cancellation.'
+                            "question" => "What happens if I don't receive my order?",
+                            "answer" => "In the rare case that your order isn't delivered within the expected timeframe, please contact our 24/7 support team. We offer a 100% money-back guarantee if we cannot deliver your order as promised."
                         ],
                         [
-                            'question' => 'Do I need to provide my password?',
-                            'answer' => 'No, we never ask for your social media passwords. We only require your username or the URL of the post you want to boost.'
+                            "question" => "Do you offer refills if followers drop?",
+                            "answer" => "Yes, we offer a 30-day auto-refill guarantee for most of our services. If you experience any drops in engagement within 30 days of delivery, our system will automatically refill your order at no additional cost."
                         ],
                         [
-                            'question' => 'How do I contact customer support?',
-                            'answer' => 'You can contact our customer support team 24/7 through the live chat on our website, email support, or through the contact form in your dashboard.'
+                            "question" => "How do I contact customer support?",
+                            "answer" => "Our customer support team is available 24/7 through live chat on our website, email support, and ticketing system. We typically respond within minutes during business hours and within a few hours during off-hours."
                         ]
                     ];
+                    $halfCount = ceil(count($faqItems) / 2);
+                    $firstHalf = array_slice($faqItems, 0, $halfCount);
+                    $secondHalf = array_slice($faqItems, $halfCount);
                     @endphp
-                    
-                    @foreach($faqs as $faq)
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <span>{{ $faq['question'] }}</span>
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-inner">
-                                {{ $faq['answer'] }}
+
+                    <!-- First column -->
+                    <div class="tw-bg-white tw-rounded-xl tw-shadow-lg hover:tw-shadow-glow-primary tw-border tw-border-primary-100 tw-overflow-hidden tw-transition-all tw-duration-300">
+                        <div class="tw-w-full">
+                            @foreach($firstHalf as $index => $item)
+                            <div class="tw-accordion-item tw-border-b tw-border-primary-100 tw-overflow-hidden hover:tw-bg-primary-50/30 tw-transition-colors tw-duration-300 {{ $index === 0 ? 'tw-active' : '' }}">
+                                <div class="tw-accordion-trigger tw-px-6 tw-py-5 tw-text-left tw-text-gray-800 tw-font-semibold tw-group tw-flex tw-items-center tw-justify-between tw-cursor-pointer">
+                                    <span class="tw-group-hover:tw-text-primary tw-transition-colors tw-duration-300">{{ $item['question'] }}</span>
+                                    <span class="tw-plus {{ $index === 0 ? 'tw-hidden' : '' }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-h-5 tw-w-5 tw-shrink-0 tw-text-primary-400 tw-transition-transform tw-duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                    </span>
+                                    <span class="tw-minus {{ $index === 0 ? '' : 'tw-hidden' }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-h-5 tw-w-5 tw-shrink-0 tw-text-primary-500 tw-transition-transform tw-duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                    </span>
+                                </div>
+                                <div class="tw-accordion-content tw-overflow-hidden tw-transition-all tw-duration-300 tw-max-h-0 {{ $index === 0 ? 'tw-max-h-[500px]' : '' }}">
+                                    <div class="tw-px-6 tw-pb-5 tw-text-gray-600 tw-font-light">
+                                        {{ $item['answer'] }}
+                                    </div>
+                                </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
-                    @endforeach
+                    
+                    <!-- Second column -->
+                    <div class="tw-bg-white tw-rounded-xl tw-shadow-lg hover:tw-shadow-glow-primary tw-border tw-border-primary-100 tw-overflow-hidden tw-transition-all tw-duration-300">
+                        <div class="tw-w-full">
+                            @foreach($secondHalf as $index => $item)
+                            <div class="tw-accordion-item tw-border-b tw-border-primary-100 tw-overflow-hidden hover:tw-bg-primary-50/30 tw-transition-colors tw-duration-300 {{ $index === 0 ? 'tw-active' : '' }}">
+                                <div class="tw-accordion-trigger tw-px-6 tw-py-5 tw-text-left tw-text-gray-800 tw-font-semibold tw-group tw-flex tw-items-center tw-justify-between tw-cursor-pointer">
+                                    <span class="tw-group-hover:tw-text-primary tw-transition-colors tw-duration-300">{{ $item['question'] }}</span>
+                                    <span class="tw-plus {{ $index === 0 ? 'tw-hidden' : '' }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-h-5 tw-w-5 tw-shrink-0 tw-text-primary-400 tw-transition-transform tw-duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                    </span>
+                                    <span class="tw-minus {{ $index === 0 ? '' : 'tw-hidden' }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-h-5 tw-w-5 tw-shrink-0 tw-text-primary-500 tw-transition-transform tw-duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                    </span>
+                                </div>
+                                <div class="tw-accordion-content tw-overflow-hidden tw-transition-all tw-duration-300 tw-max-h-0 {{ $index === 0 ? 'tw-max-h-[500px]' : '' }}">
+                                    <div class="tw-px-6 tw-pb-5 tw-text-gray-600 tw-font-light">
+                                        {{ $item['answer'] }}
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
                 
+                <!-- FAQ Additional Help Section -->
                 <div class="tw-mt-16 tw-text-center">
-                    <p class="tw-text-gray-600 tw-mb-4">Still have questions?</p>
-                    <a href="#" class="btn btn-primary">
-                        Contact Support
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                        </svg>
-                    </a>
+                    <div class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-gap-4">
+                        <div class="tw-inline-flex tw-items-center tw-justify-center tw-w-16 tw-h-16 tw-rounded-full tw-bg-primary-50 tw-border tw-border-primary-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tw-text-primary">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                        </div>
+                        <p class="tw-text-lg tw-text-gray-600 tw-mb-4">Still have questions? Our support team is here to help!</p>
+                        <a href="#" class="tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-whitespace-nowrap tw-rounded-md tw-bg-primary tw-text-primary-foreground hover:tw-bg-primary/90 tw-h-10 tw-px-8 tw-py-2 tw-text-sm tw-font-medium tw-transition-all tw-duration-300 hover:tw-scale-[1.02] active:tw-scale-[0.98]">
+                            Contact Support
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1107,22 +1169,42 @@
                 });
             }
             
-            // FAQ accordions
-            const faqItems = document.querySelectorAll('.faq-item');
+            // FAQ accordions functionality
+            const accordionItems = document.querySelectorAll('.tw-accordion-item');
             
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
+            accordionItems.forEach(item => {
+                const trigger = item.querySelector('.tw-accordion-trigger');
+                const content = item.querySelector('.tw-accordion-content');
+                const plusIcon = item.querySelector('.tw-plus');
+                const minusIcon = item.querySelector('.tw-minus');
                 
-                question.addEventListener('click', () => {
-                    // Toggle active class
-                    item.classList.toggle('active');
+                trigger.addEventListener('click', () => {
+                    // Check if current item is active
+                    const isActive = item.classList.contains('tw-active');
                     
-                    // Reset other accordions if needed
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                        }
+                    // Close all accordions
+                    accordionItems.forEach(otherItem => {
+                        otherItem.classList.remove('tw-active');
+                        const otherContent = otherItem.querySelector('.tw-accordion-content');
+                        const otherPlusIcon = otherItem.querySelector('.tw-plus');
+                        const otherMinusIcon = otherItem.querySelector('.tw-minus');
+                        
+                        otherContent.classList.remove('tw-max-h-[500px]');
+                        otherContent.classList.add('tw-max-h-0');
+                        
+                        otherPlusIcon.classList.remove('tw-hidden');
+                        otherMinusIcon.classList.add('tw-hidden');
                     });
+                    
+                    // If current was not active, make it active
+                    if (!isActive) {
+                        item.classList.add('tw-active');
+                        content.classList.add('tw-max-h-[500px]');
+                        content.classList.remove('tw-max-h-0');
+                        
+                        plusIcon.classList.add('tw-hidden');
+                        minusIcon.classList.remove('tw-hidden');
+                    }
                 });
             });
         });
