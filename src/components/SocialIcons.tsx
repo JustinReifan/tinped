@@ -76,3 +76,19 @@ export const DribbbleLogo: React.FC<SocialIconProps> = ({ className }) => (
     <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"></path>
   </svg>
 );
+
+// Add a default export for the SocialIcons component that will render a set of social icons
+const SocialIcons = () => {
+  return (
+    <div className="tw-flex tw-space-x-3">
+      <Facebook className="tw-w-5 tw-h-5 hover:tw-scale-110 tw-transition-transform" />
+      <Instagram className="tw-w-5 tw-h-5 hover:tw-scale-110 tw-transition-transform" />
+      <Twitter className="tw-w-5 tw-h-5 hover:tw-scale-110 tw-transition-transform" />
+      <Youtube className="tw-w-5 tw-h-5 hover:tw-scale-110 tw-transition-transform" />
+      <Linkedin className="tw-w-5 tw-h-5 hover:tw-scale-110 tw-transition-transform" />
+      <TiktokLogo className="tw-w-5 tw-h-5 hover:tw-scale-110 tw-transition-transform" />
+    </div>
+  );
+};
+
+export default SocialIcons;
