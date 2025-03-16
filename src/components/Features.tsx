@@ -33,12 +33,18 @@ const features = [
 
 const FeatureCard = ({ feature }) => {
   return (
-    <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-shadow-sm hover:tw-shadow-glow-primary tw-border tw-border-primary-50 hover:tw-border-primary-200 tw-transition-all tw-duration-300">
-      <div className="tw-w-12 tw-h-12 tw-rounded-full tw-bg-primary-100 tw-flex tw-items-center tw-justify-center tw-mb-4">
-        {feature.icon}
+    <div className="tw-group tw-relative tw-overflow-hidden">
+      {/* Inner glow effect */}
+      <div className="tw-absolute tw-inset-0 tw-bg-gradient-to-br tw-from-primary-100/50 tw-via-primary-50/30 tw-to-transparent tw-opacity-0 group-hover:tw-opacity-100 tw-transition-opacity tw-duration-500 tw-rounded-xl"></div>
+      
+      {/* Card content */}
+      <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-shadow-sm group-hover:tw-shadow-glow-primary tw-border tw-border-primary-50 group-hover:tw-border-primary-200 tw-transition-all tw-duration-300 tw-relative tw-z-10">
+        <div className="tw-w-12 tw-h-12 tw-rounded-full tw-bg-primary-100 tw-flex tw-items-center tw-justify-center tw-mb-4 tw-relative tw-z-10">
+          {feature.icon}
+        </div>
+        <h3 className="tw-text-xl tw-font-semibold tw-text-gray-800 tw-mb-2 tw-relative tw-z-10">{feature.title}</h3>
+        <p className="tw-text-gray-600 tw-relative tw-z-10">{feature.description}</p>
       </div>
-      <h3 className="tw-text-xl tw-font-semibold tw-text-gray-800 tw-mb-2">{feature.title}</h3>
-      <p className="tw-text-gray-600">{feature.description}</p>
     </div>
   );
 };
@@ -68,11 +74,11 @@ const Features = () => {
           </p>
         </div>
         
-        {/* Dashboard Screenshot */}
+        {/* Dashboard Screenshot with enhanced glow */}
         <div className="tw-mb-16 tw-flex tw-justify-center">
-          <div className="tw-relative">
+          <div className="tw-relative tw-group">
             {/* Screenshot with mask */}
-            <div className="tw-relative tw-z-10 tw-bg-white tw-rounded-xl tw-overflow-hidden tw-shadow-lg tw-border tw-border-primary-200 tw-max-w-4xl">
+            <div className="tw-relative tw-z-10 tw-bg-white tw-rounded-xl tw-overflow-hidden tw-shadow-lg tw-border tw-border-primary-200 tw-max-w-4xl tw-transition-all tw-duration-300 group-hover:tw-shadow-lg">
               <div className="tw-h-8 tw-bg-gray-100 tw-border-b tw-border-gray-200 tw-flex tw-items-center tw-px-4">
                 <div className="tw-flex tw-space-x-2">
                   <div className="tw-w-3 tw-h-3 tw-rounded-full tw-bg-red-400"></div>
@@ -135,8 +141,8 @@ const Features = () => {
               </div>
             </div>
             
-            {/* Glow effect behind screenshot */}
-            <div className="tw-absolute tw-inset-0 tw-bg-primary-300 tw-rounded-xl tw-blur-[40px] tw-opacity-20 tw-z-0 tw-animate-pulse-glow"></div>
+            {/* Enhanced glow effect behind screenshot */}
+            <div className="tw-absolute tw-inset-0 tw-bg-primary-300 tw-rounded-xl tw-blur-[40px] tw-opacity-20 group-hover:tw-opacity-40 tw-z-0 tw-animate-pulse-glow tw-transition-opacity tw-duration-300"></div>
           </div>
         </div>
         

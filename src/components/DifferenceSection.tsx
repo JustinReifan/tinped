@@ -62,30 +62,36 @@ const DifferenceSection = () => {
           </p>
         </div>
         
-        {/* Comparison Card */}
-        <div className="tw-bg-white tw-rounded-xl tw-shadow-lg tw-border tw-border-primary-100 tw-overflow-hidden">
-          {/* Card Header */}
-          <div className="tw-grid tw-grid-cols-3 tw-gap-0 tw-bg-gray-50 tw-border-b tw-border-gray-200">
-            <div className="tw-py-4 tw-px-6 tw-font-semibold tw-text-gray-700">Feature</div>
-            <div className="tw-py-4 tw-px-6 tw-font-semibold tw-text-primary">TINPED SMM</div>
-            <div className="tw-py-4 tw-px-6 tw-font-semibold tw-text-gray-700">Competition</div>
-          </div>
+        {/* Comparison Card with Glowing Border */}
+        <div className="tw-relative tw-group">
+          {/* Glowing border effect */}
+          <div className="tw-absolute tw-inset-0 tw-rounded-xl tw-bg-gradient-to-r tw-from-primary-300 tw-via-primary-400 tw-to-primary-300 tw-opacity-0 group-hover:tw-opacity-70 tw-blur-[8px] tw-transition-opacity tw-duration-300"></div>
           
-          {/* Comparison Rows */}
-          <div className="tw-divide-y tw-divide-gray-200">
-            {comparisonPoints.map((point, index) => (
-              <div key={index} className="tw-grid tw-grid-cols-3 tw-gap-0 hover:tw-bg-gray-50 tw-transition-colors tw-duration-200">
-                <div className="tw-py-4 tw-px-6 tw-text-gray-800 tw-font-medium">{point.feature}</div>
-                <div className="tw-py-4 tw-px-6 tw-text-gray-700 tw-flex tw-items-center">
-                  <CheckCircle2 className="tw-text-green-500 tw-w-5 tw-h-5 tw-flex-shrink-0 tw-mr-2" />
-                  <span>{point.tinped}</span>
+          {/* Card content */}
+          <div className="tw-bg-white tw-rounded-xl tw-shadow-lg tw-border tw-border-primary-100 tw-overflow-hidden tw-relative tw-z-10">
+            {/* Card Header */}
+            <div className="tw-grid tw-grid-cols-3 tw-gap-0 tw-bg-gray-50 tw-border-b tw-border-gray-200">
+              <div className="tw-py-4 tw-px-6 tw-font-semibold tw-text-gray-700">Feature</div>
+              <div className="tw-py-4 tw-px-6 tw-font-semibold tw-text-primary">TINPED SMM</div>
+              <div className="tw-py-4 tw-px-6 tw-font-semibold tw-text-gray-700">Competition</div>
+            </div>
+            
+            {/* Comparison Rows */}
+            <div className="tw-divide-y tw-divide-gray-200">
+              {comparisonPoints.map((point, index) => (
+                <div key={index} className="tw-grid tw-grid-cols-3 tw-gap-0 hover:tw-bg-gray-50 tw-transition-colors tw-duration-200">
+                  <div className="tw-py-4 tw-px-6 tw-text-gray-800 tw-font-medium">{point.feature}</div>
+                  <div className="tw-py-4 tw-px-6 tw-text-gray-700 tw-flex tw-items-center">
+                    <CheckCircle2 className="tw-text-green-500 tw-w-5 tw-h-5 tw-flex-shrink-0 tw-mr-2" />
+                    <span>{point.tinped}</span>
+                  </div>
+                  <div className="tw-py-4 tw-px-6 tw-text-gray-700 tw-flex tw-items-center">
+                    <XCircle className="tw-text-red-500 tw-w-5 tw-h-5 tw-flex-shrink-0 tw-mr-2" />
+                    <span>{point.competition}</span>
+                  </div>
                 </div>
-                <div className="tw-py-4 tw-px-6 tw-text-gray-700 tw-flex tw-items-center">
-                  <XCircle className="tw-text-red-500 tw-w-5 tw-h-5 tw-flex-shrink-0 tw-mr-2" />
-                  <span>{point.competition}</span>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { ChevronDown } from 'lucide-react';
 
 // FAQ data
 const faqItems = [
@@ -51,7 +52,7 @@ const FAQ = () => {
       <div className="tw-absolute tw-inset-0 tw-bg-grid tw-bg-[size:40px_40px] tw-opacity-30 tw-z-0"></div>
       <div className="tw-absolute tw-top-40 -tw-left-20 tw-w-60 tw-h-60 tw-bg-primary-100 tw-rounded-full tw-filter tw-blur-[100px] tw-opacity-40 tw-animate-float"></div>
       
-      <div className="tw-max-w-4xl tw-mx-auto tw-relative tw-z-10">
+      <div className="tw-max-w-7xl tw-mx-auto tw-relative tw-z-10">
         <div className="tw-flex tw-flex-col tw-items-center tw-mb-14">
           {/* Section Badge */}
           <div className="tw-bg-primary tw-bg-opacity-10 tw-backdrop-blur-sm tw-rounded-full tw-px-4 tw-py-1.5 tw-flex tw-items-center tw-justify-center tw-mb-4 tw-border tw-border-primary-200">
@@ -69,20 +70,47 @@ const FAQ = () => {
           </p>
         </div>
         
-        {/* FAQ Accordion */}
-        <div className="tw-bg-white tw-rounded-xl tw-shadow-lg tw-border tw-border-primary-100 tw-overflow-hidden">
-          <Accordion type="single" collapsible className="tw-w-full">
-            {faqItems.map((item, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="tw-px-6 tw-text-left tw-hover:no-underline tw-text-gray-800">
-                  {item.question}
-                </AccordionTrigger>
-                <AccordionContent className="tw-px-6 tw-pb-4 tw-text-gray-600">
-                  {item.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+        {/* FAQ Accordion - Now in a 2-column layout */}
+        <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-6">
+          {/* First column */}
+          <div className="tw-bg-white tw-rounded-xl tw-shadow-lg hover:tw-shadow-glow-primary tw-border tw-border-primary-100 tw-overflow-hidden tw-transition-all tw-duration-300">
+            <Accordion type="single" collapsible className="tw-w-full">
+              {faqItems.slice(0, Math.ceil(faqItems.length / 2)).map((item, index) => (
+                <AccordionItem 
+                  key={`left-${index}`} 
+                  value={`left-item-${index}`}
+                  className="tw-border-primary-100 tw-overflow-hidden hover:tw-bg-primary-50/30 tw-transition-colors tw-duration-300"
+                >
+                  <AccordionTrigger className="tw-px-6 tw-py-5 tw-text-left tw-hover:no-underline tw-text-gray-800 tw-font-semibold tw-group">
+                    <span className="tw-group-hover:tw-text-primary tw-transition-colors tw-duration-300">{item.question}</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="tw-px-6 tw-pb-5 tw-text-gray-600 tw-font-light">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+          
+          {/* Second column */}
+          <div className="tw-bg-white tw-rounded-xl tw-shadow-lg hover:tw-shadow-glow-primary tw-border tw-border-primary-100 tw-overflow-hidden tw-transition-all tw-duration-300">
+            <Accordion type="single" collapsible className="tw-w-full">
+              {faqItems.slice(Math.ceil(faqItems.length / 2)).map((item, index) => (
+                <AccordionItem 
+                  key={`right-${index}`} 
+                  value={`right-item-${index}`}
+                  className="tw-border-primary-100 tw-overflow-hidden hover:tw-bg-primary-50/30 tw-transition-colors tw-duration-300"
+                >
+                  <AccordionTrigger className="tw-px-6 tw-py-5 tw-text-left tw-hover:no-underline tw-text-gray-800 tw-font-semibold tw-group">
+                    <span className="tw-group-hover:tw-text-primary tw-transition-colors tw-duration-300">{item.question}</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="tw-px-6 tw-pb-5 tw-text-gray-600 tw-font-light">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
         </div>
       </div>
     </section>
