@@ -1,11 +1,11 @@
 
-<section class="tw-w-full tw-py-20 tw-px-6 lg:tw-px-12 tw-relative tw-overflow-hidden tw-bg-gray-50/80">
+<section class="tw-w-full tw-py-20 tw-px-6 lg:tw-px-12 tw-relative tw-overflow-hidden tw-bg-gray-50/80" data-aos="fade-up" data-aos-duration="800">
     <!-- Background Elements -->
     <div class="tw-absolute tw-inset-0 tw-bg-grid tw-bg-[size:40px_40px] tw-opacity-30 tw-z-0"></div>
     <div class="tw-absolute tw-top-40 -tw-left-20 tw-w-60 tw-h-60 tw-bg-primary-100 tw-rounded-full tw-filter tw-blur-[100px] tw-opacity-50 tw-animate-float"></div>
     
     <div class="tw-max-w-7xl tw-mx-auto tw-relative tw-z-10">
-        <div class="tw-flex tw-flex-col tw-items-center tw-mb-14">
+        <div class="tw-flex tw-flex-col tw-items-center tw-mb-14" data-aos="fade-up">
             <!-- Section Badge -->
             <div class="tw-bg-primary tw-bg-opacity-10 tw-backdrop-blur-sm tw-rounded-full tw-px-4 tw-py-1.5 tw-flex tw-items-center tw-justify-center tw-mb-4 tw-border tw-border-primary-200">
                 <span class="tw-text-primary tw-font-semibold tw-text-sm">Get Started</span>
@@ -54,7 +54,9 @@
             @endphp
             
             @foreach($stepData as $step)
-                <x-step-card :step="$step" />
+                <div data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+                    <x-step-card :step="$step" />
+                </div>
             @endforeach
         </div>
     </div>

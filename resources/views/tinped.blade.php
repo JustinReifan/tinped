@@ -6,12 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TINPED SMM - Premium Social Media Marketing Services</title>
     <meta name="description" content="Get instant, high-quality engagement for all your social media platforms. Fast delivery, real engagement, 24/7 support.">
+    <meta name="keywords" content="SMM panel, social media marketing, Instagram followers, Facebook likes, Twitter engagement, social media services, TINPED">
+    <meta name="author" content="TINPED SMM">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tinped.com/">
+    <meta property="og:title" content="TINPED SMM - Premium Social Media Marketing Services">
+    <meta property="og:description" content="Get instant, high-quality engagement for all your social media platforms. Fast delivery, real engagement, 24/7 support.">
+    <meta property="og:image" content="/images/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://tinped.com/">
+    <meta property="twitter:title" content="TINPED SMM - Premium Social Media Marketing Services">
+    <meta property="twitter:description" content="Get instant, high-quality engagement for all your social media platforms. Fast delivery, real engagement, 24/7 support.">
+    <meta property="twitter:image" content="/images/og-image.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Inter Font -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    
+    <!-- AOS - Animate On Scroll Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/tinped.css">
     
     <script>
         tailwind.config = {
@@ -68,81 +94,6 @@
             }
         }
     </script>
-    
-    <style>
-        /* Base styles */
-        body {
-            font-family: 'Inter var', sans-serif;
-            font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
-        }
-        
-        /* Custom Utilities */
-        .text-gradient {
-            background: linear-gradient(to right, #7367f0, #9a8ff8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .btn-primary {
-            background-image: linear-gradient(to right, #7367f0, #8f85f3);
-            @apply tw-bg-primary tw-text-white tw-font-medium tw-py-2.5 tw-px-6 tw-rounded-full tw-transition-all tw-duration-300 tw-shadow-md hover:tw-shadow-glow-primary tw-border tw-border-primary-400;
-        }
-        
-        .btn-outline {
-            @apply tw-bg-transparent tw-text-primary tw-font-medium tw-py-2.5 tw-px-6 tw-rounded-full tw-transition-all tw-duration-300 tw-border tw-border-primary hover:tw-bg-primary-50;
-        }
-        
-        .btn-glow:hover {
-            box-shadow: 0 0 25px 5px rgba(115, 103, 240, 0.5);
-        }
-        
-        /* Animation classes */
-        .heading-animation {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s ease forwards 0.1s;
-        }
-        
-        .subheading-animation {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s ease forwards 0.3s;
-        }
-        
-        .buttons-animation {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s ease forwards 0.5s;
-        }
-        
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Accordion styles */
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        
-        .accordion-item.active .accordion-content {
-            max-height: 1000px;
-        }
-        
-        .accordion-item.active .accordion-icon {
-            transform: rotate(45deg);
-        }
-
-        /* Glass morphism */
-        .glass-morphism {
-            @apply tw-backdrop-blur-[10px] tw-bg-white/70 tw-border tw-border-white/20 tw-shadow-md;
-        }
-    </style>
 </head>
 <body class="tw-min-h-screen tw-bg-white tw-overflow-x-hidden">
     <!-- Navbar -->
@@ -151,7 +102,7 @@
             <nav class="tw-flex tw-items-center tw-justify-between">
                 <!-- Logo -->
                 <div class="tw-flex tw-items-center">
-                    <a href="/" class="tw-flex tw-items-center tw-space-x-2">
+                    <a href="/" class="tw-flex tw-items-center tw-space-x-2" aria-label="TINPED SMM Home">
                         <div class="tw-relative tw-h-8 tw-w-8 tw-overflow-hidden">
                             <div class="tw-absolute tw-inset-0 tw-bg-primary tw-rounded-lg tw-animate-pulse-glow"></div>
                             <div class="tw-absolute tw-inset-0.5 tw-bg-white tw-rounded-lg tw-flex tw-items-center tw-justify-center">
@@ -165,21 +116,21 @@
                 <!-- Desktop Navigation -->
                 <div class="tw-hidden md:tw-flex tw-items-center tw-space-x-8">
                     <a href="#" class="tw-flex tw-items-center tw-space-x-1 tw-text-gray-700 hover:tw-text-primary tw-transition-colors link-underline">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                             <polyline points="9 22 9 12 15 12 15 22"></polyline>
                         </svg>
                         <span>Beranda</span>
                     </a>
                     <a href="#" class="tw-flex tw-items-center tw-space-x-1 tw-text-gray-700 hover:tw-text-primary tw-transition-colors link-underline">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
                         <span>Cek Transaksi</span>
                     </a>
                     <a href="#" class="tw-flex tw-items-center tw-space-x-1 tw-text-gray-700 hover:tw-text-primary tw-transition-colors link-underline">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <line x1="18" y1="20" x2="18" y2="10"></line>
                             <line x1="12" y1="20" x2="12" y2="4"></line>
                             <line x1="6" y1="20" x2="6" y2="14"></line>
@@ -187,7 +138,7 @@
                         <span>Leaderboard</span>
                     </a>
                     <a href="#" class="tw-flex tw-items-center tw-space-x-1 tw-text-gray-700 hover:tw-text-primary tw-transition-colors link-underline">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
                             <line x1="12" y1="10" x2="16" y2="10"></line>
                             <line x1="12" y1="14" x2="16" y2="14"></line>
@@ -214,8 +165,9 @@
                 <button 
                     class="tw-block md:tw-hidden tw-text-gray-700 hover:tw-text-primary tw-transition-colors" 
                     id="mobile-menu-button"
+                    aria-label="Toggle mobile menu"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-6 tw-h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-6 tw-h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
                         <line x1="3" y1="6" x2="21" y2="6"></line>
                         <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -228,21 +180,21 @@
         <div id="mobile-menu" class="tw-fixed tw-inset-0 tw-z-40 tw-bg-white tw-pt-20 tw-px-6 tw-transform tw-transition-all tw-duration-300 tw-ease-in-out md:tw-hidden tw-translate-x-full">
             <div class="tw-flex tw-flex-col tw-space-y-6">
                 <a href="#" class="tw-flex tw-items-center tw-space-x-3 tw-text-gray-700 hover:tw-text-primary tw-transition-colors tw-py-3 tw-border-b tw-border-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
                     </svg>
                     <span class="tw-font-medium">Beranda</span>
                 </a>
                 <a href="#" class="tw-flex tw-items-center tw-space-x-3 tw-text-gray-700 hover:tw-text-primary tw-transition-colors tw-py-3 tw-border-b tw-border-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
                     <span class="tw-font-medium">Cek Transaksi</span>
                 </a>
                 <a href="#" class="tw-flex tw-items-center tw-space-x-3 tw-text-gray-700 hover:tw-text-primary tw-transition-colors tw-py-3 tw-border-b tw-border-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <line x1="18" y1="20" x2="18" y2="10"></line>
                         <line x1="12" y1="20" x2="12" y2="4"></line>
                         <line x1="6" y1="20" x2="6" y2="14"></line>
@@ -250,7 +202,7 @@
                     <span class="tw-font-medium">Leaderboard</span>
                 </a>
                 <a href="#" class="tw-flex tw-items-center tw-space-x-3 tw-text-gray-700 hover:tw-text-primary tw-transition-colors tw-py-3 tw-border-b tw-border-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
                         <line x1="12" y1="10" x2="16" y2="10"></line>
                         <line x1="12" y1="14" x2="16" y2="14"></line>
@@ -305,8 +257,17 @@
     <x-footer />
 
     <!-- JavaScript -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out',
+                once: true,
+                offset: 100
+            });
+            
             // Navbar scroll effect
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', function() {
@@ -396,36 +357,34 @@
                 });
             });
             
-            // Hero section animations
-            const heading = document.querySelector('.heading-animation');
-            const subheading = document.querySelector('.subheading-animation');
-            const buttonContainer = document.querySelector('.buttons-animation');
+            // Lazy loading for images
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
             
-            if (heading) {
-                heading.style.opacity = '0';
-                heading.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    heading.style.opacity = '1';
-                    heading.style.transform = 'translateY(0)';
-                }, 100);
-            }
-            
-            if (subheading) {
-                subheading.style.opacity = '0';
-                subheading.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    subheading.style.opacity = '1';
-                    subheading.style.transform = 'translateY(0)';
-                }, 300);
-            }
-            
-            if (buttonContainer) {
-                buttonContainer.style.opacity = '0';
-                buttonContainer.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    buttonContainer.style.opacity = '1';
-                    buttonContainer.style.transform = 'translateY(0)';
-                }, 500);
+            if ('loading' in HTMLImageElement.prototype) {
+                // Browser supports native lazy loading
+                lazyImages.forEach(img => {
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                    }
+                });
+            } else {
+                // Fallback for browsers that don't support native lazy loading
+                const lazyImageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const lazyImage = entry.target;
+                            if (lazyImage.dataset.src) {
+                                lazyImage.src = lazyImage.dataset.src;
+                            }
+                            lazyImage.removeAttribute('data-src');
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(lazyImage => {
+                    lazyImageObserver.observe(lazyImage);
+                });
             }
         });
     </script>

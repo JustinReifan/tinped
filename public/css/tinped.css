@@ -1,0 +1,239 @@
+
+/* Tailwind Base Classes */
+@import url('https://rsms.me/inter/inter.css');
+
+/* Font Configuration */
+@font-face {
+  font-family: 'Inter var';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  font-named-instance: 'Regular';
+  src: url('https://rsms.me/inter/font-files/Inter-roman.var.woff2') format('woff2');
+}
+
+/* Base styles */
+body {
+  font-family: 'Inter var', sans-serif;
+  font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  min-height: 100vh;
+  background-color: white;
+  overflow-x: hidden;
+}
+
+/* Custom Utilities */
+.text-gradient {
+  background: linear-gradient(to right, #7367f0, #9a8ff8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-primary {
+  background-image: linear-gradient(to right, #7367f0, #8f85f3);
+  background-color: #7367f0;
+  color: white;
+  font-weight: 500;
+  padding: 0.625rem 1.5rem;
+  border-radius: 9999px;
+  transition-property: all;
+  transition-duration: 300ms;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(154, 143, 248, 0.6);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 25px 5px rgba(115, 103, 240, 0.5);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #7367f0;
+  font-weight: 500;
+  padding: 0.625rem 1.5rem;
+  border-radius: 9999px;
+  transition-property: all;
+  transition-duration: 300ms;
+  border: 1px solid #7367f0;
+}
+
+.btn-outline:hover {
+  background-color: rgba(115, 103, 240, 0.05);
+}
+
+/* Hover Glow Effects */
+.btn-glow:hover {
+  box-shadow: 0 0 25px 5px rgba(115, 103, 240, 0.5);
+}
+
+/* Underline Animation for Links */
+.link-underline {
+  position: relative;
+}
+
+.link-underline:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #7367f0;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.link-underline:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Glass morphism */
+.glass-morphism {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Animation classes */
+.heading-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease forwards 0.1s;
+}
+
+.subheading-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease forwards 0.3s;
+}
+
+.buttons-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease forwards 0.5s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Float animation for background elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Pulse Glow Animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Carousel Animation */
+@keyframes carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-carousel {
+  animation: carousel 25s linear infinite;
+}
+
+/* Accordion styles */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 1000px;
+}
+
+.accordion-item.active .accordion-icon {
+  transform: rotate(45deg);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Custom scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #d4d0fe;
+  border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #7367f0;
+}
+
+/* AOS animations */
+[data-aos] {
+  pointer-events: none;
+}
+
+[data-aos].aos-animate {
+  pointer-events: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .btn-primary, .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .text-gradient {
+    background: linear-gradient(to right, #7367f0, #9a8ff8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline;
+  }
+}
