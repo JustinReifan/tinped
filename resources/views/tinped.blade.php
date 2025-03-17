@@ -6,12 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TINPED SMM - Premium Social Media Marketing Services</title>
     <meta name="description" content="Get instant, high-quality engagement for all your social media platforms. Fast delivery, real engagement, 24/7 support.">
+    <meta name="keywords" content="SMM panel, social media marketing, followers, likes, engagement, Instagram, Facebook, YouTube, TikTok">
+    <meta name="author" content="TINPED SMM">
+    <meta property="og:title" content="TINPED SMM - Premium Social Media Marketing Services">
+    <meta property="og:description" content="Get instant, high-quality engagement for all your social media platforms. Fast delivery, real engagement, 24/7 support.">
+    <meta property="og:image" content="/img/og-image.png">
+    <meta property="og:url" content="https://tinped.com">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Inter Font -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    
+    <!-- AOS (Animate on Scroll) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     
     <script>
         tailwind.config = {
@@ -65,6 +78,11 @@
                         'glow-primary-lg': '0 0 30px -5px rgba(115, 103, 240, 0.7)',
                     },
                 }
+            },
+            plugins: {
+                scrollbar: {
+                    variants: ['rounded'],
+                },
             }
         }
     </script>
@@ -141,6 +159,45 @@
         /* Glass morphism */
         .glass-morphism {
             @apply tw-backdrop-blur-[10px] tw-bg-white/70 tw-border tw-border-white/20 tw-shadow-md;
+        }
+        
+        /* Scrollbar Styling */
+        .tw-scrollbar-thin::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .tw-scrollbar-thin::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .tw-scrollbar-thin::-webkit-scrollbar-thumb {
+            background: rgba(115, 103, 240, 0.5);
+            border-radius: 10px;
+        }
+        .tw-scrollbar-thin::-webkit-scrollbar-thumb:hover {
+            background: rgba(115, 103, 240, 0.7);
+        }
+        
+        /* Link hover animation */
+        .link-underline {
+            position: relative;
+            padding-bottom: 2px;
+        }
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: currentColor;
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        .link-underline:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
         }
     </style>
 </head>
@@ -305,8 +362,21 @@
     <x-footer />
 
     <!-- JavaScript -->
+    <!-- AOS (Animate on Scroll) -->
+    <script src="https://unpkg.com/aos@next/dist/aos.min.js"></script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                mirror: false,
+                anchorPlacement: 'top-bottom',
+                disable: 'mobile' // Disable on mobile for performance
+            });
+            
             // Navbar scroll effect
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', function() {
@@ -396,36 +466,83 @@
                 });
             });
             
-            // Hero section animations
-            const heading = document.querySelector('.heading-animation');
-            const subheading = document.querySelector('.subheading-animation');
-            const buttonContainer = document.querySelector('.buttons-animation');
+            // Lazy load images
+            document.addEventListener('DOMContentLoaded', function() {
+                var lazyloadImages;
+                
+                if ('IntersectionObserver' in window) {
+                    lazyloadImages = document.querySelectorAll('.lazy');
+                    var imageObserver = new IntersectionObserver(function(entries, observer) {
+                        entries.forEach(function(entry) {
+                            if (entry.isIntersecting) {
+                                var image = entry.target;
+                                image.src = image.dataset.src;
+                                image.classList.remove('lazy');
+                                imageObserver.unobserve(image);
+                            }
+                        });
+                    });
+                    
+                    lazyloadImages.forEach(function(image) {
+                        imageObserver.observe(image);
+                    });
+                } else {
+                    var lazyloadThrottleTimeout;
+                    
+                    function lazyload() {
+                        if (lazyloadThrottleTimeout) {
+                            clearTimeout(lazyloadThrottleTimeout);
+                        }
+                        
+                        lazyloadThrottleTimeout = setTimeout(function() {
+                            var scrollTop = window.pageYOffset;
+                            lazyloadImages = document.querySelectorAll('.lazy');
+                            
+                            lazyloadImages.forEach(function(img) {
+                                if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                                    img.src = img.dataset.src;
+                                    img.classList.remove('lazy');
+                                }
+                            });
+                            
+                            if (lazyloadImages.length == 0) {
+                                document.removeEventListener('scroll', lazyload);
+                                window.removeEventListener('resize', lazyload);
+                                window.removeEventListener('orientationChange', lazyload);
+                            }
+                        }, 20);
+                    }
+                    
+                    document.addEventListener('scroll', lazyload);
+                    window.addEventListener('resize', lazyload);
+                    window.addEventListener('orientationChange', lazyload);
+                }
+                
+                // Initial load for visible elements
+                lazyload();
+            });
             
-            if (heading) {
-                heading.style.opacity = '0';
-                heading.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    heading.style.opacity = '1';
-                    heading.style.transform = 'translateY(0)';
-                }, 100);
-            }
+            // Performance optimization for animations
+            const debouncedAOSRefresh = debounce(function() {
+                AOS.refresh();
+            }, 200);
             
-            if (subheading) {
-                subheading.style.opacity = '0';
-                subheading.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    subheading.style.opacity = '1';
-                    subheading.style.transform = 'translateY(0)';
-                }, 300);
-            }
+            window.addEventListener('resize', debouncedAOSRefresh);
             
-            if (buttonContainer) {
-                buttonContainer.style.opacity = '0';
-                buttonContainer.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    buttonContainer.style.opacity = '1';
-                    buttonContainer.style.transform = 'translateY(0)';
-                }, 500);
+            // Debounce function
+            function debounce(func, wait, immediate) {
+                var timeout;
+                return function() {
+                    var context = this, args = arguments;
+                    var later = function() {
+                        timeout = null;
+                        if (!immediate) func.apply(context, args);
+                    };
+                    var callNow = immediate && !timeout;
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                    if (callNow) func.apply(context, args);
+                };
             }
         });
     </script>

@@ -1,0 +1,317 @@
+
+/**
+* TINPED SMM - Main CSS File
+* This file contains all the custom styling needed for the TINPED SMM website
+*/
+
+/* ===== Base Styles ===== */
+@import url('https://rsms.me/inter/inter.css');
+
+:root {
+  --primary: #7367f0;
+  --primary-50: #f3f2ff;
+  --primary-100: #e9e7ff;
+  --primary-200: #d4d0fe;
+  --primary-300: #b6affc;
+  --primary-400: #9a8ff8;
+  --primary-500: #7367f0;
+  --primary-600: #6753e7;
+  --primary-700: #5641cc;
+  --primary-800: #4735a6;
+  --primary-900: #3c2f85;
+  --primary-950: #241a57;
+}
+
+body {
+  font-family: 'Inter var', sans-serif;
+  font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  overflow-x: hidden;
+}
+
+/* ===== Custom Utilities ===== */
+
+/* Text Gradient */
+.text-gradient {
+  background: linear-gradient(to right, #7367f0, #9a8ff8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-image: linear-gradient(to right, #7367f0, #8f85f3);
+  background-color: var(--primary);
+  color: white;
+  font-weight: 500;
+  padding: 0.625rem 1.5rem;
+  border-radius: 9999px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px -1px rgba(115, 103, 240, 0.2);
+  border: 1px solid var(--primary-400);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 25px 5px rgba(115, 103, 240, 0.5);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary);
+  font-weight: 500;
+  padding: 0.625rem 1.5rem;
+  border-radius: 9999px;
+  transition: all 0.3s;
+  border: 1px solid var(--primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-50);
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 25px 5px rgba(115, 103, 240, 0.5);
+}
+
+/* ===== Animation Classes ===== */
+.heading-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease forwards 0.1s;
+}
+
+.subheading-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease forwards 0.3s;
+}
+
+.buttons-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease forwards 0.5s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Carousel Animation */
+@keyframes carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-carousel {
+  animation: carousel 25s linear infinite;
+}
+
+/* Pulse Glow Animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Float Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ===== Accordion Styles ===== */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 1000px;
+}
+
+.accordion-item.active .accordion-icon {
+  transform: rotate(45deg);
+}
+
+/* ===== Glass Morphism ===== */
+.glass-morphism {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Scrollbar Styling ===== */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(115, 103, 240, 0.5);
+  border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(115, 103, 240, 0.7);
+}
+
+/* ===== Link Hover Animation ===== */
+.link-underline {
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* ===== Responsive Utilities ===== */
+@media (max-width: 768px) {
+  .tw-text-3xl {
+    font-size: 1.5rem;
+  }
+  
+  .tw-text-4xl {
+    font-size: 1.75rem;
+  }
+  
+  .tw-px-6 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .tw-py-20 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+/* ===== AOS Custom Animations ===== */
+[data-aos="custom-fade-up"] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition-property: transform, opacity;
+}
+
+[data-aos="custom-fade-up"].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-aos="custom-fade-left"] {
+  opacity: 0;
+  transform: translateX(30px);
+  transition-property: transform, opacity;
+}
+
+[data-aos="custom-fade-left"].aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[data-aos="custom-fade-right"] {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition-property: transform, opacity;
+}
+
+[data-aos="custom-fade-right"].aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ===== Background Elements ===== */
+.bg-grid {
+  background-image: linear-gradient(to right, rgba(115, 103, 240, 0.1) 1px, transparent 1px), 
+                    linear-gradient(to bottom, rgba(115, 103, 240, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-gradient-radial {
+  background-image: radial-gradient(circle, rgba(115, 103, 240, 0.1) 0%, transparent 70%);
+}
+
+/* ===== Performance Optimizations ===== */
+img.lazy {
+  transition: opacity 0.3s;
+}
+
+img.initial,
+img.loaded,
+img.error {
+  opacity: 1;
+}
+
+img:not([src]):not([srcset]) {
+  visibility: hidden;
+}
+
+/* Fix Firefox */
+@-moz-document url-prefix() {
+  img:-moz-loading {
+    visibility: hidden;
+  }
+}
+
+/* ===== Print Styles ===== */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    color: #000;
+    background: #fff;
+  }
+  
+  a {
+    text-decoration: underline;
+    color: #06c;
+  }
+}
