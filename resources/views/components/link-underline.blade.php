@@ -1,4 +1,4 @@
 
-<a href="{{ $href ?? '#' }}" class="link-underline {{ $class ?? '' }}" aria-label="{{ $slot }}">
+<a href="{{ $href ?? '#' }}" class="link-underline {{ $class ?? '' }}">
     {{ $slot }}
 </a>
