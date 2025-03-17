@@ -51,29 +51,29 @@ const services = [
 
 const PriceCard = ({ service }) => {
   return (
-    <div className="tw-flex tw-flex-row tw-items-center tw-bg-white tw-rounded-xl tw-p-4 tw-shadow-sm hover:tw-shadow-glow-primary tw-border tw-border-primary-100 hover:tw-border-primary-300 tw-transition-all tw-duration-300 tw-w-[250px] sm:tw-w-[280px]">
-      {/* Left Side - Service Info */}
-      <div className="tw-flex tw-items-center tw-space-x-3 tw-flex-1">
-        {/* Icon with background */}
-        <div className="tw-w-12 tw-h-12 tw-flex tw-items-center tw-justify-center tw-rounded-full tw-bg-primary-100">
-          <span className="tw-text-primary-600">
-            {service.icon}
-          </span>
-        </div>
-        
-        {/* Service Name */}
-        <div>
-          <h3 className="tw-font-semibold tw-text-gray-900">{service.name}</h3>
-          <p className="tw-text-sm tw-text-gray-500">Services</p>
-        </div>
+    <div className="tw-flex tw-flex-row tw-items-center tw-justify-between tw-bg-white tw-rounded-xl tw-p-6 tw-shadow-sm hover:tw-shadow-glow-primary tw-border tw-border-primary-100 hover:tw-border-primary-300 tw-transition-all tw-duration-300 tw-w-[300px] sm:tw-w-[350px] ">
+    {/* Left Side - Service Info */}
+    <div className="tw-flex tw-items-center tw-space-x-3 tw-flex-1">
+      {/* Icon with background */}
+      <div className="tw-w-12 tw-h-12 tw-flex tw-items-center tw-justify-center tw-rounded-full tw-bg-primary-100">
+        <span className="tw-text-primary-600">
+          {service.icon}
+        </span>
       </div>
       
-      {/* Right Side - Price */}
-      <div className="tw-text-right">
-        <p className="tw-text-xs tw-text-gray-500">Starting from</p>
-        <p className="tw-font-bold tw-text-primary">{service.startingPrice}</p>
+      {/* Service Name */}
+      <div>
+        <h3 className="tw-font-semibold tw-text-gray-900">{service.name}</h3>
+        <p className="tw-text-sm tw-text-gray-500">Services</p>
       </div>
     </div>
+    
+    {/* Right Side - Price */}
+    <div className="tw-text-right tw-ml-8">
+      <p className="tw-text-xs tw-text-gray-500">Starting from</p>
+      <p className="tw-font-bold tw-text-sm tw-text-primary">{service.startingPrice}</p>
+    </div>
+  </div>
   );
 };
 
@@ -92,12 +92,12 @@ const PriceList = () => {
           
           {/* Heading */}
           <h2 className="tw-text-3xl md:tw-text-4xl tw-font-bold tw-text-center tw-text-gray-900 tw-mb-4">
-            Where <span className="text-gradient">Quality</span> Meets Your Budget
+          Layanan   <span className="text-gradient">Terbaik </span>dengan Harga Terbaik
           </h2>
           
           {/* Subheading */}
           <p className="tw-text-lg tw-text-gray-600 tw-text-center tw-max-w-2xl">
-            Explore our competitive prices for premium SMM services across all major platforms
+          Temukan harga kompetitif untuk layanan SMM premium di berbagai platform sosial media. Dapatkan kualitas terbaik tanpa khawatir melebihi budget!
           </p>
         </div>
         

@@ -7,26 +7,26 @@ import { Zap, ShieldCheck, Clock, HeadsetIcon } from 'lucide-react';
 const features = [
   {
     id: 1,
-    title: "Fast Delivery",
-    description: "Orders start processing instantly and are delivered within minutes to hours based on size.",
+    title: "Pengiriman Cepat",
+    description: "Pesanan diproses instan dan dikirim dalam hitungan menit hingga jam, sesuai ukuran pesanan.",
     icon: <Zap className="tw-w-6 tw-h-6 tw-text-primary-500" />
   },
   {
     id: 2,
-    title: "Guaranteed Quality",
-    description: "All our services provide high-quality, real-looking engagement that stays on your profile.",
+    title: "Kualitas Terjamin",
+    description: "Layanan kami memberikan engagement berkualitas tinggi dan terlihat alami untuk profil Anda.",
     icon: <ShieldCheck className="tw-w-6 tw-h-6 tw-text-primary-500" />
   },
   {
     id: 3,
-    title: "24/7 Support",
-    description: "Our customer support team is available around the clock to assist with any questions.",
+    title: "Customer Support 24/7",
+    description: "Tim kami siap membantu Anda kapan pun, menjamin pengalaman lancar dan solusi cepat setiap saat.",
     icon: <HeadsetIcon className="tw-w-6 tw-h-6 tw-text-primary-500" />
   },
   {
     id: 4,
-    title: "Auto Refill",
-    description: "Automatic refills if drops occur within 30 days, ensuring your metrics remain consistent.",
+    title: "Refill Layanan",
+    description: "Kami memberikan refill gratis hingga seumur hidup untuk pesanan yang mengalami penurunan/drop.",
     icon: <Clock className="tw-w-6 tw-h-6 tw-text-primary-500" />
   }
 ];
@@ -65,12 +65,12 @@ const Features = () => {
           
           {/* Heading */}
           <h2 className="tw-text-3xl md:tw-text-4xl tw-font-bold tw-text-center tw-text-gray-900 tw-mb-4">
-            Why Choose <span className="text-gradient">Us?</span>
+            Kenapa  <span className="text-gradient">TINPED SMM?</span>
           </h2>
           
           {/* Subheading */}
           <p className="tw-text-lg tw-text-gray-600 tw-text-center tw-max-w-2xl">
-            Unmatched performance, unrivaled features - delivering excellence in every service
+            Solusi terbaik - kami hadir untuk memberikan layanan berkualitas tinggi yang memenuhi setiap kebutuhan media sosial Anda.
           </p>
         </div>
         
@@ -142,7 +142,7 @@ const Features = () => {
             </div>
             
             {/* Enhanced glow effect behind screenshot */}
-            <div className="tw-absolute tw-inset-0 tw-bg-primary-300 tw-rounded-xl tw-blur-[40px] tw-opacity-20 group-hover:tw-opacity-40 tw-z-0 tw-animate-pulse-glow tw-transition-opacity tw-duration-300"></div>
+            <div className="tw-absolute tw-inset-0 tw-bg-primary-300 tw-rounded-xl tw-blur-[40px] tw-opacity-20 group-hover:tw-opacity-40 tw-z-0 tw-animate-pulse-glow tw-transition-opacity "></div>
           </div>
         </div>
         

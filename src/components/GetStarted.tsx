@@ -6,27 +6,27 @@ import { UserPlus, Wallet, ListChecks, Package2 } from 'lucide-react';
 const stepData = [
   {
     id: 1,
-    title: 'Register an Account',
+    title: 'Registrasi Akun',
     icon: <UserPlus className="tw-w-8 tw-h-8 tw-text-primary-500" />,
-    description: 'Create your account in less than a minute with email or social login. No verification needed.'
+    description: 'Buat akun Anda dalam waktu kurang dari 1 menit dengan email atau google. Tidak diperlukan verifikasi tambahan.'
   },
   {
     id: 2,
-    title: 'Top Up Balance',
+    title: 'Top Up Saldo',
     icon: <Wallet className="tw-w-8 tw-h-8 tw-text-primary-500" />,
-    description: 'Add funds using multiple secure payment methods with instant credit to your account.'
+    description: 'Tambahkan saldo menggunakan beberapa metode pembayaran aman ke akun Anda.'
   },
   {
     id: 3,
     title: 'Choose a Service',
     icon: <ListChecks className="tw-w-8 tw-h-8 tw-text-primary-500" />,
-    description: 'Browse our wide range of services for all major social media platforms.'
+    description: 'Jelajahi beragam layanan kami yang tersedia untuk berbagai platform media sosial.'
   },
   {
     id: 4,
     title: 'Order and Monitor',
     icon: <Package2 className="tw-w-8 tw-h-8 tw-text-primary-500" />,
-    description: 'Place your order and track its progress in real-time through your dashboard.'
+    description: 'Lakukan pemesanan Anda dan pantau perkembangannya secara real-time melalui dashboard kami.'
   }
 ];
 
@@ -77,12 +77,12 @@ const GetStarted = () => {
           
           {/* Heading */}
           <h2 className="tw-text-3xl md:tw-text-4xl tw-font-bold tw-text-center tw-text-gray-900 tw-mb-4">
-            Steps to Use <span className="text-gradient">TINPED SMM</span>
+            Langkah Menggunakan <span className="text-gradient">TINPED SMM</span>
           </h2>
           
           {/* Subheading */}
           <p className="tw-text-lg tw-text-gray-600 tw-text-center tw-max-w-2xl">
-            Start boosting your social media presence in four simple steps
+            Mulai tingkatkan kehadiran media sosial Anda dalam 4 langkah mudah
           </p>
         </div>
         

@@ -16,15 +16,15 @@ const WhatIsTinped = () => {
           <div className="tw-w-full md:tw-w-1/2 tw-space-y-6 tw-animate-fade-in">
             {/* Brand Badge */}
             <div className="tw-bg-primary tw-bg-opacity-10 tw-backdrop-blur-sm tw-rounded-full tw-px-4 tw-py-1.5 tw-inline-flex tw-items-center tw-justify-center tw-border tw-border-primary-200">
-              <span className="tw-text-primary tw-font-semibold tw-text-sm">TINPED SMM PANEL</span>
+              <span className="tw-text-primary tw-font-semibold tw-text-sm">TINPED SMM</span>
             </div>
             
             <h2 className="tw-text-3xl md:tw-text-4xl lg:tw-text-5xl tw-font-bold tw-text-gray-900">
-              What is <span className="text-gradient">TINPED SMM?</span>
+              Apa itu <span className="text-gradient">TINPED SMM?</span>
             </h2>
             
             <p className="tw-text-base md:tw-text-lg tw-text-gray-600 tw-leading-relaxed">
-              TINPED SMM is a premium Social Media Marketing panel that provides high-quality engagement services for all major social media platforms. We offer instant delivery, genuine engagement, and 24/7 support to help boost your social media presence effectively and affordably.
+            Tinped SMM adalah provider layanan Social Media Marketing (SMM) yang dirancang untuk membantu Anda meningkatkan performa media sosial secara optimal. Kami menyediakan layanan berkualitas tinggi untuk berbagai platform media sosial terpopuler (Instagram, Tiktok, dll).
             </p>
             
             <div className="tw-pt-4">

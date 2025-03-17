@@ -89,6 +89,10 @@ const Testimonials = () => {
       
       <div className="tw-max-w-7xl tw-mx-auto tw-relative tw-z-10">
         <div className="tw-flex tw-flex-col tw-items-center tw-mb-14">
+          <div className="tw-bg-primary tw-bg-opacity-10 tw-backdrop-blur-sm tw-rounded-full tw-px-4 tw-py-1.5 tw-flex tw-items-center tw-justify-center tw-mb-4 tw-border tw-border-primary-200">
+            <span className="tw-text-primary tw-font-semibold tw-text-sm">Testimonials</span>
+          </div>
+
           {/* Heading */}
           <h2 className="tw-text-3xl md:tw-text-4xl tw-font-bold tw-text-center tw-text-gray-900 tw-mb-4">
             See what our <span className="text-gradient">56k+ Customers</span> have to say about us

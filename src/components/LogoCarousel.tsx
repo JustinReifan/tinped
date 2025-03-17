@@ -21,10 +21,10 @@ const LogoCarousel = () => {
     <div className="tw-relative tw-w-full tw-py-4 tw-overflow-hidden">
       <div className="tw-relative tw-w-full">
         {/* Upper gradient mask */}
-        <div className="tw-absolute tw-top-0 tw-left-0 tw-right-0 tw-h-8 tw-bg-gradient-to-b tw-from-white tw-to-transparent tw-z-10"></div>
+        {/* <div className="tw-absolute tw-top-0 tw-left-0 tw-right-0 tw-h-8 tw-bg-gradient-to-b tw-from-white tw-to-transparent tw-z-10"></div> */}
         
         {/* Lower gradient mask */}
-        <div className="tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-h-8 tw-bg-gradient-to-t tw-from-white tw-to-transparent tw-z-10"></div>
+        {/* <div className="tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-h-8 tw-bg-gradient-to-t tw-from-white tw-to-transparent tw-z-10"></div> */}
         
         {/* Carousel Container */}
         <div className="tw-inline-flex tw-animate-carousel">
