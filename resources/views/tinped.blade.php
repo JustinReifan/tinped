@@ -17,7 +17,7 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/views/landing/css/landing.css', 'resources/js/app.js'])
     
     <!-- Inter Font -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
@@ -251,32 +251,6 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Navbar scroll effect
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 20) {
-                    navbar.classList.add('glass-morphism', 'tw-shadow-md');
-                } else {
-                    navbar.classList.remove('glass-morphism', 'tw-shadow-md');
-                }
-            });
-            
-            // Mobile menu functionality
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            let isMenuOpen = false;
-            
-            mobileMenuButton.addEventListener('click', function() {
-                isMenuOpen = !isMenuOpen;
-                if (isMenuOpen) {
-                    mobileMenu.classList.remove('tw-translate-x-full');
-                    mobileMenuButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="tw-w-6 tw-h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
-                } else {
-                    mobileMenu.classList.add('tw-translate-x-full');
-                    mobileMenuButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="tw-w-6 tw-h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
-                }
-            });
-            
             // Accordion functionality
             const accordionItems = document.querySelectorAll('.accordion-item');
             const accordionTriggers = document.querySelectorAll('.accordion-trigger');
@@ -314,38 +288,6 @@
                     }
                 });
             });
-            
-            // Hero section animations
-            const heading = document.querySelector('.heading-animation');
-            const subheading = document.querySelector('.subheading-animation');
-            const buttonContainer = document.querySelector('.buttons-animation');
-            
-            if (heading) {
-                heading.style.opacity = '0';
-                heading.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    heading.style.opacity = '1';
-                    heading.style.transform = 'translateY(0)';
-                }, 100);
-            }
-            
-            if (subheading) {
-                subheading.style.opacity = '0';
-                subheading.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    subheading.style.opacity = '1';
-                    subheading.style.transform = 'translateY(0)';
-                }, 300);
-            }
-            
-            if (buttonContainer) {
-                buttonContainer.style.opacity = '0';
-                buttonContainer.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    buttonContainer.style.opacity = '1';
-                    buttonContainer.style.transform = 'translateY(0)';
-                }, 500);
-            }
         });
     </script>
 </body>
