@@ -2,23 +2,22 @@
 <section class="tw-w-full tw-py-20 tw-px-6 lg:tw-px-12 tw-relative tw-overflow-hidden tw-bg-gray-50/80">
     <!-- Background Elements -->
     <div class="tw-absolute tw-inset-0 tw-bg-grid tw-bg-[size:40px_40px] tw-opacity-30 tw-z-0"></div>
-    <div class="tw-absolute tw-top-40 -tw-left-20 tw-w-60 tw-h-60 tw-bg-primary-100 tw-rounded-full tw-filter tw-blur-[100px] tw-opacity-40 tw-animate-float"></div>
+    <div class="tw-absolute tw-top-40 -tw-left-20 tw-w-60 tw-h-60 tw-bg-primary-100 tw-rounded-full tw-filter tw-blur-[100px] tw-opacity-50 tw-animate-float"></div>
     
     <div class="tw-max-w-7xl tw-mx-auto tw-relative tw-z-10">
         <div class="tw-flex tw-flex-col tw-items-center tw-mb-14">
-            <!-- Section Badge -->
             <div class="tw-bg-primary tw-bg-opacity-10 tw-backdrop-blur-sm tw-rounded-full tw-px-4 tw-py-1.5 tw-flex tw-items-center tw-justify-center tw-mb-4 tw-border tw-border-primary-200">
-                <span class="tw-text-primary tw-font-semibold tw-text-sm">Unlocking Answers →</span>
+                <span class="tw-text-primary tw-font-semibold tw-text-sm">Support & Help</span>
             </div>
-            
+
             <!-- Heading -->
             <h2 class="tw-text-3xl md:tw-text-4xl tw-font-bold tw-text-center tw-text-gray-900 tw-mb-4">
-                Your Top <span class="text-gradient">Questions</span> Answered
+                Frequently Asked <span class="text-gradient">Questions</span>
             </h2>
             
             <!-- Subheading -->
             <p class="tw-text-lg tw-text-gray-600 tw-text-center tw-max-w-2xl">
-                Everything you need to know about TINPED SMM services
+                Find answers to the most common questions about our SMM services
             </p>
         </div>
         
@@ -65,38 +64,42 @@
             @endphp
 
             <!-- First column -->
-            <div class="tw-bg-white tw-rounded-xl tw-shadow-lg hover:tw-shadow-glow-primary tw-border tw-border-primary-100 tw-overflow-hidden tw-transition-all tw-duration-300">
+            <div class="tw-bg-white tw-rounded-xl tw-shadow-lg hover:tw-shadow-glow-primary tw-border tw-border-[#e9e7ff] tw-overflow-hidden tw-transition-all tw-duration-300">
                 <div class="tw-w-full">
                     @foreach($firstHalf as $index => $item)
-                    <div class="accordion-item tw-border-primary-100 tw-overflow-hidden hover:tw-bg-primary-50/30 tw-transition-colors tw-duration-300 @if($index !== 0) tw-border-t @endif">
-                        <div class="accordion-trigger tw-px-6 tw-py-5 tw-text-left tw-hover:no-underline tw-text-gray-800 tw-font-semibold tw-group tw-flex tw-items-center tw-justify-between tw-cursor-pointer">
-                            <span class="tw-group-hover:tw-text-primary tw-transition-colors tw-duration-300">{{ $item['question'] }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5 tw-flex-shrink-0 tw-text-primary-500 accordion-icon tw-transition-transform tw-duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
+                    <div class="accordion-item tw-border-b last:tw-border-0 tw-border-[#e9e7ff] tw-overflow-hidden hover:tw-bg-[#f3f2ff]/30 tw-transition-colors tw-duration-300">
+                        <div class="accordion-trigger tw-px-6 tw-py-5 tw-text-left tw-text-gray-800 tw-font-semibold tw-group tw-flex tw-items-center tw-justify-between tw-cursor-pointer">
+                            <span class="group-hover:tw-text-primary tw-transition-colors tw-duration-300">{{ $item['question'] }}</span>
+                            <span class="plus tw-accordion-icon tw-transition-transform tw-duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="tw-h-5 tw-w-5 tw-shrink-0 tw-text-[#9a8ff8] tw-transition-transform tw-duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            </span>
+                            <span class="minus tw-hidden tw-accordion-icon tw-transition-transform tw-duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="tw-h-5 tw-w-5 tw-shrink-0 tw-text-[#7367f0] tw-transition-transform tw-duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            </span>
                         </div>
-                        <div class="accordion-content tw-hidden tw-px-6 tw-pb-5 tw-text-gray-600 tw-font-light">
+                        <div class="accordion-content tw-px-6 tw-pb-5 tw-text-gray-600 tw-font-light">
                             {{ $item['answer'] }}
                         </div>
                     </div>
                     @endforeach
                 </div>
             </div>
-            
+
             <!-- Second column -->
-            <div class="tw-bg-white tw-rounded-xl tw-shadow-lg hover:tw-shadow-glow-primary tw-border tw-border-primary-100 tw-overflow-hidden tw-transition-all tw-duration-300">
+            <div class="tw-bg-white tw-rounded-xl tw-shadow-lg hover:tw-shadow-glow-primary tw-border tw-border-[#e9e7ff] tw-overflow-hidden tw-transition-all tw-duration-300">
                 <div class="tw-w-full">
                     @foreach($secondHalf as $index => $item)
-                    <div class="accordion-item tw-border-primary-100 tw-overflow-hidden hover:tw-bg-primary-50/30 tw-transition-colors tw-duration-300 @if($index !== 0) tw-border-t @endif">
-                        <div class="accordion-trigger tw-px-6 tw-py-5 tw-text-left tw-hover:no-underline tw-text-gray-800 tw-font-semibold tw-group tw-flex tw-items-center tw-justify-between tw-cursor-pointer">
-                            <span class="tw-group-hover:tw-text-primary tw-transition-colors tw-duration-300">{{ $item['question'] }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5 tw-flex-shrink-0 tw-text-primary-500 accordion-icon tw-transition-transform tw-duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
+                    <div class="accordion-item tw-border-b last:tw-border-0 tw-border-[#e9e7ff] tw-overflow-hidden hover:tw-bg-[#f3f2ff]/30 tw-transition-colors tw-duration-300">
+                        <div class="accordion-trigger tw-px-6 tw-py-5 tw-text-left tw-text-gray-800 tw-font-semibold tw-group tw-flex tw-items-center tw-justify-between tw-cursor-pointer">
+                            <span class="group-hover:tw-text-primary tw-transition-colors tw-duration-300">{{ $item['question'] }}</span>
+                            <span class="plus tw-accordion-icon tw-transition-transform tw-duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="tw-h-5 tw-w-5 tw-shrink-0 tw-text-[#9a8ff8] tw-transition-transform tw-duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            </span>
+                            <span class="minus tw-hidden tw-accordion-icon tw-transition-transform tw-duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="tw-h-5 tw-w-5 tw-shrink-0 tw-text-[#7367f0] tw-transition-transform tw-duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            </span>
                         </div>
-                        <div class="accordion-content tw-hidden tw-px-6 tw-pb-5 tw-text-gray-600 tw-font-light">
+                        <div class="accordion-content tw-px-6 tw-pb-5 tw-text-gray-600 tw-font-light">
                             {{ $item['answer'] }}
                         </div>
                     </div>
@@ -105,11 +108,15 @@
             </div>
         </div>
         
-        <!-- Additional help section -->
-        <div class="tw-mt-12 tw-text-center">
-            <p class="tw-text-lg tw-font-medium tw-text-gray-700 tw-mb-4">Still have questions?</p>
-            <button class="btn-primary tw-py-2.5 tw-px-6 tw-rounded-full tw-text-white tw-font-medium">
-                Contact Support
+        <!-- Still Have Questions Section -->
+        <div class="tw-mt-16 tw-text-center">
+            <h3 class="tw-text-xl tw-font-semibold tw-mb-4">Still have questions?</h3>
+            <p class="tw-text-gray-600 tw-mb-6">Our support team is ready to help you 24/7</p>
+            <button class="btn-primary tw-text-base tw-py-3 tw-px-8 btn-glow tw-flex tw-items-center tw-justify-center tw-mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5 tw-mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Contact Support</span>
             </button>
         </div>
     </div>
