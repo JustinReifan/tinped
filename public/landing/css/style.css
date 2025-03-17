@@ -1,0 +1,184 @@
+body {
+    font-family: "Inter", sans-serif;
+}
+
+/* Hero Text Gradient */
+.tw-hero-text-gradient {
+    background: linear-gradient(to right, #7367f0, #8c9eff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Button Glow Effect */
+.tw-btn-glow {
+    position: relative;
+    overflow: hidden;
+    background-color: #7367f0;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.tw-btn-glow::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: translateX(-150%) skewX(45deg);
+    transition: transform 0.7s;
+}
+
+.tw-btn-glow:hover::before {
+    transform: translateX(150%) skewX(45deg);
+}
+
+/* Outline Button Glow Effect */
+.tw-btn-outline-glow {
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    color: #7367f0;
+    font-weight: 600;
+    border: 2px solid rgba(115, 103, 240, 0.7);
+    transition: all 0.3s;
+}
+
+.tw-btn-outline-glow:hover {
+    border-color: #7367f0;
+}
+
+/* Navigation Link Styles */
+.tw-nav-link {
+    position: relative;
+    padding: 0.25rem 0.5rem;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.tw-nav-link:hover {
+    color: #7367f0;
+}
+
+.tw-nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #7367f0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    transition: all 0.3s;
+}
+
+.tw-nav-link:hover::after {
+    width: 100%;
+}
+
+/* Badge Styles */
+.tw-tinped-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+    height: 2rem;
+    border-radius: 9999px;
+    background-color: rgba(115, 103, 240, 0.1);
+    color: #7367f0;
+    font-weight: 500;
+    font-size: 0.875rem;
+    box-shadow: 0 0 10px 2px rgba(115, 103, 240, 0.3);
+}
+
+/* Marquee Container and Content */
+.tw-marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.tw-marquee-content {
+    display: flex;
+    animation: marquee 25s linear infinite;
+}
+
+/* Social Media Icons */
+.tw-brand-icon {
+    transition: all 0.3s;
+}
+
+.tw-brand-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Mobile breadcrumb styles */
+.tw-mobile-breadcrumb {
+    display: none;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    margin-top: 70px;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(115, 103, 240, 0.15);
+}
+
+@media (max-width: 768px) {
+    .tw-mobile-breadcrumb {
+        display: flex;
+    }
+}
+
+/* Animation for fade-in elements */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation for glowing pulse effect */
+@keyframes glowPulse {
+    0%,
+    100% {
+        box-shadow: 0 0 20px 5px rgba(115, 103, 240, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 30px 8px rgba(115, 103, 240, 0.6);
+        transform: scale(1.02);
+    }
+}
+
+/* Animation for floating elements */
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Animation for marquee effect */
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
