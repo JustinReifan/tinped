@@ -1,11 +1,10 @@
-
 /**
 * TINPED SMM - Main CSS File
 * This file contains all the custom styling needed for the TINPED SMM website
 */
 
 /* ===== Base Styles ===== */
-@import url('https://rsms.me/inter/inter.css');
+@import url("https://rsms.me/inter/inter.css");
 
 :root {
   --primary: #7367f0;
@@ -23,7 +22,7 @@
 }
 
 body {
-  font-family: 'Inter var', sans-serif;
+  font-family: "Inter var", sans-serif;
   font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   overflow-x: hidden;
 }
@@ -115,7 +114,8 @@ body {
 
 /* Pulse Glow Animation */
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
@@ -131,7 +131,8 @@ body {
 
 /* Float Animation */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -193,7 +194,7 @@ body {
 }
 
 .link-underline::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   transform: scaleX(0);
@@ -215,16 +216,16 @@ body {
   .tw-text-3xl {
     font-size: 1.5rem;
   }
-  
+
   .tw-text-4xl {
     font-size: 1.75rem;
   }
-  
+
   .tw-px-6 {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   .tw-py-20 {
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -267,13 +268,21 @@ body {
 
 /* ===== Background Elements ===== */
 .bg-grid {
-  background-image: linear-gradient(to right, rgba(115, 103, 240, 0.1) 1px, transparent 1px), 
-                    linear-gradient(to bottom, rgba(115, 103, 240, 0.1) 1px, transparent 1px);
+  background-image: linear-gradient(
+      to right,
+      rgba(115, 103, 240, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(115, 103, 240, 0.1) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 .bg-gradient-radial {
-  background-image: radial-gradient(circle, rgba(115, 103, 240, 0.1) 0%, transparent 70%);
+  background-image: radial-gradient(
+    circle,
+    rgba(115, 103, 240, 0.1) 0%,
+    transparent 70%
+  );
 }
 
 /* ===== Performance Optimizations ===== */
@@ -303,13 +312,13 @@ img:not([src]):not([srcset]) {
   .no-print {
     display: none !important;
   }
-  
+
   body {
     font-size: 12pt;
     color: #000;
     background: #fff;
   }
-  
+
   a {
     text-decoration: underline;
     color: #06c;
