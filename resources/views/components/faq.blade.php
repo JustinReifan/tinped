@@ -1,11 +1,11 @@
 
-<section class="tw-w-full tw-py-20 tw-px-6 lg:tw-px-12 tw-relative tw-overflow-hidden tw-bg-gray-50/80">
+<section class="tw-w-full tw-py-20 tw-px-6 lg:tw-px-12 tw-relative tw-overflow-hidden tw-bg-gray-50/80" data-aos="fade-up">
     <!-- Background Elements -->
     <div class="tw-absolute tw-inset-0 tw-bg-grid tw-bg-[size:40px_40px] tw-opacity-30 tw-z-0"></div>
     <div class="tw-absolute tw-top-40 -tw-left-20 tw-w-60 tw-h-60 tw-bg-primary-100 tw-rounded-full tw-filter tw-blur-[100px] tw-opacity-50 tw-animate-float"></div>
     
     <div class="tw-max-w-7xl tw-mx-auto tw-relative tw-z-10">
-        <div class="tw-flex tw-flex-col tw-items-center tw-mb-14">
+        <div class="tw-flex tw-flex-col tw-items-center tw-mb-14" data-aos="fade-up">
             <div class="tw-bg-primary tw-bg-opacity-10 tw-backdrop-blur-sm tw-rounded-full tw-px-4 tw-py-1.5 tw-flex tw-items-center tw-justify-center tw-mb-4 tw-border tw-border-primary-200">
                 <span class="tw-text-primary tw-font-semibold tw-text-sm">Support & Help</span>
             </div>
@@ -22,7 +22,7 @@
         </div>
         
         <!-- FAQ Accordion - Two-column layout -->
-        <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-6">
+        <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-6" data-aos="fade-up" data-aos-delay="100">
             @php
             $faqItems = [
                 [
@@ -77,7 +77,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="tw-h-5 tw-w-5 tw-shrink-0 tw-text-[#7367f0] tw-transition-transform tw-duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                             </span>
                         </div>
-                        <div class="accordion-content tw-px-6 tw-pb-5 tw-text-gray-600 tw-font-light">
+                        <div class="accordion-content tw-hidden tw-px-6 tw-pb-5 tw-text-gray-600 tw-font-light">
                             {{ $item['answer'] }}
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="tw-h-5 tw-w-5 tw-shrink-0 tw-text-[#7367f0] tw-transition-transform tw-duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                             </span>
                         </div>
-                        <div class="accordion-content tw-px-6 tw-pb-5 tw-text-gray-600 tw-font-light">
+                        <div class="accordion-content tw-hidden tw-px-6 tw-pb-5 tw-text-gray-600 tw-font-light">
                             {{ $item['answer'] }}
                         </div>
                     </div>
@@ -109,7 +109,7 @@
         </div>
         
         <!-- Still Have Questions Section -->
-        <div class="tw-mt-16 tw-text-center">
+        <div class="tw-mt-16 tw-text-center" data-aos="fade-up" data-aos-delay="200">
             <h3 class="tw-text-xl tw-font-semibold tw-mb-4">Still have questions?</h3>
             <p class="tw-text-gray-600 tw-mb-6">Our support team is ready to help you 24/7</p>
             <button class="btn-primary tw-text-base tw-py-3 tw-px-8 btn-glow tw-flex tw-items-center tw-justify-center tw-mx-auto">

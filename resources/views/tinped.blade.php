@@ -106,7 +106,7 @@
                         <div class="tw-relative tw-h-8 tw-w-8 tw-overflow-hidden">
                             <div class="tw-absolute tw-inset-0 tw-rounded-lg tw-animate-pulse-glow"></div>
                             <div class="tw-absolute tw-inset-0.5 tw-rounded-lg tw-flex tw-items-center tw-justify-center">
-                                <img src="/landing/assets/images/logo/logo-tinped.png" alt="">
+                                <img src="/landing/assets/images/logo/logo-tinped.png" alt="TINPED SMM Logo" loading="lazy">
                             </div>
                         </div>
                         <span class="tw-font-bold tw-text-gray-800 tw-hidden sm:tw-block">TINPED <span class="tw-text-primary">SMM</span></span>
@@ -178,6 +178,18 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="tw-fixed tw-inset-0 tw-z-40 tw-bg-white tw-pt-20 tw-px-6 tw-transform tw-transition-all tw-duration-300 tw-ease-in-out md:tw-hidden tw-translate-x-full">
+            <!-- Close Button -->
+            <button 
+                id="mobile-menu-close" 
+                class="tw-absolute tw-top-6 tw-right-6 tw-text-gray-700 hover:tw-text-primary tw-transition-colors"
+                aria-label="Close mobile menu"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-6 tw-h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            
             <div class="tw-flex tw-flex-col tw-space-y-6">
                 <a href="#" class="tw-flex tw-items-center tw-space-x-3 tw-text-gray-700 hover:tw-text-primary tw-transition-colors tw-py-3 tw-border-b tw-border-gray-100">
                     <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -280,11 +292,12 @@
             
             // Mobile menu functionality
             const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenuCloseButton = document.getElementById('mobile-menu-close');
             const mobileMenu = document.getElementById('mobile-menu');
             let isMenuOpen = false;
             
-            mobileMenuButton.addEventListener('click', function() {
-                isMenuOpen = !isMenuOpen;
+            function toggleMobileMenu(open) {
+                isMenuOpen = open;
                 if (isMenuOpen) {
                     mobileMenu.classList.remove('tw-translate-x-full');
                     mobileMenuButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="tw-w-6 tw-h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
@@ -292,26 +305,32 @@
                     mobileMenu.classList.add('tw-translate-x-full');
                     mobileMenuButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="tw-w-6 tw-h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
                 }
+            }
+            
+            mobileMenuButton.addEventListener('click', function() {
+                toggleMobileMenu(!isMenuOpen);
+            });
+            
+            mobileMenuCloseButton.addEventListener('click', function() {
+                toggleMobileMenu(false);
             });
             
             // Accordion functionality
             const accordionItems = document.querySelectorAll('.accordion-item');
             const accordionTriggers = document.querySelectorAll('.accordion-trigger');
             
-            // Set first item in each column as active
-            const firstItems = document.querySelectorAll('.accordion-item:first-child');
-            firstItems.forEach(item => {
-                item.classList.add('active');
+            // Initialize accordion items to closed state
+            accordionItems.forEach(item => {
                 const content = item.querySelector('.accordion-content');
                 if (content) {
-                    content.style.display = 'block';
+                    content.style.display = 'none';
                 }
                 
-                // Toggle plus/minus icons
+                // Set plus/minus icons to initial state
                 const plusIcon = item.querySelector('.plus');
                 const minusIcon = item.querySelector('.minus');
-                if (plusIcon) plusIcon.classList.add('hidden');
-                if (minusIcon) minusIcon.classList.remove('hidden');
+                if (plusIcon) plusIcon.classList.remove('hidden');
+                if (minusIcon) minusIcon.classList.add('hidden');
             });
             
             accordionTriggers.forEach(trigger => {

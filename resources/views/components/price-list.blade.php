@@ -75,7 +75,9 @@
                 @endphp
                 
                 @foreach($allServices as $index => $service)
-                    <x-price-card :service="$service" :key="$service['id'] . '-' . $index" />
+                    <div data-aos="fade-up" data-aos-delay="{{ $index * 50 }}">
+                        <x-price-card :service="$service" :key="$service['id'] . '-' . $index" />
+                    </div>
                 @endforeach
             </div>
         </div>
