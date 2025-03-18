@@ -20,7 +20,7 @@
     
     <!-- Right Side - Price -->
     <div class="tw-text-right tw-ml-8">
-        <p class="tw-text-xs tw-text-gray-500">Starting from</p>
+        <p class="tw-text-xs tw-text-gray-500">Mulai</p>
         <p class="tw-font-bold tw-text-sm tw-text-primary">{{ $service['startingPrice'] }}</p>
     </div>
 </div>
