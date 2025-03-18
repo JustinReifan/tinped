@@ -15,23 +15,23 @@
 
         <!-- Main Heading - Adjusted for all screen sizes -->
         <h1 class="heading-animation tw-text-3xl sm:tw-text-4xl md:tw-text-5xl lg:tw-text-6xl tw-font-bold tw-text-center tw-mb-4 sm:tw-mb-6 tw-text-gray-900 tw-tracking-tight tw-px-2" data-aos="fade-up" data-aos-delay="300">
-            <span class="tw-block tw-text-balance">Boost Your Social Presence</span>
-            <span class="tw-block text-gradient tw-text-balance tw-mt-1">With Premium SMM Services</span>
+            <span class="tw-block tw-text-balance">Boost Social Media Anda</span>
+            <span class="tw-block text-gradient tw-text-balance tw-mt-1">Dengan Layanan SMM Premium</span>
         </h1>
 
         <!-- Sub Heading - Font size adjustments -->
         <p class="subheading-animation tw-text-base sm:tw-text-lg md:tw-text-xl tw-text-gray-600 tw-text-center tw-max-w-xl sm:tw-max-w-2xl tw-mb-6 sm:tw-mb-8 tw-leading-relaxed tw-px-2" data-aos="fade-up" data-aos-delay="400">
-            Get instant, high-quality engagement for all your social media platforms. Fast delivery, real engagement, 24/7 support.
+            Dapatkan layanan SMM high quality untuk semua platform media sosial anda. Pengiriman instant, real profile, 24/7 support.
         </p>
 
         <!-- CTA Buttons - Responsive layout -->
         <div class="buttons-animation tw-flex tw-flex-col sm:tw-flex-row tw-items-center tw-gap-3 sm:tw-gap-4 tw-mb-12 sm:tw-mb-16 tw-w-full tw-justify-center" data-aos="fade-up" data-aos-delay="500">
             <button class="tw-w-full sm:tw-w-auto btn-primary tw-text-sm sm:tw-text-base tw-py-2.5 sm:tw-py-3 tw-px-6 sm:tw-px-8 btn-glow tw-flex tw-items-center tw-justify-center">
-                <span>Get Started</span>
+                <span>Mulai</span>
                 <x-icons.arrow-right class="tw-w-4 tw-h-4 tw-ml-2" />
             </button>
             <button class="tw-w-full sm:tw-w-auto btn-outline tw-text-sm sm:tw-text-base tw-py-2.5 sm:tw-py-3 tw-px-6 sm:tw-px-8 tw-flex tw-items-center tw-justify-center">
-                Learn More
+                Cek harga
             </button>
         </div>
 

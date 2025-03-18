@@ -18,7 +18,7 @@
                 </h2>
                 
                 <p class="tw-text-base md:tw-text-lg tw-text-gray-600 tw-leading-relaxed">
-                Tinped SMM adalah provider layanan Social Media Marketing (SMM) yang dirancang untuk membantu Anda meningkatkan performa media sosial secara optimal. Kami menyediakan layanan berkualitas tinggi untuk berbagai platform media sosial terpopuler (Instagram, Tiktok, dll).
+                    Tinped SMM adalah penyedia layanan Social Media Marketing (SMM) yang dirancang untuk membantu Anda meningkatkan performa media sosial secara optimal. Sebagai panel SMM premium, kami menawarkan solusi lengkap untuk meningkatkan followers, jangkauan, engagement, dan kredibilitas di berbagai platform media sosial populer seperti Instagram, TikTok, Facebook, YouTube, dan lainnya.
                 </p>
                 
                 <div class="tw-pt-4">

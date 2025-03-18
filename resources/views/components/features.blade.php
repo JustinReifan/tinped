@@ -26,67 +26,8 @@
         <div class="tw-mb-16 tw-flex tw-justify-center">
             <div class="tw-relative tw-group">
                 <!-- Screenshot with mask -->
-                <div class="tw-relative tw-z-10 tw-bg-white tw-rounded-xl tw-overflow-hidden tw-shadow-lg tw-border tw-border-primary-200 tw-max-w-4xl tw-transition-all tw-duration-300 group-hover:tw-shadow-lg">
-                    <div class="tw-h-8 tw-bg-gray-100 tw-border-b tw-border-gray-200 tw-flex tw-items-center tw-px-4">
-                        <div class="tw-flex tw-space-x-2">
-                            <div class="tw-w-3 tw-h-3 tw-rounded-full tw-bg-red-400"></div>
-                            <div class="tw-w-3 tw-h-3 tw-rounded-full tw-bg-yellow-400"></div>
-                            <div class="tw-w-3 tw-h-3 tw-rounded-full tw-bg-green-400"></div>
-                        </div>
-                    </div>
-                    <div class="tw-bg-gradient-to-br tw-from-gray-100 tw-to-white tw-p-4 tw-min-h-[300px] sm:tw-min-h-[400px] tw-flex tw-flex-col">
-                        <!-- Header -->
-                        <div class="tw-px-4 tw-py-3 tw-bg-primary tw-text-white tw-rounded-lg tw-flex tw-justify-between tw-items-center tw-mb-4">
-                            <div class="tw-font-medium">Dashboard</div>
-                            <div class="tw-text-sm tw-bg-white/20 tw-py-1 tw-px-3 tw-rounded-full">Balance: Rp. 250,000</div>
-                        </div>
-                        
-                        <!-- Content -->
-                        <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-gap-4 tw-mb-4">
-                            <div class="tw-bg-white tw-rounded-lg tw-p-4 tw-border tw-border-gray-200 tw-shadow-sm">
-                                <div class="tw-text-sm tw-text-gray-500">Total Orders</div>
-                                <div class="tw-text-2xl tw-font-bold tw-text-gray-900">532</div>
-                            </div>
-                            <div class="tw-bg-white tw-rounded-lg tw-p-4 tw-border tw-border-gray-200 tw-shadow-sm">
-                                <div class="tw-text-sm tw-text-gray-500">Active Orders</div>
-                                <div class="tw-text-2xl tw-font-bold tw-text-gray-900">8</div>
-                            </div>
-                            <div class="tw-bg-white tw-rounded-lg tw-p-4 tw-border tw-border-gray-200 tw-shadow-sm">
-                                <div class="tw-text-sm tw-text-gray-500">Completed</div>
-                                <div class="tw-text-2xl tw-font-bold tw-text-gray-900">524</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Table header -->
-                        <div class="tw-bg-gray-50 tw-rounded-t-lg tw-border tw-border-gray-200 tw-p-3 tw-grid tw-grid-cols-4 tw-font-medium tw-text-gray-700">
-                            <div>Service</div>
-                            <div>Order ID</div>
-                            <div>Status</div>
-                            <div>Amount</div>
-                        </div>
-                        
-                        <!-- Table rows -->
-                        <div class="tw-bg-white tw-rounded-b-lg tw-border-x tw-border-b tw-border-gray-200">
-                            <div class="tw-p-3 tw-grid tw-grid-cols-4 tw-border-b tw-border-gray-100 tw-text-sm">
-                                <div>Instagram Followers</div>
-                                <div>TIN-12345</div>
-                                <div><span class="tw-text-green-500 tw-bg-green-50 tw-px-2 tw-py-0.5 tw-rounded-full">Completed</span></div>
-                                <div>Rp. 50,000</div>
-                            </div>
-                            <div class="tw-p-3 tw-grid tw-grid-cols-4 tw-border-b tw-border-gray-100 tw-text-sm">
-                                <div>Facebook Likes</div>
-                                <div>TIN-12346</div>
-                                <div><span class="tw-text-blue-500 tw-bg-blue-50 tw-px-2 tw-py-0.5 tw-rounded-full">Processing</span></div>
-                                <div>Rp. 35,000</div>
-                            </div>
-                            <div class="tw-p-3 tw-grid tw-grid-cols-4 tw-text-sm">
-                                <div>YouTube Views</div>
-                                <div>TIN-12347</div>
-                                <div><span class="tw-text-yellow-500 tw-bg-yellow-50 tw-px-2 tw-py-0.5 tw-rounded-full">Pending</span></div>
-                                <div>Rp. 75,000</div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="tw-relative tw-z-10 tw-bg-white tw-rounded-2xl tw-overflow-hidden tw-shadow-lg tw-border tw-border-primary-200 tw-max-w-4xl tw-transition-all tw-duration-300 group-hover:tw-shadow-lg">
+                    <img src="/landing/assets/images/landing/featuresUI.png" alt="">
                 </div>
                 
                 <!-- Enhanced glow effect behind screenshot -->

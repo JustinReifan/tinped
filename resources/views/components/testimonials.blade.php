@@ -12,12 +12,12 @@
 
             <!-- Heading -->
             <h2 class="tw-text-3xl md:tw-text-4xl tw-font-bold tw-text-center tw-text-gray-900 tw-mb-4">
-                See what our <span class="text-gradient">56k+ Customers</span> have to say about us
+                Lihat apa kata <span class="text-gradient">1.500+ Pelanggan</span> Kami
             </h2>
             
             <!-- Subheading -->
             <p class="tw-text-lg tw-text-gray-600 tw-text-center tw-max-w-2xl">
-                Real stories from real customers who have transformed their social media presence
+                Cerita nyata dari customer kami yang telah mengubah performa media sosial mereka.
             </p>
         </div>
         
@@ -27,42 +27,42 @@
             $testimonials = [
                 [
                     "id" => 1,
-                    "text" => "TINPED SMM has truly revolutionized my social media marketing strategy. The followers I gained are real and engaged with my content!",
+                    "text" => "Berkat TINPED SMM, strategi marketing media sosial saya jadi lebih efektif. Followers yang saya dapatkan juga ternyata terlihat aktif",
                     "name" => "Sarah Johnson",
                     "role" => "Digital Marketer",
                     "image" => "https://randomuser.me/api/portraits/women/1.jpg"
                 ],
                 [
                     "id" => 2,
-                    "text" => "I've tried many SMM panels before, but TINPED stands out with its quality and customer service. My YouTube channel grew exponentially!",
+                    "text" => "Sudah mencoba banyak panel SMM sebelumnya, tapi panel ini benar-benar beda! Kualitas layanan dan dukungan pelanggannya luar biasa. Channel YouTube saya tumbuh pesat berkat mereka",
                     "name" => "Michael Chen",
                     "role" => "Content Creator",
                     "image" => "https://randomuser.me/api/portraits/men/2.jpg"
                 ],
                 [
                     "id" => 3,
-                    "text" => "As a small business owner, I needed affordable yet effective social media solutions. TINPED SMM delivered beyond my expectations.",
+                    "text" => "Sebagai pemilik usaha kecil, saya butuh solusi media sosial yang terjangkau tapi efektif. TINPED benar-benar melebihi ekspektasi saya!",
                     "name" => "Jessica Williams",
                     "role" => "Boutique Owner",
                     "image" => "https://randomuser.me/api/portraits/women/3.jpg"
                 ],
                 [
                     "id" => 4,
-                    "text" => "The speed of delivery is incredible. I placed an order and saw results within minutes. Will definitely use their services again!",
+                    "text" => "Kecepatan pengirimannya luar biasa! Saya pesan, dan hasilnya langsung masuk dalam hitungan menit. Udah langganan disini",
                     "name" => "David Rodriguez",
                     "role" => "Musician",
                     "image" => "https://randomuser.me/api/portraits/men/4.jpg"
                 ],
                 [
                     "id" => 5,
-                    "text" => "TINPED SMM helped me grow my Instagram following by 10K in just one month. The engagement is fantastic and looks completely natural.",
+                    "text" => "TINPED membantu saya meningkatkan followers Instagram saya sebanyak 10 ribu hanya dalam satu bulan. Engagement nya luar biasa dan terlihat natural.",
                     "name" => "Emma Thompson",
                     "role" => "Lifestyle Influencer",
                     "image" => "https://randomuser.me/api/portraits/women/5.jpg"
                 ],
                 [
                     "id" => 6,
-                    "text" => "Their customer support is exceptional. Any questions I had were answered promptly. A truly reliable service for growing your social presence.",
+                    "text" => "CS-nya sangat responsif dan membantu. Semua kendala langsung ditangani dengan cepat. Hanya disini juga refill layanan dapat sangat mudah",
                     "name" => "James Wilson",
                     "role" => "Startup Founder",
                     "image" => "https://randomuser.me/api/portraits/men/6.jpg"

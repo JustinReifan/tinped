@@ -27,43 +27,43 @@
             $paymentMethods = [
                 [
                     "id" => 1,
-                    "name" => "Visa",
-                    "image" => "https://cdn.iconscout.com/icon/free/png-256/free-visa-3-226460.png"
+                    "name" => "Alfamart",
+                    "image" => "./landing/assets/images/pay-method/alfamart.png"
                 ],
                 [
                     "id" => 2,
-                    "name" => "Mastercard",
-                    "image" => "https://cdn.iconscout.com/icon/free/png-256/free-mastercard-3-226462.png"
+                    "name" => "Indomaret",
+                    "image" => "./landing/assets/images/pay-method/indomart.png"
                 ],
                 [
                     "id" => 3,
-                    "name" => "PayPal",
-                    "image" => "https://cdn.iconscout.com/icon/free/png-256/free-paypal-58-226444.png"
+                    "name" => "BCA VA",
+                    "image" => "./landing/assets/images/pay-method/bcava.jpg"
                 ],
                 [
                     "id" => 4,
-                    "name" => "Bitcoin",
-                    "image" => "https://cdn.iconscout.com/icon/free/png-256/free-bitcoin-4-225686.png"
+                    "name" => "Qris",
+                    "image" => "./landing/assets/images/pay-method/qris.png"
                 ],
                 [
                     "id" => 5,
-                    "name" => "Google Pay",
-                    "image" => "https://cdn.iconscout.com/icon/free/png-256/free-google-pay-2038779-1721670.png"
+                    "name" => "Dana",
+                    "image" => "./landing/assets/images/pay-method/danasymbol.png"
                 ],
                 [
                     "id" => 6,
-                    "name" => "Apple Pay",
-                    "image" => "https://cdn.iconscout.com/icon/free/png-256/free-apple-pay-2038781-1721672.png"
+                    "name" => "Ovo",
+                    "image" => "./landing/assets/images/pay-method/ovosymbol.png"
                 ],
                 [
                     "id" => 7,
-                    "name" => "Bank Transfer",
-                    "image" => "https://cdn.iconscout.com/icon/premium/png-256-thumb/bank-transfer-2-837018.png"
+                    "name" => "BRI VA",
+                    "image" => "./landing/assets/images/pay-method/briva.jpg"
                 ],
                 [
                     "id" => 8,
-                    "name" => "Ethereum",
-                    "image" => "https://cdn.iconscout.com/icon/free/png-256/free-ethereum-1-283135.png"
+                    "name" => "Shopeepay",
+                    "image" => "./landing/assets/images/pay-method/shopeepay.png"
                 ]
             ];
             @endphp

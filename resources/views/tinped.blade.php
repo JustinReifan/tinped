@@ -29,7 +29,7 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Inter Font -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     
@@ -104,9 +104,9 @@
                 <div class="tw-flex tw-items-center">
                     <a href="/" class="tw-flex tw-items-center tw-space-x-2" aria-label="TINPED SMM Home">
                         <div class="tw-relative tw-h-8 tw-w-8 tw-overflow-hidden">
-                            <div class="tw-absolute tw-inset-0 tw-bg-primary tw-rounded-lg tw-animate-pulse-glow"></div>
-                            <div class="tw-absolute tw-inset-0.5 tw-bg-white tw-rounded-lg tw-flex tw-items-center tw-justify-center">
-                                <span class="tw-font-bold tw-text-primary tw-text-xs">TINPED</span>
+                            <div class="tw-absolute tw-inset-0 tw-rounded-lg tw-animate-pulse-glow"></div>
+                            <div class="tw-absolute tw-inset-0.5 tw-rounded-lg tw-flex tw-items-center tw-justify-center">
+                                <img src="/landing/assets/images/logo/logo-tinped.png" alt="">
                             </div>
                         </div>
                         <span class="tw-font-bold tw-text-gray-800 tw-hidden sm:tw-block">TINPED <span class="tw-text-primary">SMM</span></span>

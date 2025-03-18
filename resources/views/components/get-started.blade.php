@@ -40,13 +40,13 @@
                 ],
                 [
                     "id" => 3,
-                    "title" => "Choose a Service",
+                    "title" => "Pilih Layanan",
                     "icon" => "list-checks",
                     "description" => "Jelajahi beragam layanan kami yang tersedia untuk berbagai platform media sosial."
                 ],
                 [
                     "id" => 4,
-                    "title" => "Order and Monitor",
+                    "title" => "Pesan & Pantau",
                     "icon" => "package-2",
                     "description" => "Lakukan pemesanan Anda dan pantau perkembangannya secara real-time melalui dashboard kami."
                 ]

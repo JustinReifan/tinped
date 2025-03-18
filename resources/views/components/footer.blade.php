@@ -8,7 +8,7 @@
                     TINPED SMM
                 </div>
                 <p class="tw-text-gray-600 tw-max-w-md tw-text-sm">
-                    Premium social media marketing services designed to enhance your online presence and boost engagement across all major platforms.
+                    Provider Layanan SMM yang membantu meningkatkan performa online dan interaksi di semua platform media sosial populer.
                 </p>
                 <div class="tw-mt-4">
                     <div class="tw-flex tw-space-x-3">

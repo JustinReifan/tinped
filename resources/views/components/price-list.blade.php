@@ -30,43 +30,43 @@
                         'id' => 1,
                         'name' => 'Facebook',
                         'icon' => 'facebook',
-                        'startingPrice' => 'Rp. 5,000'
+                        'startingPrice' => 'Rp. 1,000'
                     ],
                     [
                         'id' => 2,
                         'name' => 'Instagram',
                         'icon' => 'instagram',
-                        'startingPrice' => 'Rp. 8,000'
+                        'startingPrice' => 'Rp. 1,000'
                     ],
                     [
                         'id' => 3,
                         'name' => 'Twitter',
                         'icon' => 'twitter',
-                        'startingPrice' => 'Rp. 10,000'
+                        'startingPrice' => 'Rp. 1,000'
                     ],
                     [
                         'id' => 4,
                         'name' => 'YouTube',
                         'icon' => 'youtube',
-                        'startingPrice' => 'Rp. 15,000'
+                        'startingPrice' => 'Rp. 1,000'
                     ],
                     [
                         'id' => 5,
                         'name' => 'Twitch',
                         'icon' => 'twitch',
-                        'startingPrice' => 'Rp. 12,000'
+                        'startingPrice' => 'Rp. 1,000'
                     ],
                     [
                         'id' => 6,
                         'name' => 'TikTok',
                         'icon' => 'tiktok',
-                        'startingPrice' => 'Rp. 9,000'
+                        'startingPrice' => 'Rp. 1,000'
                     ],
                     [
                         'id' => 7,
                         'name' => 'Website',
                         'icon' => 'globe',
-                        'startingPrice' => 'Rp. 20,000'
+                        'startingPrice' => 'Rp. 1,000'
                     ]
                 ];
                 

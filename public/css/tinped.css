@@ -1,20 +1,19 @@
-
-/* Tailwind Base Classes */
-@import url('https://rsms.me/inter/inter.css');
+@import url("https://rsms.me/inter/inter.css");
 
 /* Font Configuration */
 @font-face {
-  font-family: 'Inter var';
+  font-family: "Inter var";
   font-weight: 100 900;
   font-display: swap;
   font-style: normal;
-  font-named-instance: 'Regular';
-  src: url('https://rsms.me/inter/font-files/Inter-roman.var.woff2') format('woff2');
+  font-named-instance: "Regular";
+  src: url("https://rsms.me/inter/font-files/Inter-roman.var.woff2")
+    format("woff2");
 }
 
 /* Base styles */
 body {
-  font-family: 'Inter var', sans-serif;
+  font-family: "Inter var", sans-serif;
   font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   min-height: 100vh;
   background-color: white;
@@ -72,7 +71,7 @@ body {
 }
 
 .link-underline:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   transform: scaleX(0);
@@ -94,7 +93,8 @@ body {
   backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 /* Animation classes */
@@ -125,7 +125,8 @@ body {
 
 /* Float animation for background elements */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -139,7 +140,8 @@ body {
 
 /* Pulse Glow Animation */
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
@@ -189,8 +191,8 @@ body {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 /* Custom scrollbar */
@@ -224,11 +226,12 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 640px) {
-  .btn-primary, .btn-outline {
+  .btn-primary,
+  .btn-outline {
     width: 100%;
     justify-content: center;
   }
-  
+
   .text-gradient {
     background: linear-gradient(to right, #7367f0, #9a8ff8);
     -webkit-background-clip: text;

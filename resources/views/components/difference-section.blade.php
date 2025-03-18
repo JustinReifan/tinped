@@ -13,12 +13,12 @@
             
             <!-- Heading -->
             <h2 class="tw-text-3xl md:tw-text-4xl tw-font-bold tw-text-center tw-text-gray-900 tw-mb-4">
-                Why is <span class="text-gradient">TINPED SMM</span> Unique?
+                Kenapa <span class="text-gradient">TINPED SMM</span> Berbeda?
             </h2>
             
             <!-- Subheading -->
             <p class="tw-text-lg tw-text-gray-600 tw-text-center tw-max-w-2xl">
-                A comparative list of what TINPED SMM offers vs Competition
+                List perbandingan keunggulan TINPED dengan kompetitor
             </p>
         </div>
         
@@ -33,7 +33,7 @@
                 <div class="tw-grid tw-grid-cols-3 tw-gap-0 tw-bg-gray-50 tw-border-b tw-border-gray-200 tw-sticky tw-top-0 tw-z-10">
                     <div class="tw-py-4 tw-px-6 tw-font-semibold tw-text-gray-700">Feature</div>
                     <div class="tw-py-4 tw-px-6 tw-font-semibold tw-text-primary">TINPED SMM</div>
-                    <div class="tw-py-4 tw-px-6 tw-font-semibold tw-text-gray-700">Competition</div>
+                    <div class="tw-py-4 tw-px-6 tw-font-semibold tw-text-gray-700">Kompetitor</div>
                 </div>
                 
                 <!-- Responsive Container for small screens -->
@@ -43,34 +43,34 @@
                         @php
                         $comparisonPoints = [
                             [
-                                "feature" => "Service Quality",
-                                "tinped" => "High-quality, real-looking engagement",
-                                "competition" => "Low-quality, bot-like engagement"
+                                "feature" => "Kualitas Layanan",
+                                "tinped" => "High-quality, real-looking profile",
+                                "competition" => "Low-quality, bot-like profile"
                             ],
                             [
-                                "feature" => "Delivery Speed",
-                                "tinped" => "Instant to 24hr delivery based on order size",
-                                "competition" => "Unpredictable, often delayed delivery times"
+                                "feature" => "Speed Pengiriman",
+                                "tinped" => "Instant hingga 24 jam berdasarkan jumlah pesanan",
+                                "competition" => "Tidak dapat diprediksi dan sering delay"
                             ],
                             [
                                 "feature" => "Customer Support",
-                                "tinped" => "24/7 dedicated support team",
-                                "competition" => "Limited or no customer support"
+                                "tinped" => "Bantuan layanan 24/7",
+                                "competition" => "Terbatas atau tidak ada support"
                             ],
                             [
-                                "feature" => "Refill Guarantee",
-                                "tinped" => "30-day auto refill if drops occur",
-                                "competition" => "No refill guarantee or complicated process"
+                                "feature" => "Jaminan Refill",
+                                "tinped" => "Refill mudah hingga seumur hidup jika terjadi penurunan",
+                                "competition" => "Tidak ada jaminan refill atau proses rumit"
                             ],
                             [
-                                "feature" => "Price Transparency",
-                                "tinped" => "Clear pricing with no hidden fees",
-                                "competition" => "Hidden fees and unclear pricing models"
+                                "feature" => "Transparansi Harga",
+                                "tinped" => "Harga layanan net tanpa biaya tersembunyi",
+                                "competition" => "Biaya tersembunyi dan penetapan harga yang tidak jelas"
                             ],
                             [
-                                "feature" => "Order Management",
-                                "tinped" => "Real-time order tracking and reporting",
-                                "competition" => "Limited or no order tracking capabilities"
+                                "feature" => "Manajemen Order",
+                                "tinped" => "Pelacakan dan pelaporan pesanan secara real-time",
+                                "competition" => "Pelacakan pesanan terbatas atau tidak ada sama sekali"
                             ]
                         ];
                         @endphp
