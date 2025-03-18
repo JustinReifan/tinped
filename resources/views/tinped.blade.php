@@ -137,6 +137,24 @@
                         </svg>
                         <span>Leaderboard</span>
                     </a>
+                    <!-- Sitemap Dropdown -->
+                    <div class="tw-relative" x-data="{ open: false }" @click.away="open = false">
+                        <button @click="open = !open" class="tw-flex tw-items-center tw-space-x-1 tw-text-gray-700 hover:tw-text-primary tw-transition-colors link-underline">
+                            <x-icons.list-checks class="tw-w-4 tw-h-4" />
+                            <span>Sitemap</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div x-show="open" x-transition:enter="tw-transition tw-ease-out tw-duration-100" x-transition:enter-start="tw-transform tw-opacity-0 tw-scale-95" x-transition:enter-end="tw-transform tw-opacity-100 tw-scale-100" x-transition:leave="tw-transition tw-ease-in tw-duration-75" x-transition:leave-start="tw-transform tw-opacity-100 tw-scale-100" x-transition:leave-end="tw-transform tw-opacity-0 tw-scale-95" class="tw-absolute tw-z-50 tw-mt-2 tw-w-56 tw-rounded-md tw-shadow-lg tw-bg-white tw-border tw-border-gray-100" style="display: none;">
+                            <div class="tw-rounded-md tw-ring-1 tw-ring-black tw-ring-opacity-5 tw-py-1">
+                                <a href="#" class="tw-block tw-px-4 tw-py-2 tw-text-sm tw-text-gray-700 hover:tw-bg-gray-50 hover:tw-text-primary">Pesan Tanpa Daftar</a>
+                                <a href="#" class="tw-block tw-px-4 tw-py-2 tw-text-sm tw-text-gray-700 hover:tw-bg-gray-50 hover:tw-text-primary">Ketentuan Layanan</a>
+                                <a href="#" class="tw-block tw-px-4 tw-py-2 tw-text-sm tw-text-gray-700 hover:tw-bg-gray-50 hover:tw-text-primary">Contoh Pesanan</a>
+                            </div>
+                        </div>
+                    </div>
                     <a href="#" class="tw-flex tw-items-center tw-space-x-1 tw-text-gray-700 hover:tw-text-primary tw-transition-colors link-underline">
                         <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
@@ -213,6 +231,23 @@
                     </svg>
                     <span class="tw-font-medium">Leaderboard</span>
                 </a>
+                <!-- Sitemap Dropdown for Mobile -->
+                <div class="tw-py-3 tw-border-b tw-border-gray-100" x-data="{ open: false }">
+                    <button @click="open = !open" class="tw-flex tw-items-center tw-justify-between tw-w-full tw-text-gray-700 hover:tw-text-primary tw-transition-colors">
+                        <div class="tw-flex tw-items-center tw-space-x-3">
+                            <x-icons.list-checks class="tw-w-5 tw-h-5" />
+                            <span class="tw-font-medium">Sitemap</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" :class="{'tw-transform tw-rotate-180': open}" class="tw-w-5 tw-h-5 tw-transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div x-show="open" x-transition:enter="tw-transition tw-ease-out tw-duration-100" x-transition:enter-start="tw-transform tw-opacity-0 tw-scale-95" x-transition:enter-end="tw-transform tw-opacity-100 tw-scale-100" x-transition:leave="tw-transition tw-ease-in tw-duration-75" x-transition:leave-start="tw-transform tw-opacity-100 tw-scale-100" x-transition:leave-end="tw-transform tw-opacity-0 tw-scale-95" class="tw-pl-8 tw-mt-2 tw-space-y-2" style="display: none;">
+                        <a href="#" class="tw-block tw-py-2 tw-text-gray-600 hover:tw-text-primary tw-transition-colors">Pesan Tanpa Daftar</a>
+                        <a href="#" class="tw-block tw-py-2 tw-text-gray-600 hover:tw-text-primary tw-transition-colors">Ketentuan Layanan</a>
+                        <a href="#" class="tw-block tw-py-2 tw-text-gray-600 hover:tw-text-primary tw-transition-colors">Contoh Pesanan</a>
+                    </div>
+                </div>
                 <a href="#" class="tw-flex tw-items-center tw-space-x-3 tw-text-gray-700 hover:tw-text-primary tw-transition-colors tw-py-3 tw-border-b tw-border-gray-100">
                     <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
@@ -270,6 +305,7 @@
 
     <!-- JavaScript -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize AOS
