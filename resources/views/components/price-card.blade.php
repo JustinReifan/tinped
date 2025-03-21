@@ -1,4 +1,3 @@
-
 @props(['service', 'key'])
 
 <div class="tw-flex tw-flex-row tw-items-center tw-justify-between tw-bg-white tw-rounded-xl tw-p-6 tw-shadow-sm hover:tw-shadow-glow-primary tw-border tw-border-primary-100 hover:tw-border-primary-300 tw-transition-all tw-duration-300 tw-w-[320px] sm:tw-w-[380px]">

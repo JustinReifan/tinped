@@ -12,11 +12,10 @@
                 ['name' => 'Twitch', 'icon' => 'twitch'],
                 ['name' => 'TikTok', 'icon' => 'tiktok'],
                 ['name' => 'LinkedIn', 'icon' => 'linkedin'],
-                ['name' => 'Dribbble', 'icon' => 'dribbble']
             ];
             
             // Double the platforms for smoother infinite loop
-            $allPlatforms = array_merge($socialPlatforms, $socialPlatforms);
+            $allPlatforms = array_merge($socialPlatforms, $socialPlatforms, $socialPlatforms);
             @endphp
             
             @foreach($allPlatforms as $index => $platform)

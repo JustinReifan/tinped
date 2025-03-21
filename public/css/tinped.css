@@ -1,19 +1,23 @@
-@import url("https://rsms.me/inter/inter.css");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @import url("https://rsms.me/inter/inter.css"); */
 
 /* Font Configuration */
-@font-face {
-  font-family: "Inter var";
-  font-weight: 100 900;
-  font-display: swap;
-  font-style: normal;
-  font-named-instance: "Regular";
-  src: url("https://rsms.me/inter/font-files/Inter-roman.var.woff2")
-    format("woff2");
-}
+/* @font-face {
+    font-family: "Inter var";
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+    font-named-instance: "Regular";
+    src: url("https://rsms.me/inter/font-files/Inter-roman.var.woff2")
+        format("woff2");
+} */
 
 /* Base styles */
 body {
-  font-family: "Inter var", sans-serif;
+  /* font-family: "Inter var", sans-serif; */
   font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   min-height: 100vh;
   background-color: white;
@@ -161,12 +165,12 @@ body {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }
 
 .animate-carousel {
-  animation: carousel 25s linear infinite;
+  animation: carousel 5s linear infinite;
 }
 
 /* Accordion styles */

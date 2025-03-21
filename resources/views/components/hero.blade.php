@@ -1,4 +1,3 @@
-
 <div class="tw-min-h-screen tw-relative tw-overflow-hidden tw-flex tw-flex-col tw-items-center tw-justify-center tw-px-4 sm:tw-px-6 lg:tw-px-12 tw-pt-16 sm:tw-pt-20 tw-pb-8 sm:tw-pb-10" data-aos="fade-up">
     <!-- Background Elements - Optimized for all devices -->
     <div class="tw-absolute tw-inset-0 tw-bg-grid tw-bg-[size:24px_24px] sm:tw-bg-[size:32px_32px] tw-opacity-60 tw-z-0"></div>
@@ -14,7 +13,7 @@
         </div>
 
         <!-- Main Heading - Improved text balancing -->
-        <h1 class="heading-animation tw-text-3xl sm:tw-text-4xl md:tw-text-5xl lg:tw-text-6xl tw-font-bold tw-text-center tw-mb-4 sm:tw-mb-6 tw-text-gray-900 tw-tracking-tight tw-px-2 sm:tw-px-4" data-aos="fade-up" data-aos-delay="300">
+        <h1 class="heading-animation tw-text-3xl sm:tw-text-4xl md:tw-text-5xl lg:tw-text-6xl tw-font-bold tw-text-center tw-mb-4 sm:tw-mb-6 tw-text-gray-900 tw-tracking-tight tw-px-2 sm:tw-px-4 " data-aos="fade-up" data-aos-delay="300">
             <span class="tw-block tw-text-balance tw-max-w-[95vw] sm:tw-max-w-full">Boost Social Media Anda</span>
             <span class="tw-block text-gradient tw-text-balance tw-mt-1 tw-max-w-[95vw] sm:tw-max-w-full">Dengan Layanan SMM Premium</span>
         </h1>
@@ -26,11 +25,11 @@
 
         <!-- CTA Buttons - Improved mobile layout -->
         <div class="buttons-animation tw-flex tw-flex-col sm:tw-flex-row tw-items-center tw-gap-3 sm:tw-gap-4 tw-mb-12 sm:tw-mb-16 tw-w-full tw-max-w-xs sm:tw-max-w-md tw-justify-center" data-aos="fade-up" data-aos-delay="500">
-            <button class="tw-w-full sm:tw-w-auto btn-primary tw-text-sm sm:tw-text-base tw-py-2.5 sm:tw-py-3 tw-px-6 sm:tw-px-8 btn-glow tw-flex tw-items-center tw-justify-center">
+            <button class="tw-w-full sm:tw-w-auto btn-primary tw-text-sm sm:tw-text-base tw-py-2.5 sm:tw-py-3 tw-px-6 sm:tw-px-8 btn-glow tw-flex tw-items-center tw-justify-center" onclick="window.location.href='{{ route('register') }}'">
                 <span>Mulai</span>
                 <x-icons.arrow-right class="tw-w-4 tw-h-4 tw-ml-2" />
             </button>
-            <button class="tw-w-full sm:tw-w-auto btn-outline tw-text-sm sm:tw-text-base tw-py-2.5 sm:tw-py-3 tw-px-6 sm:tw-px-8 tw-flex tw-items-center tw-justify-center">
+            <button class="tw-w-full sm:tw-w-auto btn-outline tw-text-sm sm:tw-text-base tw-py-2.5 sm:tw-py-3 tw-px-6 sm:tw-px-8 tw-flex tw-items-center tw-justify-center" onclick="window.location.href='{{ route('home.list.layanan') }}'">
                 Cek harga
             </button>
         </div>
