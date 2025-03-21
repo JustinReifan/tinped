@@ -173,6 +173,20 @@ body {
   animation: carousel 5s linear infinite;
 }
 
+/* Price card carousel - adjusted for responsive cards */
+@keyframes carouselPrice {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+.animate-carouselPrice {
+  animation: carouselPrice 25s linear infinite;
+}
+
 /* Accordion styles */
 .accordion-content {
   max-height: 0;
