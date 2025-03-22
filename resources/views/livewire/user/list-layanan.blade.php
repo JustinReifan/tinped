@@ -1,3 +1,4 @@
+
 <div>
     <link href="//rawgit.com/gjunge/rateit.js/master/scripts/rateit.css" rel="stylesheet" type="text/css">
     <script src="//rawgit.com/gjunge/rateit.js/master/scripts/jquery.rateit.js" type="text/javascript"></script>
@@ -18,9 +19,9 @@
                                 <div class="tw-mt-2">
                                     <div class="tw-relative">
                                         <input type="text" wire:model.live.debounce.300ms="search" 
-                                            class="tw-w-full tw-pl-10 tw-pr-4 tw-py-3 tw-rounded-lg tw-border tw-border-gray-200 dark:tw-border-gray-700 dark:tw-bg-gray-800/80 dark:tw-text-white focus:tw-ring-primary-500 focus:tw-border-primary-500 tw-transition-all tw-duration-300"
+                                            class="tw-w-full tw-pl-12 tw-pr-4 tw-py-3 tw-rounded-lg tw-border tw-border-gray-200 dark:tw-border-gray-700 dark:tw-bg-gray-800/80 dark:tw-text-white focus:tw-ring-primary-500 focus:tw-border-primary-500 tw-transition-all tw-duration-300"
                                             placeholder="Search for services...">
-                                        <div class="tw-absolute tw-left-3 tw-top-3.5 tw-text-gray-400 dark:tw-text-gray-500">
+                                        <div class="tw-absolute tw-left-4 tw-top-3.5 tw-text-gray-400 dark:tw-text-gray-500">
                                             <i class="fas fa-search"></i>
                                         </div>
                                     </div>
@@ -120,15 +121,21 @@
                                 </div>
                             </div>
                             
-                            <!-- Specific Category Dropdown - Now always visible with improved styling -->
+                            <!-- Specific Category Dropdown - Enhanced styling and dynamic filtering -->
                             <div class="tw-flex tw-flex-col tw-min-w-[200px] sm:tw-min-w-[250px]">
                                 <h5 class="tw-text-gray-700 dark:tw-text-gray-300 tw-font-medium tw-mb-3">Category Filter</h5>
                                 <select wire:model.live="specificCategory" 
                                     class="tw-rounded-lg tw-border tw-border-gray-200 dark:tw-border-gray-700 dark:tw-bg-gray-800 dark:tw-text-white tw-shadow-sm tw-py-2 tw-px-3 tw-w-full focus:tw-ring-primary-500 focus:tw-border-primary-500 tw-transition-all tw-duration-300">
                                     <option value="">All Categories</option>
-                                    @foreach($allCategories as $cat)
-                                    <option value="{{ $cat }}">{{ $cat }}</option>
-                                    @endforeach
+                                    @if($category && count($filteredCategories) > 0)
+                                        @foreach($filteredCategories as $cat)
+                                        <option value="{{ $cat }}">{{ $cat }}</option>
+                                        @endforeach
+                                    @else
+                                        @foreach($allCategories as $cat)
+                                        <option value="{{ $cat }}">{{ $cat }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
@@ -194,9 +201,9 @@
                     <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-5 tw-mb-6">
                         @forelse ($layanan as $row)
                             <div class="tw-bg-gradient-to-br tw-from-white tw-to-gray-50 dark:tw-from-gray-800 dark:tw-to-gray-900 tw-rounded-xl tw-shadow-sm hover:tw-shadow-lg hover:tw-shadow-primary-100/50 dark:hover:tw-shadow-primary-900/30 tw-transition-all tw-duration-300 tw-border tw-border-gray-100 dark:tw-border-gray-700 tw-overflow-hidden tw-transform hover:tw-scale-[1.02]">
-                                <!-- Category Label - Center-aligned with gradient -->
-                                <div class="tw-pt-4 tw-px-4 tw-bg-gradient-to-r tw-from-primary-50 tw-to-primary-100 dark:tw-from-primary-900/20 dark:tw-to-primary-800/30 tw-text-primary-700 dark:tw-text-primary-300 tw-rounded-lg tw-font-medium tw-flex tw-items-center tw-shadow-sm">
-                                    <p class="tw-text-xs tw-text-white dark:tw-text-gray-100 tw-font-medium tw-text-center">{{ $row->category }}</p>
+                                <!-- Category Label - Enhanced with gradient and centered text -->
+                                <div class="tw-bg-gradient-to-r tw-from-primary-400 tw-to-primary-600 tw-text-center tw-py-2">
+                                    <p class="tw-text-xs tw-text-white tw-font-medium">{{ $row->category }}</p>
                                 </div>
                                 
                                 <div class="tw-p-4">
@@ -230,7 +237,7 @@
                                             }
                                         @endphp
                                         
-                                        <div class="tw-w-11 tw-h-11 tw-flex tw-items-center tw-justify-center tw-rounded-full tw-bg-gradient-to-br tw-from-gray-50 tw-to-gray-100 dark:tw-from-gray-800 dark:tw-to-gray-700 tw-mr-3 tw-shadow-sm">
+                                        <div class="tw-w-11 tw-h-11 tw-flex tw-items-center tw-justify-center tw-rounded-full tw-bg-gradient-to-br tw-from-primary-50 tw-to-primary-100 dark:tw-from-gray-800 dark:tw-to-gray-700 tw-mr-3 tw-shadow-sm">
                                             <i class="{{ $iconClass }} tw-text-lg"></i>
                                         </div>
                                         <div>
@@ -259,7 +266,7 @@
                                         </div>
                                     </div>
                                     
-                                    <!-- Action Buttons - Enhanced styling -->
+                                    <!-- Action Buttons - Enhanced styling with futuristic design -->
                                     <div class="tw-flex tw-justify-end tw-space-x-2">
                                         <button type="button" 
                                             class="tw-inline-flex tw-items-center tw-px-3 tw-py-2 tw-border tw-border-gray-300 dark:tw-border-gray-600 tw-rounded-md tw-bg-white dark:tw-bg-gray-700 tw-text-sm tw-font-medium tw-text-gray-700 dark:tw-text-gray-200 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-600 tw-shadow-sm hover:tw-shadow tw-transition-all tw-duration-300"
@@ -275,7 +282,7 @@
                                         @endphp
                                         
                                         <a href="{{ url('order/single') }}?id={!! $encrypt !!}" 
-                                            class="tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-rounded-md tw-shadow-sm hover:tw-shadow tw-text-sm tw-font-medium tw-text-white tw-bg-gradient-to-r tw-from-primary-500 tw-to-primary-600 hover:tw-from-primary-600 hover:tw-to-primary-700 tw-transition-all tw-duration-300">
+                                            class="tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-rounded-md tw-shadow-sm hover:tw-shadow-md hover:tw-shadow-primary-300/50 dark:hover:tw-shadow-primary-900/30 tw-text-sm tw-font-medium tw-text-white tw-bg-gradient-to-r tw-from-primary-500 tw-to-primary-600 hover:tw-from-primary-600 hover:tw-to-primary-700 tw-transition-all tw-duration-300">
                                             <i class="fas fa-shopping-cart tw-mr-2"></i> Order Now
                                         </a>
                                     </div>

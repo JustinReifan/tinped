@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Livewire\User;
@@ -112,7 +113,8 @@ class ListLayanan extends Component
 
         // Get unique service groups for the current platform
         $serviceGroups = collect();
-        $allCategories = collect();
+        // Get filtered categories based on selected platform
+        $filteredCategories = collect();
 
         if ($this->category) {
             // Find service groups within the currently selected platform
@@ -134,6 +136,13 @@ class ListLayanan extends Component
                 ->values();
 
             $serviceGroups = $serviceNamesForCategory;
+            
+            // Get categories that match the selected platform
+            $filteredCategories = Smm::where('status', 'aktif')
+                ->where('category', 'like', $this->category . '%')
+                ->pluck('category')
+                ->unique()
+                ->values();
         }
 
         // Get all unique categories for the dropdown (regardless of platform selection)
@@ -146,7 +155,8 @@ class ListLayanan extends Component
             'layanan' => $layanan,
             'kategori' => $kategori,
             'serviceGroups' => $serviceGroups,
-            'allCategories' => $allCategories
+            'allCategories' => $allCategories,
+            'filteredCategories' => $filteredCategories
         ]);
     }
 }
