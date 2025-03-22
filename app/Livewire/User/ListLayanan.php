@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Livewire\User;
@@ -16,6 +17,14 @@ class ListLayanan extends Component
     public $search = '';
     public $custom = false;
     public $category = false;
+    public $serviceGroup = null;
+    public $specificCategory = null;
+    public $sortDirection = 'asc';
+    public $sortField = 'price';
+
+    // Listen for events
+    protected $queryString = ['search', 'category', 'serviceGroup', 'specificCategory'];
+
     public function changeCustom($custom)
     {
         if ($custom == 'all') {
@@ -23,29 +32,124 @@ class ListLayanan extends Component
         } else {
             $this->custom = $custom;
         }
+        $this->resetPage();
     }
+
     public function Categorys($category)
     {
         $this->category = $category;
+        $this->serviceGroup = null; // Reset service group when changing platform
+        $this->specificCategory = null; // Reset specific category when changing platform
+        $this->resetPage();
     }
+
+    public function applyServiceGroupFilter($group)
+    {
+        $this->serviceGroup = $group;
+        $this->resetPage();
+    }
+
+    public function applySpecificCategory($category)
+    {
+        $this->specificCategory = $category;
+        $this->resetPage();
+    }
+
+    public function resetFilters()
+    {
+        $this->specificCategory = null;
+        $this->serviceGroup = null;
+        $this->category = false;
+        $this->custom = false;
+        $this->resetPage();
+    }
+
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
+        $query = Smm::with('kategori')
+            ->where('status', 'aktif')
+            ->where('type', 'like', '%' . $this->custom . '%');
+
+        // Apply search filter
         if ($this->search) {
-            $this->resetPage();
+            $query->where(function ($q) {
+                $q->where('service', 'like', '%' . $this->search . '%')
+                    ->orWhere('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('category', 'like', '%' . $this->search . '%');
+            });
         }
-        if ($this->category == null) {
-            $layanan = Smm::with('kategori')->search($this->search)
-                ->where('category', 'like', '%' . $this->kate . '%')
-                ->where('type', 'like', '%' . $this->custom . '%')
-                ->paginate($this->perPage);
-        } else {
-            $this->resetPage();
-            $layanan = Smm::with('kategori')->search($this->search)
-                ->where('category', $this->category ?? false)
-                ->where('type', 'like', '%' . $this->custom . '%')
-                ->paginate($this->perPage);
+
+        // Apply platform filter (category base)
+        if ($this->category) {
+            $query->where('category', 'like', $this->category . '%');
+        } elseif ($this->kate) {
+            $query->where('category', 'like', '%' . $this->kate . '%');
         }
-        $kategori = Category::where('kategori', 'like', '%' . $this->kate . '%')->where('status', 'aktif')->orderBy('kategori', 'asc')->get();
-        return view('livewire.user.list-layanan', compact('layanan', 'kategori'));
+
+        // Apply specific category filter (exact match)
+        if ($this->specificCategory) {
+            $query->where('category', $this->specificCategory);
+        }
+
+        // Apply service group filter
+        if ($this->serviceGroup) {
+            $query->where('name', 'like', '%' . $this->serviceGroup . '%');
+        }
+
+        // Sort by price (default ascending)
+        $query->orderBy($this->sortField, $this->sortDirection);
+
+        // Get paginated results
+        $layanan = $query->paginate($this->perPage);
+
+        // Get all categories for filters
+        $kategori = Category::where('status', 'aktif')
+            ->orderBy('kategori', 'asc')
+            ->get();
+
+        // Get unique service groups for the current platform
+        $serviceGroups = collect();
+        $allCategories = collect();
+        
+        if ($this->category) {
+            // Find service groups within the currently selected platform
+            $serviceNamesForCategory = Smm::where('category', 'like', $this->category . '%')
+                ->where('status', 'aktif')
+                ->pluck('name')
+                ->map(function ($name) {
+                    // Extract service type keywords (likes, views, followers, etc.)
+                    $keywords = ['Likes', 'Views', 'Followers', 'Comments', 'Subscribers', 'Plays', 'Saves', 'Shares'];
+                    foreach ($keywords as $keyword) {
+                        if (stripos($name, $keyword) !== false) {
+                            return $keyword;
+                        }
+                    }
+                    return null;
+                })
+                ->filter()
+                ->unique()
+                ->values();
+                
+            $serviceGroups = $serviceNamesForCategory;
+            
+            // Get specific categories for the dropdown
+            $allCategories = Smm::where('category', 'like', $this->category . '%')
+                ->where('status', 'aktif')
+                ->pluck('category')
+                ->unique()
+                ->values();
+        }
+
+        return view('livewire.user.list-layanan', [
+            'layanan' => $layanan,
+            'kategori' => $kategori,
+            'serviceGroups' => $serviceGroups,
+            'allCategories' => $allCategories
+        ]);
     }
 }
