@@ -37,7 +37,6 @@ class ListLayanan extends Component
     public function Categorys($category)
     {
         $this->category = $category;
-        $this->serviceGroup = null; // Reset service group when changing platform
         $this->specificCategory = null; // Reset specific category when changing platform
         $this->resetPage();
     }
@@ -135,14 +134,13 @@ class ListLayanan extends Component
                 ->values();
 
             $serviceGroups = $serviceNamesForCategory;
-
-            // Get specific categories for the dropdown
-            $allCategories = Smm::where('category', 'like', $this->category . '%')
-                ->where('status', 'aktif')
-                ->pluck('category')
-                ->unique()
-                ->values();
         }
+
+        // Get all unique categories for the dropdown (regardless of platform selection)
+        $allCategories = Smm::where('status', 'aktif')
+            ->pluck('category')
+            ->unique()
+            ->values();
 
         return view('livewire.user.list-layanan', [
             'layanan' => $layanan,
