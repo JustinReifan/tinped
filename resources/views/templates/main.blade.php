@@ -33,6 +33,9 @@
     {!! $config->meta_website !!}
     <link rel="icon" href="{{ url($config->favicon) }}" type="image/x-icon">
     <!-- [Page specific CSS] start -->
+
+    {{-- tailwind css --}}
+    @vite(['resources/views/landing/css/landing.css', 'resources/js/app.js'])
     <!-- [Page specific CSS] end --><!-- [Font] Family -->
     <link rel="stylesheet" href="{{ url('assets') }}/fonts/inter/inter.css" id="main-font-link">
     <link rel="shortcut icon" href="{{ url($config->favicon) }}">
@@ -447,7 +450,7 @@
                                                     style="height: auto; overflow: hidden;">
                                                     <div class="simplebar-content" style="padding: 0px;">
 
-                                                        <div class="d-flex mb-1">
+                                                        <div class="mb-1 d-flex">
                                                             @auth
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0">
@@ -485,12 +488,12 @@
 
                                                             @endguest
                                                         </div>
-                                                        <p class="text-span mt-3">Manage</p>
+                                                        <p class="mt-3 text-span">Manage</p>
                                                         <a href="{{ url('account/pengaturan') }}"
                                                             class="dropdown-item">
                                                             <span>
                                                                 <i
-                                                                    class="fas fa-user-edit text-muted me-3 align-middle"></i>
+                                                                    class="align-middle fas fa-user-edit text-muted me-3"></i>
                                                                 <span>Pengaturan Akun</span>
                                                             </span>
                                                         </a>
@@ -498,14 +501,14 @@
                                                             class="dropdown-item">
                                                             <span>
                                                                 <i
-                                                                    class="fas fa-code fs-6 text-muted me-3 align-middle"></i>
+                                                                    class="align-middle fas fa-code fs-6 text-muted me-3"></i>
                                                                 <span>Pengaturan API</span>
                                                             </span>
                                                         </a>
                                                         <a href="{{ url('account/session') }}" class="dropdown-item">
                                                             <span>
                                                                 <i
-                                                                    class="fas fa-tachometer-alt fs-6 text-muted me-3 align-middle"></i>
+                                                                    class="align-middle fas fa-tachometer-alt fs-6 text-muted me-3"></i>
                                                                 <span>Sesi Aktif</span>
                                                             </span>
                                                         </a>
@@ -513,22 +516,22 @@
                                                             class="dropdown-item">
                                                             <span>
                                                                 <i
-                                                                    class="fas fa-shield-alt fs-6 text-muted me-3 align-middle"></i>
+                                                                    class="align-middle fas fa-shield-alt fs-6 text-muted me-3"></i>
                                                                 <span>Two-Factor Auth</span>
                                                             </span>
                                                         </a>
                                                         <a href="{{ url('account/bot') }}" class="dropdown-item">
                                                             <span>
                                                                 <i
-                                                                    class="fas fa-robot fs-6 text-muted me-3 align-middle"></i>
+                                                                    class="align-middle fas fa-robot fs-6 text-muted me-3"></i>
                                                                 <span>Pengaturan BOT</span>
                                                             </span>
                                                         </a>
-                                                        <hr class="border-secondary border-opacity-50">
-                                                        <div class="d-grid mb-3">
+                                                        <hr class="border-opacity-50 border-secondary">
+                                                        <div class="mb-3 d-grid">
                                                             <a href="{{ url('logout') }}" class="btn btn-primary">
                                                                 <i
-                                                                    class="fas fa-sign-out-alt me-2 align-middle"></i>Logout
+                                                                    class="align-middle fas fa-sign-out-alt me-2"></i>Logout
                                                             </a>
                                                         </div>
                                                     </div>
@@ -594,7 +597,7 @@
     <footer class="pc-footer">
         <div class="footer-wrapper container-fluid">
             <div class="row">
-                <div class="col my-1">
+                <div class="my-1 col">
                     @php
 
                         $pola = '/\(\((.*?)\)\)/';
@@ -632,19 +635,19 @@
     </script>
     <div class="pct-c-btn"><a href="javascript:void(0)" data-bs-toggle="offcanvas"
             data-bs-target="#offcanvas_pc_layout"><i class="ph-duotone ph-gear-six"></i></a></div>
-    <div class="offcanvas border-0 pct-offcanvas offcanvas-end" tabindex="-1" id="offcanvas_pc_layout">
+    <div class="border-0 offcanvas pct-offcanvas offcanvas-end" tabindex="-1" id="offcanvas_pc_layout">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title">Settings</h5><button type="button"
                 class="btn btn-icon btn-link-danger ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"><i
                     class="ti ti-x"></i></button>
         </div>
         <div class="pct-body customizer-body">
-            <div class="offcanvas-body py-0">
+            <div class="py-0 offcanvas-body">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <div class="pc-dark">
                             <h6 class="mb-1">Theme Mode</h6>
-                            <p class="text-muted text-sm">Choose light or dark mode or Auto</p>
+                            <p class="text-sm text-muted">Choose light or dark mode or Auto</p>
                             <div class="row theme-color theme-layout">
                                 <div class="col-4">
                                     <div class="d-grid"><button class="preset-btn btn active" data-value="true"
@@ -694,7 +697,7 @@
                     <h5 class="modal-title"><i class="fas fa-bullhorn me-2"></i>Informasi Terbaru</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body pb-1" style="max-height: 400px; overflow: auto;">
+                <div class="pb-1 modal-body" style="max-height: 400px; overflow: auto;">
                     <ul class="list-group list-group-flush border-top-0">
                         @php
                             use Carbon\Carbon;
@@ -714,11 +717,11 @@
                                     $text = 'Layanan';
                                 }
                             @endphp
-                            <li class="list-group-item pt-0 px-0">
+                            <li class="px-0 pt-0 list-group-item">
                                 <div class="d-flex align-items-start ">
-                                    <div class="flex-grow-1 me-2 mt-3">
+                                    <div class="mt-3 flex-grow-1 me-2">
                                         <span class="mb-0"><span
-                                                class="fs-5 badge text-white fw-bold bg-primary rounded-pill"><i
+                                                class="text-white fs-5 badge fw-bold bg-primary rounded-pill"><i
                                                     class="fas fa-info-circle me-2"></i>{{ strtoupper($row->type) }}
                                             </span><small
                                                 class="fw-normal float-end">{{ tanggal(Carbon::parse($row->created_at)->format('Y-m-d')) }}
@@ -748,7 +751,7 @@
                         @endforeach
                     </ul>
                 </div>
-                <div class="modal-footer p-2">
+                <div class="p-2 modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
                         onclick="read_popup();"><i class="fas fa-thumbs-up me-2"></i>Sudah membaca</button>
                 </div>

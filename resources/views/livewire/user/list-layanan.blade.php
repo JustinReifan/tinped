@@ -9,7 +9,7 @@
         </style>
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header fw-bold p-3 text-xss"><i class="fas fa-tags me-2"></i> Daftar layanan</div>
+                <div class="p-3 card-header fw-bold text-xss"><i class="fas fa-tags me-2"></i> Daftar layanan</div>
                 <div class="card-body">
                     <!-- Category Filter Buttons Section -->
                     <div class="tw-mb-6">
