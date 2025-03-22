@@ -8,20 +8,20 @@
             <div class="card">
                 <div class="card-body">
                     <!-- Services Header Card -->
-                    <div class="tw-bg-gradient-to-br tw-from-primary-50 tw-to-primary-100 dark:tw-from-gray-800 dark:tw-to-gray-900 tw-rounded-xl tw-shadow-sm hover:tw-shadow-md tw-transition-all tw-duration-300 tw-overflow-hidden tw-mb-8 tw-border tw-border-primary-200 dark:tw-border-gray-700">
+                    <div class="tw-bg-gradient-to-br tw-from-primary-50 tw-to-primary-100 dark:tw-from-gray-800 dark:tw-to-gray-900 tw-rounded-xl tw-shadow-sm tw-overflow-hidden tw-mb-8 tw-border tw-border-primary-200 dark:tw-border-gray-700">
                         <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2">
                             <!-- Left Column: Services Text -->
                             <div class="tw-p-6 md:tw-p-8 tw-flex tw-flex-col tw-justify-center">
                                 <h2 class="tw-text-2xl md:tw-text-3xl tw-font-bold tw-text-gray-800 dark:tw-text-white tw-mb-3">Explore Our Services</h2>
                                 <p class="tw-text-gray-600 dark:tw-text-gray-300 tw-mb-4">Find the perfect social media marketing services for your business needs. Filter by platform to see specific services.</p>
                                 
-                                <!-- Search Input - Improved alignment -->
+                                <!-- Search Input -->
                                 <div class="tw-mt-2">
                                     <div class="tw-relative">
                                         <input type="text" wire:model.live.debounce.300ms="search" 
-                                            class="tw-w-full tw-pl-10 tw-pr-4 tw-py-3 tw-rounded-lg tw-border tw-border-gray-200 dark:tw-border-gray-700 dark:tw-bg-gray-800/80 dark:tw-text-white focus:tw-ring-primary-500 focus:tw-border-primary-500 tw-transition-all tw-duration-300"
+                                            class="tw-w-full tw-pl-10 tw-pr-4 tw-py-2 tw-rounded-lg tw-border tw-border-gray-200 dark:tw-border-gray-700 dark:tw-bg-gray-800 dark:tw-text-white focus:tw-ring-primary-300 focus:tw-border-primary-300"
                                             placeholder="Search for services...">
-                                        <div class="tw-absolute tw-left-3 tw-top-3.5 tw-text-gray-400 dark:tw-text-gray-500">
+                                        <div class="tw-absolute tw-left-3 tw-top-2.5 tw-text-gray-400">
                                             <i class="fas fa-search"></i>
                                         </div>
                                     </div>
@@ -35,7 +35,7 @@
                                 <div class="tw-flex tw-flex-wrap tw-gap-3">
                                     <!-- All Categories Button -->
                                     <button wire:click="resetFilters" 
-                                        class="tw-flex tw-items-center tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all tw-duration-300 {{ !$category ? 'tw-bg-gradient-to-r tw-from-primary-500 tw-to-primary-600 tw-text-white tw-shadow-md hover:tw-shadow-lg hover:tw-from-primary-600 hover:tw-to-primary-700' : 'tw-bg-white dark:tw-bg-gray-700 tw-border tw-border-gray-200 dark:tw-border-gray-600 tw-text-gray-700 dark:tw-text-gray-200 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-600 tw-shadow-sm' }}">
+                                        class="tw-flex tw-items-center tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all {{ !$category ? 'tw-bg-gradient-to-r tw-from-primary-400 tw-to-primary-500 tw-text-white tw-shadow-md hover:tw-shadow-lg' : 'tw-bg-white dark:tw-bg-gray-700 tw-border tw-border-gray-200 dark:tw-border-gray-600 tw-text-gray-700 dark:tw-text-gray-200 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-600 tw-shadow-sm' }}">
                                         <i class="fas fa-globe tw-mr-2"></i>
                                         <span>All</span>
                                     </button>
@@ -85,7 +85,7 @@
                                         @endphp
                                         
                                         <button wire:click="Categorys('{{ $platform }}')" 
-                                            class="tw-flex tw-items-center tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all tw-duration-300 {{ $isActive ? 'tw-bg-gradient-to-r tw-from-primary-500 tw-to-primary-600 tw-text-white tw-shadow-md hover:tw-shadow-lg hover:tw-from-primary-600 hover:tw-to-primary-700' : 'tw-bg-white dark:tw-bg-gray-700 tw-border tw-border-gray-200 dark:tw-border-gray-600 tw-text-gray-700 dark:tw-text-gray-200 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-600 tw-shadow-sm' }}">
+                                            class="tw-flex tw-items-center tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all {{ $isActive ? 'tw-bg-gradient-to-r tw-from-primary-400 tw-to-primary-500 tw-text-white tw-shadow-md hover:tw-shadow-lg' : 'tw-bg-white dark:tw-bg-gray-700 tw-border tw-border-gray-200 dark:tw-border-gray-600 tw-text-gray-700 dark:tw-text-gray-200 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-600 tw-shadow-sm' }}">
                                             <i class="{{ $iconClass }} tw-mr-2"></i>
                                             <span>{{ ucfirst($platform) }}</span>
                                         </button>
@@ -95,58 +95,59 @@
                         </div>
                     </div>
                     
-                    <!-- Additional Filters Section - Improved styling -->
+                    <!-- Additional Filters Section -->
                     <div class="tw-mb-6">
-                        <div class="tw-flex tw-flex-wrap tw-gap-4 tw-justify-between tw-items-start">
+                        <div class="tw-flex tw-flex-wrap tw-gap-4 tw-justify-between tw-items-center">
                             <!-- Service Type Filters -->
                             <div class="tw-flex tw-flex-col">
                                 <h5 class="tw-text-gray-700 dark:tw-text-gray-300 tw-font-medium tw-mb-3">Service Type</h5>
                                 <div class="tw-flex tw-flex-wrap tw-gap-2">
                                     <button wire:click="changeCustom('all')" 
-                                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all tw-duration-300 {{ !$custom ? 'tw-bg-gradient-to-r tw-from-primary-100 tw-to-primary-200 dark:tw-from-primary-900/40 dark:tw-to-primary-800/60 tw-text-primary-700 dark:tw-text-primary-300 tw-border tw-border-primary-200 dark:tw-border-primary-800 tw-shadow-sm' : 'tw-bg-white dark:tw-bg-gray-800 tw-border tw-border-gray-200 dark:tw-border-gray-700 tw-text-gray-600 dark:tw-text-gray-300 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-700' }}">
+                                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all {{ !$custom ? 'tw-bg-primary-50 dark:tw-bg-primary-900/20 tw-text-primary-600 dark:tw-text-primary-400 tw-border tw-border-primary-200 dark:tw-border-primary-800' : 'tw-bg-white dark:tw-bg-gray-800 tw-border tw-border-gray-200 dark:tw-border-gray-700 tw-text-gray-600 dark:tw-text-gray-300 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-700' }}">
                                         All Services
                                     </button>
                                     <button wire:click="changeCustom('reguler')" 
-                                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all tw-duration-300 {{ $custom == 'reguler' ? 'tw-bg-gradient-to-r tw-from-primary-100 tw-to-primary-200 dark:tw-from-primary-900/40 dark:tw-to-primary-800/60 tw-text-primary-700 dark:tw-text-primary-300 tw-border tw-border-primary-200 dark:tw-border-primary-800 tw-shadow-sm' : 'tw-bg-white dark:tw-bg-gray-800 tw-border tw-border-gray-200 dark:tw-border-gray-700 tw-text-gray-600 dark:tw-text-gray-300 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-700' }}">
+                                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all {{ $custom == 'reguler' ? 'tw-bg-primary-50 dark:tw-bg-primary-900/20 tw-text-primary-600 dark:tw-text-primary-400 tw-border tw-border-primary-200 dark:tw-border-primary-800' : 'tw-bg-white dark:tw-bg-gray-800 tw-border tw-border-gray-200 dark:tw-border-gray-700 tw-text-gray-600 dark:tw-text-gray-300 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-700' }}">
                                         Regular Services
                                     </button>
                                     <button wire:click="changeCustom('custom_comments')" 
-                                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all tw-duration-300 {{ $custom == 'custom_comments' ? 'tw-bg-gradient-to-r tw-from-primary-100 tw-to-primary-200 dark:tw-from-primary-900/40 dark:tw-to-primary-800/60 tw-text-primary-700 dark:tw-text-primary-300 tw-border tw-border-primary-200 dark:tw-border-primary-800 tw-shadow-sm' : 'tw-bg-white dark:tw-bg-gray-800 tw-border tw-border-gray-200 dark:tw-border-gray-700 tw-text-gray-600 dark:tw-text-gray-300 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-700' }}">
+                                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all {{ $custom == 'custom_comments' ? 'tw-bg-primary-50 dark:tw-bg-primary-900/20 tw-text-primary-600 dark:tw-text-primary-400 tw-border tw-border-primary-200 dark:tw-border-primary-800' : 'tw-bg-white dark:tw-bg-gray-800 tw-border tw-border-gray-200 dark:tw-border-gray-700 tw-text-gray-600 dark:tw-text-gray-300 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-700' }}">
                                         Custom Comments
                                     </button>
                                     <button wire:click="changeCustom('custom_link')" 
-                                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all tw-duration-300 {{ $custom == 'custom_link' ? 'tw-bg-gradient-to-r tw-from-primary-100 tw-to-primary-200 dark:tw-from-primary-900/40 dark:tw-to-primary-800/60 tw-text-primary-700 dark:tw-text-primary-300 tw-border tw-border-primary-200 dark:tw-border-primary-800 tw-shadow-sm' : 'tw-bg-white dark:tw-bg-gray-800 tw-border tw-border-gray-200 dark:tw-border-gray-700 tw-text-gray-600 dark:tw-text-gray-300 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-700' }}">
+                                        class="tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all {{ $custom == 'custom_link' ? 'tw-bg-primary-50 dark:tw-bg-primary-900/20 tw-text-primary-600 dark:tw-text-primary-400 tw-border tw-border-primary-200 dark:tw-border-primary-800' : 'tw-bg-white dark:tw-bg-gray-800 tw-border tw-border-gray-200 dark:tw-border-gray-700 tw-text-gray-600 dark:tw-text-gray-300 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-700' }}">
                                         Custom Link
                                     </button>
                                 </div>
                             </div>
                             
-                            <!-- Specific Category Dropdown - Now always visible with improved styling -->
-                            <div class="tw-flex tw-flex-col tw-min-w-[200px] sm:tw-min-w-[250px]">
+                            <!-- Specific Category Dropdown -->
+                            @if($category && count($allCategories) > 0)
+                            <div class="tw-flex tw-flex-col tw-min-w-[250px]">
                                 <h5 class="tw-text-gray-700 dark:tw-text-gray-300 tw-font-medium tw-mb-3">Category Filter</h5>
-                                <select wire:model.live="specificCategory" 
-                                    class="tw-rounded-lg tw-border tw-border-gray-200 dark:tw-border-gray-700 dark:tw-bg-gray-800 dark:tw-text-white tw-shadow-sm tw-py-2 tw-px-3 tw-w-full focus:tw-ring-primary-500 focus:tw-border-primary-500 tw-transition-all tw-duration-300">
-                                    <option value="">All Categories</option>
+                                <select wire:model.live="specificCategory" class="tw-rounded-lg tw-border tw-border-gray-200 dark:tw-border-gray-700 dark:tw-bg-gray-800 dark:tw-text-white tw-shadow-sm">
+                                    <option value="">All {{ ucfirst($category) }} Categories</option>
                                     @foreach($allCategories as $cat)
                                     <option value="{{ $cat }}">{{ $cat }}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            @endif
                         </div>
                         
-                        <!-- Service Group Filter - Improved styling -->
-                        @if(count($serviceGroups) > 0)
+                        <!-- Service Group Filter (Conditional) -->
+                        @if($category && count($serviceGroups) > 0)
                         <div class="tw-mt-4">
                             <h5 class="tw-text-gray-700 dark:tw-text-gray-300 tw-font-medium tw-mb-3">Services Group</h5>
                             <div class="tw-flex tw-flex-wrap tw-gap-2">
                                 <button wire:click="applyServiceGroupFilter(null)" 
-                                    class="tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all tw-duration-300 {{ !$serviceGroup ? 'tw-bg-gradient-to-r tw-from-primary-100 tw-to-primary-200 dark:tw-from-primary-900/40 dark:tw-to-primary-800/60 tw-text-primary-700 dark:tw-text-primary-300 tw-border tw-border-primary-200 dark:tw-border-primary-800 tw-shadow-sm' : 'tw-bg-white dark:tw-bg-gray-800 tw-border tw-border-gray-200 dark:tw-border-gray-700 tw-text-gray-600 dark:tw-text-gray-300 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-700' }}">
+                                    class="tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all {{ !$serviceGroup ? 'tw-bg-primary-100 dark:tw-bg-primary-900/40 tw-text-primary-700 dark:tw-text-primary-300 tw-border tw-border-primary-200 dark:tw-border-primary-800 tw-shadow-sm' : 'tw-bg-white dark:tw-bg-gray-800 tw-border tw-border-gray-200 dark:tw-border-gray-700 tw-text-gray-600 dark:tw-text-gray-300 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-700' }}">
                                     All Groups
                                 </button>
                                 
                                 @foreach($serviceGroups as $group)
                                 <button wire:click="applyServiceGroupFilter('{{ $group }}')" 
-                                    class="tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all tw-duration-300 {{ $serviceGroup == $group ? 'tw-bg-gradient-to-r tw-from-primary-100 tw-to-primary-200 dark:tw-from-primary-900/40 dark:tw-to-primary-800/60 tw-text-primary-700 dark:tw-text-primary-300 tw-border tw-border-primary-200 dark:tw-border-primary-800 tw-shadow-sm' : 'tw-bg-white dark:tw-bg-gray-800 tw-border tw-border-gray-200 dark:tw-border-gray-700 tw-text-gray-600 dark:tw-text-gray-300 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-700' }}">
+                                    class="tw-px-4 tw-py-2 tw-rounded-lg tw-transition-all {{ $serviceGroup == $group ? 'tw-bg-primary-100 dark:tw-bg-primary-900/40 tw-text-primary-700 dark:tw-text-primary-300 tw-border tw-border-primary-200 dark:tw-border-primary-800 tw-shadow-sm' : 'tw-bg-white dark:tw-bg-gray-800 tw-border tw-border-gray-200 dark:tw-border-gray-700 tw-text-gray-600 dark:tw-text-gray-300 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-700' }}">
                                     {{ $group }}
                                 </button>
                                 @endforeach
@@ -155,12 +156,12 @@
                         @endif
                     </div>
                     
-                    <!-- Display Controls - Improved spacing -->
-                    <div class="tw-mb-6 tw-bg-gray-50 dark:tw-bg-gray-800/50 tw-p-4 tw-rounded-lg tw-border tw-border-gray-100 dark:tw-border-gray-800">
+                    <!-- Display Controls -->
+                    <div class="tw-mb-6">
                         <div class="tw-flex tw-flex-wrap tw-items-center tw-justify-between">
                             <div class="tw-mb-4 sm:tw-mb-0">
                                 <label class="tw-text-sm tw-text-gray-600 dark:tw-text-gray-400 tw-mb-1 tw-block">Show entries</label>
-                                <select wire:model.change="perPage" class="tw-rounded-lg tw-border tw-border-gray-200 dark:tw-border-gray-700 dark:tw-bg-gray-800 dark:tw-text-white tw-shadow-sm tw-py-2 tw-px-3 focus:tw-ring-primary-500 focus:tw-border-primary-500 tw-transition-all tw-duration-300">
+                                <select wire:model.change="perPage" class="tw-rounded-lg tw-border tw-border-gray-200 dark:tw-border-gray-700 dark:tw-bg-gray-800 dark:tw-text-white tw-shadow-sm">
                                     <option value="10">10</option>
                                     <option value="25">25</option>
                                     <option value="50">50</option>
@@ -168,22 +169,22 @@
                                 </select>
                             </div>
                             
-                            <!-- Active Filters Display - Enhanced styling -->
+                            <!-- Active Filters Display -->
                             <div class="tw-flex tw-flex-wrap tw-gap-2">
                                 @if ($category)
-                                <div class="tw-bg-gradient-to-r tw-from-primary-50 tw-to-primary-100 dark:tw-from-primary-900/20 dark:tw-to-primary-800/30 tw-text-primary-700 dark:tw-text-primary-300 tw-py-2 tw-px-4 tw-rounded-lg tw-font-medium tw-flex tw-items-center tw-shadow-sm">
+                                <div class="tw-bg-primary-50 dark:tw-bg-primary-900/20 tw-text-primary-700 dark:tw-text-primary-300 tw-py-2 tw-px-4 tw-rounded-lg tw-font-medium tw-flex tw-items-center">
                                     <span>Platform: {{ ucfirst($category) }}</span>
                                 </div>
                                 @endif
                                 
                                 @if ($specificCategory)
-                                <div class="tw-bg-gradient-to-r tw-from-primary-50 tw-to-primary-100 dark:tw-from-primary-900/20 dark:tw-to-primary-800/30 tw-text-primary-700 dark:tw-text-primary-300 tw-py-2 tw-px-4 tw-rounded-lg tw-font-medium tw-flex tw-items-center tw-shadow-sm">
+                                <div class="tw-bg-primary-50 dark:tw-bg-primary-900/20 tw-text-primary-700 dark:tw-text-primary-300 tw-py-2 tw-px-4 tw-rounded-lg tw-font-medium tw-flex tw-items-center">
                                     <span>Category: {{ $specificCategory }}</span>
                                 </div>
                                 @endif
                                 
                                 @if ($serviceGroup)
-                                <div class="tw-bg-gradient-to-r tw-from-primary-50 tw-to-primary-100 dark:tw-from-primary-900/20 dark:tw-to-primary-800/30 tw-text-primary-700 dark:tw-text-primary-300 tw-py-2 tw-px-4 tw-rounded-lg tw-font-medium tw-flex tw-items-center tw-shadow-sm">
+                                <div class="tw-bg-primary-50 dark:tw-bg-primary-900/20 tw-text-primary-700 dark:tw-text-primary-300 tw-py-2 tw-px-4 tw-rounded-lg tw-font-medium tw-flex tw-items-center">
                                     <span>Group: {{ $serviceGroup }}</span>
                                 </div>
                                 @endif
@@ -191,13 +192,13 @@
                         </div>
                     </div>
                     
-                    <!-- Services Grid - Enhanced cards with improved UI -->
-                    <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-5 tw-mb-6">
+                    <!-- Services Grid -->
+                    <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-4 tw-mb-6">
                         @forelse ($layanan as $row)
-                            <div class="tw-bg-gradient-to-br tw-from-white tw-to-gray-50 dark:tw-from-gray-800 dark:tw-to-gray-900 tw-rounded-xl tw-shadow-sm hover:tw-shadow-lg hover:tw-shadow-primary-100/50 dark:hover:tw-shadow-primary-900/30 tw-transition-all tw-duration-300 tw-border tw-border-gray-100 dark:tw-border-gray-700 tw-overflow-hidden tw-transform hover:tw-scale-[1.02]">
-                                <!-- Category Label - Center-aligned with gradient -->
-                                <div class="tw-bg-gradient-to-r tw-from-primary-400 tw-to-primary-500 dark:tw-from-primary-800 dark:tw-to-primary-700 tw-px-4 tw-py-1.5 tw-border-b tw-border-primary-500 dark:tw-border-primary-600">
-                                    <p class="tw-text-xs tw-text-white dark:tw-text-gray-100 tw-font-medium tw-text-center">{{ $row->category }}</p>
+                            <div class="tw-bg-gradient-to-br tw-from-white tw-to-gray-50 dark:tw-from-gray-800 dark:tw-to-gray-900 tw-rounded-xl tw-shadow-sm hover:tw-shadow-glow-primary tw-transition-all tw-duration-300 tw-border tw-border-gray-100 dark:tw-border-gray-700 tw-overflow-hidden">
+                                <!-- Category Label -->
+                                <div class="tw-bg-primary-50 dark:tw-bg-primary-900/30 tw-px-4 tw-py-1 tw-border-b tw-border-primary-100 dark:tw-border-primary-800/50">
+                                    <p class="tw-text-xs tw-text-primary-600 dark:tw-text-primary-300 tw-font-medium">{{ $row->category }}</p>
                                 </div>
                                 
                                 <div class="tw-p-4">
@@ -231,7 +232,7 @@
                                             }
                                         @endphp
                                         
-                                        <div class="tw-w-11 tw-h-11 tw-flex tw-items-center tw-justify-center tw-rounded-full tw-bg-gradient-to-br tw-from-gray-50 tw-to-gray-100 dark:tw-from-gray-800 dark:tw-to-gray-700 tw-mr-3 tw-shadow-sm">
+                                        <div class="tw-w-10 tw-h-10 tw-flex tw-items-center tw-justify-center tw-rounded-full tw-bg-gray-100 dark:tw-bg-gray-700 tw-mr-3">
                                             <i class="{{ $iconClass }} tw-text-lg"></i>
                                         </div>
                                         <div>
@@ -244,7 +245,7 @@
                                     <div class="tw-grid tw-grid-cols-2 tw-gap-4 tw-mb-4">
                                         <div>
                                             <p class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400">Price per 1000</p>
-                                            <p class="tw-font-semibold tw-text-primary-600 dark:tw-text-primary-400 tw-bg-gradient-to-r tw-from-primary-500 tw-to-primary-700 tw-bg-clip-text tw-text-transparent">Rp {{ number_format($row->price, 0, ',', '.') }}</p>
+                                            <p class="tw-font-semibold tw-text-primary-600 dark:tw-text-primary-400">Rp {{ number_format($row->price, 0, ',', '.') }}</p>
                                         </div>
                                         <div>
                                             <p class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400">Min Order</p>
@@ -260,14 +261,14 @@
                                         </div>
                                     </div>
                                     
-                                    <!-- Action Buttons - Enhanced styling -->
+                                    <!-- Action Buttons -->
                                     <div class="tw-flex tw-justify-end tw-space-x-2">
                                         <button type="button" 
-                                            class="tw-inline-flex tw-items-center tw-px-3 tw-py-2 tw-border tw-border-gray-300 dark:tw-border-gray-600 tw-rounded-md tw-bg-white dark:tw-bg-gray-700 tw-text-sm tw-font-medium tw-text-gray-700 dark:tw-text-gray-200 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-600 tw-shadow-sm hover:tw-shadow tw-transition-all tw-duration-300"
+                                            class="tw-inline-flex tw-items-center tw-px-3 tw-py-2 tw-border tw-border-gray-300 dark:tw-border-gray-600 tw-rounded-md tw-bg-white dark:tw-bg-gray-700 tw-text-sm tw-font-medium tw-text-gray-700 dark:tw-text-gray-200 hover:tw-bg-gray-50 dark:hover:tw-bg-gray-600 tw-transition-all"
                                             data-bs-toggle="modal" 
                                             data-bs-target="#details"
                                             onclick="detail('{{ $row->service }}')">
-                                            <i class="fas fa-info-circle tw-mr-2 tw-text-primary-500"></i> Details
+                                            <i class="fas fa-info-circle tw-mr-2"></i> Details
                                         </button>
                                         
                                         @php
@@ -276,7 +277,7 @@
                                         @endphp
                                         
                                         <a href="{{ url('order/single') }}?id={!! $encrypt !!}" 
-                                            class="tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-rounded-md tw-shadow-sm hover:tw-shadow tw-text-sm tw-font-medium tw-text-white tw-bg-gradient-to-r tw-from-primary-500 tw-to-primary-600 hover:tw-from-primary-600 hover:tw-to-primary-700 tw-transition-all tw-duration-300">
+                                            class="tw-inline-flex tw-items-center tw-px-3 tw-py-2 tw-border tw-border-transparent tw-rounded-md tw-shadow-sm tw-text-sm tw-font-medium tw-text-white tw-bg-gradient-to-r tw-from-primary-500 tw-to-primary-600 hover:tw-from-primary-600 hover:tw-to-primary-700 tw-transition-all">
                                             <i class="fas fa-shopping-cart tw-mr-2"></i> Order Now
                                         </a>
                                     </div>
@@ -293,11 +294,9 @@
                         @endforelse
                     </div>
                     
-                    <!-- Pagination - Improved styling -->
+                    <!-- Pagination -->
                     <div class="tw-mt-6">
-                        <div class="tw-flex tw-justify-center">
-                            {!! $layanan->links() !!}
-                        </div>
+                        {!! $layanan->links() !!}
                     </div>
                 </div>
             </div>
@@ -322,12 +321,12 @@
 </div>
 
 @script
-<script>
-    $('#category').change(function() {
-        var category = $(this).val();
-        $wire.set('category', category);
-    });
-</script>
+    <script>
+        $('#category').change(function() {
+            var category = $(this).val();
+            $wire.set('category', category);
+        });
+    </script>
 @endscript
 
 <script>
