@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Livewire\User;
@@ -115,7 +114,7 @@ class ListLayanan extends Component
         // Get unique service groups for the current platform
         $serviceGroups = collect();
         $allCategories = collect();
-        
+
         if ($this->category) {
             // Find service groups within the currently selected platform
             $serviceNamesForCategory = Smm::where('category', 'like', $this->category . '%')
@@ -134,9 +133,9 @@ class ListLayanan extends Component
                 ->filter()
                 ->unique()
                 ->values();
-                
+
             $serviceGroups = $serviceNamesForCategory;
-            
+
             // Get specific categories for the dropdown
             $allCategories = Smm::where('category', 'like', $this->category . '%')
                 ->where('status', 'aktif')
