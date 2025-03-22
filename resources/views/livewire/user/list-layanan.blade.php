@@ -1,4 +1,3 @@
-
 <div>
     <link href="//rawgit.com/gjunge/rateit.js/master/scripts/rateit.css" rel="stylesheet" type="text/css">
     <script src="//rawgit.com/gjunge/rateit.js/master/scripts/jquery.rateit.js" type="text/javascript"></script>
@@ -196,7 +195,7 @@
                         @forelse ($layanan as $row)
                             <div class="tw-bg-gradient-to-br tw-from-white tw-to-gray-50 dark:tw-from-gray-800 dark:tw-to-gray-900 tw-rounded-xl tw-shadow-sm hover:tw-shadow-lg hover:tw-shadow-primary-100/50 dark:hover:tw-shadow-primary-900/30 tw-transition-all tw-duration-300 tw-border tw-border-gray-100 dark:tw-border-gray-700 tw-overflow-hidden tw-transform hover:tw-scale-[1.02]">
                                 <!-- Category Label - Center-aligned with gradient -->
-                                <div class="tw-bg-gradient-to-r tw-from-primary-400 tw-to-primary-500 dark:tw-from-primary-800 dark:tw-to-primary-700 tw-px-4 tw-py-1.5 tw-border-b tw-border-primary-500 dark:tw-border-primary-600">
+                                <div class="tw-pt-4 tw-px-4 tw-bg-gradient-to-r tw-from-primary-50 tw-to-primary-100 dark:tw-from-primary-900/20 dark:tw-to-primary-800/30 tw-text-primary-700 dark:tw-text-primary-300 tw-rounded-lg tw-font-medium tw-flex tw-items-center tw-shadow-sm">
                                     <p class="tw-text-xs tw-text-white dark:tw-text-gray-100 tw-font-medium tw-text-center">{{ $row->category }}</p>
                                 </div>
                                 
