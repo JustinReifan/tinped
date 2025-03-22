@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d2195fee2145baa8643d36cf5f8e622",
+    "content-hash": "4bacf939c57ca3142f307b6e7b2c0c1a",
     "packages": [
         {
             "name": "brick/math",
@@ -6612,6 +6612,49 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "zerosdev/tripay-sdk-php",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zerosdev/tripay-sdk-php.git",
+                "reference": "f92f0224ecd764f148ea421334f5c4437853328c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zerosdev/tripay-sdk-php/zipball/f92f0224ecd764f148ea421334f5c4437853328c",
+                "reference": "f92f0224ecd764f148ea421334f5c4437853328c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^6.5|^7.0",
+                "php": ">=7.2.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ZerosDev\\TriPay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ZerosDev",
+                    "email": "ronywisnuwardana@gmail.com"
+                }
+            ],
+            "description": "Unofficial TriPay.co.id Integration Kit for PHP",
+            "support": {
+                "issues": "https://github.com/zerosdev/tripay-sdk-php/issues",
+                "source": "https://github.com/zerosdev/tripay-sdk-php/tree/v1.0.1"
+            },
+            "time": "2023-03-03T02:44:34+00:00"
         }
     ],
     "packages-dev": [

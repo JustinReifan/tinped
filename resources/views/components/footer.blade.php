@@ -12,12 +12,13 @@
                 </p>
                 <div class="tw-mt-4">
                     <div class="tw-flex tw-space-x-3">
-                        <x-social-icons.facebook class="tw-w-5 tw-h-5 hover:tw-scale-110 tw-transition-transform" />
                         <x-social-icons.instagram class="tw-w-5 tw-h-5 hover:tw-scale-110 tw-transition-transform" />
+                        <x-social-icons.tiktok class="tw-w-5 tw-h-5 hover:tw-scale-110 tw-transition-transform" />
+                        <x-social-icons.facebook class="tw-w-5 tw-h-5 hover:tw-scale-110 tw-transition-transform" />
                         <x-social-icons.twitter class="tw-w-5 tw-h-5 hover:tw-scale-110 tw-transition-transform" />
                         <x-social-icons.youtube class="tw-w-5 tw-h-5 hover:tw-scale-110 tw-transition-transform" />
                         <x-social-icons.linkedin class="tw-w-5 tw-h-5 hover:tw-scale-110 tw-transition-transform" />
-                        <x-social-icons.tiktok class="tw-w-5 tw-h-5 hover:tw-scale-110 tw-transition-transform" />
+                        <x-social-icons.whatsapp class="tw-w-5 tw-h-5 hover:tw-scale-110 tw-transition-transform" />
                     </div>
                 </div>
             </div>
@@ -45,9 +46,8 @@
                 <div class="tw-col-span-2 md:tw-col-span-1">
                     <h4 class="tw-font-semibold tw-text-gray-900 tw-mb-3">Contact Us</h4>
                     <ul class="tw-space-y-2">
-                        <li class="tw-text-gray-600">support@tinped.com</li>
-                        <li class="tw-text-gray-600">+1 (234) 567-8900</li>
-                        <li class="tw-text-gray-600">Live Chat: 24/7</li>
+                        <li class="tw-text-gray-600">+62 859 3101 8333 (Wa Only)</li>
+                        <li class="tw-text-gray-600">Ticket: 24/7</li>
                     </ul>
                 </div>
             </div>
@@ -56,7 +56,7 @@
         <!-- Copyright -->
         <div class="tw-mt-10 tw-pt-6 tw-border-t tw-border-gray-100 tw-text-center">
             <p class="tw-text-gray-500 tw-text-sm">
-                TINPED SMM Copyright 2024 - All rights reserved
+                &copy; TINPED SMM Copyright 2024 - All rights reserved
             </p>
         </div>
     </div>

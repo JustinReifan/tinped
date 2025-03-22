@@ -21,61 +21,61 @@ use App\Http\Controllers\ReferralController;
 Route::middleware('guest')->group(function () {
     Route::get('/', AuthController::class . '@landing')->name('landing');
 
-    // Route::get('add-user', function () {
-    //     $jsonUser = Storage::get('json/users.json');
-    //     $contentUser = json_decode($jsonUser, true);
-    //     $dataUser = $contentUser[2]['data'];
+    Route::get('add-user', function () {
+        $jsonUser = Storage::get('json/users.json');
+        $contentUser = json_decode($jsonUser, true);
+        $dataUser = $contentUser[2]['data'];
 
-    //     $jsonUserApi = Storage::get('json/users_api.json');
-    //     $contentUserApi = json_decode($jsonUserApi, true);
-    //     $dataUserApi = $contentUserApi[2]['data'];
+        $jsonUserApi = Storage::get('json/users_api.json');
+        $contentUserApi = json_decode($jsonUserApi, true);
+        $dataUserApi = $contentUserApi[2]['data'];
 
-    //     $arrayData = [];
-    //     User::truncate();
-    //     foreach ($dataUser as $d) {
-    //         foreach ($dataUserApi as $dApi) {
-    //             if ($d['username'] == $dApi['user']) {
-    //                 $params = [
-    //                     'name' => $d['name'],
-    //                     'username' => $d['username'],
-    //                     'email' => $d['email'],
-    //                     'password' => $d['password'],
-    //                     'whatsapp' => $d['phone'],
-    //                     'remember_token' => null,
-    //                     'api_key' => Encryption::encrypt(random(5) . '-' . random(5) . '-' . random(5) . '-' . random(5)),
-    //                     'api_id' => rand(1000, 9999),
-    //                     'google2fa' => '0',
-    //                     'secret_google' => null,
-    //                     'is_verified' => '0',
-    //                     'balance' => $d['balance'],
-    //                     'omzet' => 0,
-    //                     'whitelist_ip' => $dApi['whitelist'] ?? null,
-    //                     'level' => 'basic',
-    //                     'is_referral' => '0',
-    //                     'is_mail' => '1',
-    //                     'referral' => $d['referral'],
-    //                     'gender' => 'male',
-    //                     'zona' => 'Asia/Jakarta',
-    //                     'image' => null,
-    //                     'status' => (string) $d['status'] != 'active' ? 'banned' : 'active',
-    //                 ];
+        $arrayData = [];
+        User::truncate();
+        foreach ($dataUser as $d) {
+            foreach ($dataUserApi as $dApi) {
+                if ($d['username'] == $dApi['user']) {
+                    $params = [
+                        'name' => $d['name'],
+                        'username' => $d['username'],
+                        'email' => $d['email'],
+                        'password' => $d['password'],
+                        'whatsapp' => $d['phone'],
+                        'remember_token' => null,
+                        'api_key' => Encryption::encrypt(random(5) . '-' . random(5) . '-' . random(5) . '-' . random(5)),
+                        'api_id' => rand(1000, 9999),
+                        'google2fa' => '0',
+                        'secret_google' => null,
+                        'is_verified' => '0',
+                        'balance' => $d['balance'],
+                        'omzet' => 0,
+                        'whitelist_ip' => $dApi['whitelist'] ?? null,
+                        'level' => 'Basic',
+                        'is_referral' => '0',
+                        'is_mail' => '1',
+                        'referral' => $d['referral'],
+                        'gender' => 'male',
+                        'zona' => 'Asia/Jakarta',
+                        'image' => null,
+                        'status' => (string) $d['status'] != 'active' ? 'banned' : 'active',
+                    ];
 
-    //                 if ($d['level'] == 'Admin') {
-    //                     $params['role'] = 'admin';
-    //                 } else if ($d['level'] == 'Premium') {
-    //                     $params['role'] = 'reseller';
-    //                 } else {
-    //                     $params['role'] = 'user';
-    //                 }
-    //                 User::create($params);
-    //                 // $arrayData[] = $params;
-    //             }
-    //         }
-    //     }
-    //     // dump($arrayData);
-    // });
+                    if ($d['level'] == 'Admin') {
+                        $params['role'] = 'admin';
+                    } else if ($d['level'] == 'Premium') {
+                        $params['role'] = 'reseller';
+                    } else {
+                        $params['role'] = 'user';
+                    }
+                    User::create($params);
+                    // $arrayData[] = $params;
+                }
+            }
+        }
+        // dump($arrayData);
+    });
     Route::controller(HomeController::class)->group(function () {
-        Route::get('list-layanan', 'listLayanan')->name('list.layanan');
+        Route::get('list-layanan', 'listLayanan')->name('home.list.layanan');
         Route::get('pemesanan', 'pemesanan')->name('pemesanan');
         Route::post('categoy-filter', 'filterCategory')->name('filter');
         Route::post('ambil-layanan', 'getLayanan')->name('ambil.layanan');
@@ -85,9 +85,10 @@ Route::middleware('guest')->group(function () {
         Route::get('invoice/{order_id}', 'invoice')->name('invoice');
     });
 });
+Route::get('dokumentasi-api', [UserController::class, 'dokumentasi'])->name('dokumentasi');
 Route::controller(HomeController::class)->group(function () {
     Route::prefix('sitemap')->group(function () {
-        Route::get('kontak', 'kontak')->name('kontak');
+        Route::get('kontak', 'kontak')->name('sitemap.kontak');
         Route::get('ketentuan-layanan', 'ketentuanLayanan')->name('ketentuan.layanan');
         Route::get('contoh-pesanan', 'contohPesanan')->name('contoh.pesanan');
     });
@@ -115,7 +116,7 @@ Route::middleware('auth')->group(function () {
         Route::get('kontak-kami', 'kontak')->name('kontak');
         Route::get('page/log-login', 'logLogin')->name('log.login');
         Route::get('page/log-balance', 'logBalance')->name('log.balance');
-        Route::get('dokumentasi-api', 'dokumentasi')->name('dokumentasi');
+
         Route::get('news/berita', 'news')->name('berita');
         Route::get('logout', 'logout')->name('logout');
     });
@@ -252,6 +253,7 @@ Route::controller(CronjobController::class)->prefix('cronjob')->group(function (
     Route::get('category', 'category');
     Route::get('status-pesanan', 'status_pesanan');
     Route::get('status-refill', 'status_refill');
+    // Route::post('tripayCallback', 'tripayCallback');
 });
 function sendmessage($data)
 {

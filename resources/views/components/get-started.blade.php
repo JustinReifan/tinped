@@ -1,4 +1,3 @@
-
 <section class="tw-w-full tw-py-20 tw-px-6 lg:tw-px-12 tw-relative tw-overflow-hidden tw-bg-gray-50/80" data-aos="fade-up" data-aos-duration="800">
     <!-- Background Elements -->
     <div class="tw-absolute tw-inset-0 tw-bg-grid tw-bg-[size:40px_40px] tw-opacity-30 tw-z-0"></div>
@@ -23,7 +22,7 @@
         </div>
         
         <!-- Cards Grid -->
-        <div class="tw-grid tw-grid-cols-1 sm:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-6">
+        <div class="tw-grid tw-grid-cols-1 sm:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-6 tw-mb-16">
             @php
             $stepData = [
                 [
@@ -58,6 +57,23 @@
                     <x-step-card :step="$step" />
                 </div>
             @endforeach
+        </div>
+        
+        <!-- YouTube Video Section -->
+        <div class="tw-w-full tw-flex tw-justify-center tw-items-center tw-mt-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="tw-w-full tw-max-w-3xl tw-border tw-border-primary-200 tw-rounded-xl tw-overflow-hidden tw-shadow-sm">
+                <div class="tw-relative tw-w-full tw-aspect-video">
+                    <iframe 
+                        class="tw-absolute tw-inset-0 tw-w-full tw-h-full" 
+                        src="https://www.youtube.com/embed/Svz5F8J1Ap0?si=RgiLRRHdgLPRsAke" 
+                        title="TINPED SMM Tutorial" 
+                        frameborder="0" 
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
         </div>
     </div>
 </section>

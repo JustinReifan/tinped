@@ -1,4 +1,4 @@
-
+@props(['prices'])
 <section class="tw-w-full tw-py-20 tw-px-6 lg:tw-px-12 tw-relative tw-overflow-hidden" data-aos="fade-up">
     <!-- Background Elements -->
     <div class="tw-absolute tw-bottom-40 -tw-right-20 tw-w-60 tw-h-60 tw-bg-primary-100 tw-rounded-full tw-filter tw-blur-[100px] tw-opacity-40 tw-animate-float" style="animation-delay: 0.5s;"></div>
@@ -23,59 +23,61 @@
         
         <!-- Carousel -->
         <div class="tw-relative tw-w-full tw-overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-            <div class="tw-flex tw-gap-6 tw-py-4 tw-animate-carousel">
+            <div class="tw-flex tw-gap-6 tw-py-4 tw-animate-carouselPrice">
                 @php
                 $services = [
-                    [
-                        'id' => 1,
-                        'name' => 'Facebook',
-                        'icon' => 'facebook',
-                        'startingPrice' => 'Rp. 1,000'
-                    ],
-                    [
-                        'id' => 2,
-                        'name' => 'Instagram',
-                        'icon' => 'instagram',
-                        'startingPrice' => 'Rp. 1,000'
-                    ],
-                    [
-                        'id' => 3,
-                        'name' => 'Twitter',
-                        'icon' => 'twitter',
-                        'startingPrice' => 'Rp. 1,000'
-                    ],
-                    [
-                        'id' => 4,
-                        'name' => 'YouTube',
-                        'icon' => 'youtube',
-                        'startingPrice' => 'Rp. 1,000'
-                    ],
-                    [
-                        'id' => 5,
-                        'name' => 'Twitch',
-                        'icon' => 'twitch',
-                        'startingPrice' => 'Rp. 1,000'
-                    ],
-                    [
-                        'id' => 6,
-                        'name' => 'TikTok',
-                        'icon' => 'tiktok',
-                        'startingPrice' => 'Rp. 1,000'
-                    ],
-                    [
-                        'id' => 7,
-                        'name' => 'Website',
-                        'icon' => 'globe',
-                        'startingPrice' => 'Rp. 1,000'
-                    ]
-                ];
+                                [
+                                    'id' => 1,
+                                    'name' => 'Facebook',
+                                    'icon' => 'facebook',
+                                    'startingPrice' => 'Rp. ' . ($prices['Facebook'] ?? 'null')
+                                ],
+                                [
+                                    'id' => 2,
+                                    'name' => 'Instagram',
+                                    'icon' => 'instagram',
+                                    'startingPrice' => 'Rp. ' . ($prices['Instagram'] ?? 'null')
+                                ],
+                                [
+                                    'id' => 3,
+                                    'name' => 'Tiktok',
+                                    'icon' => 'tiktok',
+                                    'startingPrice' => 'Rp. ' . ($prices['TikTok'] ?? 'null')
+                                ],
+                                [
+                                    'id' => 4,
+                                    'name' => 'YouTube',
+                                    'icon' => 'youtube',
+                                    'startingPrice' => 'Rp. ' . ($prices['YouTube'] ?? 'null')
+                                ],
+                                [
+                                    'id' => 5,
+                                    'name' => 'Twitch',
+                                    'icon' => 'twitch',
+                                    'startingPrice' => 'Rp. ' . ($prices['Twitch'] ?? 'null')
+                                ],
+                                [
+                                    'id' => 6,
+                                    'name' => 'Twitter',
+                                    'icon' => 'twitter',
+                                    'startingPrice' => 'Rp. ' . ($prices['Twitter'] ?? 'null')
+                                ],
+                                [
+                                    'id' => 7,
+                                    'name' => 'Website',
+                                    'icon' => 'globe',
+                                    'startingPrice' => 'Rp. ' . ($prices['Website'] ?? 'null')
+                                ]
+                            ];
                 
                 // Double the services for smoother infinite loop
                 $allServices = array_merge($services, $services);
                 @endphp
                 
                 @foreach($allServices as $index => $service)
-                    <x-price-card :service="$service" :key="$service['id'] . '-' . $index" />
+                    <div data-aos="fade-up" data-aos-delay="{{ $index * 50 }}">
+                        <x-price-card :service="$service" :key="$service['id'] . '-' . $index" />
+                    </div>
                 @endforeach
             </div>
         </div>

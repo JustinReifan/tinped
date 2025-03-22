@@ -360,7 +360,7 @@ Route::post('callback/tripay', function (Request $request) {
         : '';
     $config = Config::first();
     $decode = json_decode($config->provider_payment, true);
-    $key = $decode['tripay']['api_key'];
+    $key = $decode['tripay']['private_key'];
     $signature = hash_hmac('sha256', $json, $key);
 
     // Validasi signature
@@ -371,7 +371,7 @@ Route::post('callback/tripay', function (Request $request) {
         ]));
     }
     $data = json_decode($json);
-    $deposit = Deposit::where('trxid', $data->merchant_ref)->first();
+    $deposit = Deposit::where('trxid', $data['merchant_ref'])->first();
     if ($deposit) {
         if ($data->status == 'Success') {
             $deposit->status = 'done';

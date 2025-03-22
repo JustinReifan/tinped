@@ -5,7 +5,7 @@
     <div class="tw-absolute tw-top-40 -tw-right-20 tw-w-60 tw-h-60 tw-bg-primary-100 tw-rounded-full tw-filter tw-blur-[100px] tw-opacity-50 tw-animate-float"></div>
     
     <div class="tw-max-w-7xl tw-mx-auto tw-relative tw-z-10">
-        <div class="tw-flex tw-flex-col tw-items-center tw-mb-14">
+        <div class="tw-flex tw-flex-col tw-items-center tw-mb-14" data-aos="fade-up">
             <!-- Section Badge -->
             <div class="tw-bg-primary tw-bg-opacity-10 tw-backdrop-blur-sm tw-rounded-full tw-px-4 tw-py-1.5 tw-flex tw-items-center tw-justify-center tw-mb-4 tw-border tw-border-primary-200">
                 <span class="tw-text-primary tw-font-semibold tw-text-sm">Features</span>
@@ -23,7 +23,7 @@
         </div>
         
         <!-- Dashboard Screenshot with enhanced glow -->
-        <div class="tw-mb-16 tw-flex tw-justify-center">
+        <div class="tw-mb-16 tw-flex tw-justify-center" data-aos="fade-up" data-aos-delay="200">
             <div class="tw-relative tw-group">
                 <!-- Screenshot with mask -->
                 <div class="tw-relative tw-z-10 tw-bg-white tw-rounded-2xl tw-overflow-hidden tw-shadow-lg tw-border tw-border-primary-200 tw-max-w-4xl tw-transition-all tw-duration-300 group-hover:tw-shadow-lg">
@@ -36,7 +36,7 @@
         </div>
         
         <!-- Features Grid -->
-        <div class="tw-grid tw-grid-cols-1 sm:tw-grid-cols-2 lg:tw-grid-cols-2 tw-gap-6">
+        <div class="tw-grid tw-grid-cols-1 sm:tw-grid-cols-2 lg:tw-grid-cols-2 tw-gap-6" data-aos="fade-up" data-aos-delay="300">
             @php
             $features = [
                 [

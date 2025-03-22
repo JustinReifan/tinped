@@ -143,22 +143,22 @@
         <nav class="navbar navbar-expand-md navbar-light default">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}/">
-                    <img src="{{ asset($config->url_logo) }}" alt="logo" height="60" width="60" />
+                    <img src="{{ asset($config->url_logo) }}" alt="logo" height="24px" width="24px" />
                 </a>
-                <button class="navbar-toggler rounded" type="button" data-bs-toggle="collapse"
+                <button class="rounded navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-                        <li class="nav-item px-1">
+                    <ul class="mb-2 navbar-nav ms-auto mb-lg-0 align-items-center">
+                        <li class="px-1 nav-item">
                             <a class="nav-link" href="{{ url('/') }}/">Beranda</a>
                         </li>
-                        <li class="nav-item px-1">
+                        <li class="px-1 nav-item">
                             <a class="nav-link" href="{{ url('list-layanan') }}">Daftar Layanan</a>
                         </li>
-                        <li class="nav-item dropdown px-1">
+                        <li class="px-1 nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="landing/javascript:;"
                                 data-bs-toggle="dropdown">Tentang
                                 Layanan</a>
@@ -171,13 +171,13 @@
                                         Target Pesanan</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item px-1 me-2 mb-2 mb-md-0">
+                        <li class="px-1 mb-2 nav-item me-2 mb-md-0">
                             <a class="btn btn-icon btn-light-dark" target="_blank" href="{{ url('pemesanan') }}"><i
                                     class="ti ti-shopping-cart"></i></a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="btn btn btn-primary" target="_blank" href="{{ url('auth/register') }}"><i
+                            <a class="btn btn-primary" target="_blank" href="{{ url('auth/register') }}"><i
                                     class="ti ti-users"></i> Daftar Sekarang</a>
                         </li>
                     </ul>
@@ -191,7 +191,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-body p-2" style="margin-bottom: -4px;">
+                        <div class="p-2 card-body" style="margin-bottom: -4px;">
                             <div class="row gx-1">
 
                                 @php
@@ -199,7 +199,7 @@
                                 @endphp
                                 @if (collect($decodes->list_kategori)->count() == 0)
                                     <div class="alert alert-danger">
-                                        <div class="alert-body text-center">
+                                        <div class="text-center alert-body">
                                             <i class="fas fa-exclamation-triangle fs-4"></i>
                                             <h6 class="mt-3">Tidak ada kategori yang tersedia.</h6>
                                         </div>
@@ -207,7 +207,7 @@
                                 @else
                                     <div class="col-6 col-lg-4 col-xl-3 d-grid">
                                         <button type="button"
-                                            class="btn btn-primary btn-md d-block mb-2 btn-category"
+                                            class="mb-2 btn btn-primary btn-md d-block btn-category"
                                             id="btn-Semua"onclick="filterCategory('Semua');"><span
                                                 class="d-flex align-items-center"><i
                                                     class="fas fa-adjust fs-4"></i><span
@@ -216,7 +216,7 @@
                                     @foreach (collect($decodes->list_kategori)->sortBy('key') as $nama => $iconClass)
                                         <div class="col-6 col-lg-4 col-xl-3 d-grid">
                                             <button type="button"
-                                                class="btn btn-outline-primary btn-md d-block mb-2 btn-category"
+                                                class="mb-2 btn btn-outline-primary btn-md d-block btn-category"
                                                 id="btn-{{ $nama }}"
                                                 onclick="filterCategory('{{ $nama }}');"><span
                                                     class="d-flex align-items-center"><i
@@ -234,7 +234,7 @@
                         <div class="card-header">
                             <h4 class="mb-0"><i class="fas fa-cart-plus me-2"></i>Pesanan Baru (Single)</h4>
                         </div>
-                        <div class="card-body pb-3">
+                        <div class="pb-3 card-body">
                             <form action="{{ url('proses-order') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
@@ -278,13 +278,13 @@
                                 </div>
                                 <div class="mb-3" id="deskripsi_umum">
                                     <label class="form-label">Deskripsi <span class="text-danger">*</span></label>
-                                    <div class="border border-primary rounded p-3 mb-3" id="infoDesc">Deskripsi
+                                    <div class="p-3 mb-3 border rounded border-primary" id="infoDesc">Deskripsi
                                         layanan.
                                     </div>
                                 </div>
                                 <div class="row ">
                                     <div class="col-md">
-                                        <div class="form-group mb-3">
+                                        <div class="mb-3 form-group">
                                             <label>Link/Target <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" placeholder="Masukkan target"
                                                 name="target" id="target">
@@ -299,7 +299,7 @@
                                         <label>Jumlah Pesan</label>
                                         <span class="badge bg-primary" id="infoMin">Min: 0</span>
                                         <span class="badge bg-primary" id="infoMax">Max: 0</span></label>
-                                        <div class="input-group mb-3">
+                                        <div class="mb-3 input-group">
                                             <input type="number" class="form-control" id="quantity"
                                                 name="quantity" onkeyup="totalCharge()" onblur="validateQuan()">
                                         </div>
@@ -310,7 +310,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="form-group mb-3">
+                                <div class="mb-3 form-group">
                                     <label>Email <span class="text-danger">*</span></label>
                                     <input type="email" class="form-control" placeholder="Masukkan email"
                                         name="email" id="email">
@@ -353,7 +353,7 @@
                                     </div>
                                     <input class="form-control" readonly id="total-price">
                                 </div>
-                                <div class="mb-0 mt-3 float-end">
+                                <div class="mt-3 mb-0 float-end">
                                     <button type="submit" class="btn btn-primary float-end"><i
                                             class="fas fa-cart-plus fs-6 me-2"></i>Pesan</button>
                                     <button type="reset" class="btn btn-danger float-end me-2"><i
@@ -368,7 +368,7 @@
                         <div class="card-header">
                             <h4 class="mb-0"><i class="fas fa-info-circle me-2"></i>Informasi</h4>
                         </div>
-                        <div class="card-body pb-3">
+                        <div class="pb-3 card-body">
                             {!! json_decode($config->info_text)->order !!}
                         </div>
                     </div>
@@ -383,7 +383,7 @@
                 <div class="row">
                     <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s">
                         <img src="{{ asset($config->url_logo) }}" alt="image" height="60" width="60"
-                            class="img-fluid mb-3" />
+                            class="mb-3 img-fluid" />
                         <p class="mb-4">
                             {!! $landing->footer !!}
                         </p>
@@ -429,7 +429,7 @@
         </div>
         <div class="container">
             <div class="row align-items-center">
-                <div class="col my-1 wow fadeInUp" data-wow-delay="0.4s">
+                <div class="my-1 col wow fadeInUp" data-wow-delay="0.4s">
                     <p class="mb-0">
                         @php
 

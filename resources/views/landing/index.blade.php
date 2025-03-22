@@ -1,98 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TINPED SMM - Premium Social Media Marketing Services</title>
-    <meta name="description" content="Get instant, high-quality engagement for all your social media platforms. Fast delivery, real engagement, 24/7 support.">
-    <meta name="keywords" content="SMM panel, social media marketing, Instagram followers, Facebook likes, Twitter engagement, social media services, TINPED">
-    <meta name="author" content="TINPED SMM">
+    <title>{{ $config->name_panel }}</title>
+    <meta name="description" content="{{ $config->description_website }}">
+    <meta name="keywords" content="{{ $config->keyword_website }}">
+    <meta name="author" content="Justin Code">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tinped.com/">
-    <meta property="og:title" content="TINPED SMM - Premium Social Media Marketing Services">
-    <meta property="og:description" content="Get instant, high-quality engagement for all your social media platforms. Fast delivery, real engagement, 24/7 support.">
-    <meta property="og:image" content="/images/og-image.png">
+    <meta property="og:url" content="{{ env('APP_URL') }}">
+    <meta property="og:title" content="{{ $config->name_panel }}">
+    <meta property="og:description" content="{{ $config->description_website }}">
+    <meta property="og:image" content="{{ url($config->favicon) }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://tinped.com/">
-    <meta property="twitter:title" content="TINPED SMM - Premium Social Media Marketing Services">
-    <meta property="twitter:description" content="Get instant, high-quality engagement for all your social media platforms. Fast delivery, real engagement, 24/7 support.">
-    <meta property="twitter:image" content="/images/og-image.png">
+    <meta property="twitter:url" content="{{ env('APP_URL') }}">
+    <meta property="twitter:title" content="{{ $config->name_panel }}">
+    <meta property="twitter:description" content="{{ $config->description_website }}">
+    <meta property="twitter:image" content="{{ url($config->favicon) }}">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="{{ url($config->favicon) }}">
     
     <!-- Tailwind CSS -->
     @vite(['resources/views/landing/css/landing.css', 'resources/js/app.js'])
-    <!-- Inter Font -->
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
     
     <!-- AOS - Animate On Scroll Library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/tinped.css">
+    <link rel="stylesheet" href="{{ url('assets') }}/views/landing/css/landing.css">
     
-    <script>
-        tailwind.config = {
-            prefix: 'tw-',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            DEFAULT: '#7367f0',
-                            50: '#f3f2ff',
-                            100: '#e9e7ff',
-                            200: '#d4d0fe',
-                            300: '#b6affc',
-                            400: '#9a8ff8',
-                            500: '#7367f0',
-                            600: '#6753e7',
-                            700: '#5641cc',
-                            800: '#4735a6',
-                            900: '#3c2f85',
-                            950: '#241a57',
-                        },
-                    },
-                    fontFamily: {
-                        sans: ['Inter var', 'sans-serif'],
-                    },
-                    animation: {
-                        'carousel': 'carousel 25s linear infinite',
-                        'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
-                        'float': 'float 4s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        'carousel': {
-                            '0%': { transform: 'translateX(0)' },
-                            '100%': { transform: 'translateX(-100%)' }
-                        },
-                        'pulse-glow': {
-                            '0%, 100%': { opacity: '1', transform: 'scale(1)' },
-                            '50%': { opacity: '0.85', transform: 'scale(1.05)' }
-                        },
-                        'float': {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' }
-                        },
-                    },
-                    backgroundImage: {
-                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                        'grid': 'linear-gradient(to right, rgba(115, 103, 240, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(115, 103, 240, 0.1) 1px, transparent 1px)',
-                    },
-                    boxShadow: {
-                        'glow-primary': '0 0 20px -5px rgba(115, 103, 240, 0.5)',
-                        'glow-primary-lg': '0 0 30px -5px rgba(115, 103, 240, 0.7)',
-                    },
-                }
-            }
-        }
-    </script>
+    
 </head>
 <body class="tw-min-h-screen tw-bg-white tw-overflow-x-hidden">
     <!-- Navbar -->
@@ -105,7 +49,7 @@
                         <div class="tw-relative tw-h-8 tw-w-8 tw-overflow-hidden">
                             <div class="tw-absolute tw-inset-0 tw-rounded-lg tw-animate-pulse-glow"></div>
                             <div class="tw-absolute tw-inset-0.5 tw-rounded-lg tw-flex tw-items-center tw-justify-center">
-                                <img src="/landing/assets/images/logo/logo-tinped.png" alt="">
+                                <img src="/landing/assets/images/logo/logo-tinped.png" alt="TINPED SMM Logo" loading="lazy">
                             </div>
                         </div>
                         <span class="tw-font-bold tw-text-gray-800 tw-hidden sm:tw-block">TINPED <span class="tw-text-primary">SMM</span></span>
@@ -121,41 +65,57 @@
                         </svg>
                         <span>Beranda</span>
                     </a>
-                    <a href="#" class="tw-flex tw-items-center tw-space-x-1 tw-text-gray-700 hover:tw-text-primary tw-transition-colors link-underline">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <a href="{{ route('sitemap.kontak') }}" class="tw-flex tw-items-center tw-space-x-1 tw-text-gray-700 hover:tw-text-primary tw-transition-colors link-underline">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                         </svg>
-                        <span>Cek Transaksi</span>
+                        
+                        <span>Kontak</span>
                     </a>
-                    <a href="#" class="tw-flex tw-items-center tw-space-x-1 tw-text-gray-700 hover:tw-text-primary tw-transition-colors link-underline">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <line x1="18" y1="20" x2="18" y2="10"></line>
-                            <line x1="12" y1="20" x2="12" y2="4"></line>
-                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                    <a href="{{ route('dokumentasi') }}" class="tw-flex tw-items-center tw-space-x-1 tw-text-gray-700 hover:tw-text-primary tw-transition-colors link-underline">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <line x1="10" y1="9" x2="8" y2="9"></line>
                         </svg>
-                        <span>Leaderboard</span>
+                        <span>Dokumentasi</span>
                     </a>
-                    <a href="#" class="tw-flex tw-items-center tw-space-x-1 tw-text-gray-700 hover:tw-text-primary tw-transition-colors link-underline">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
-                            <line x1="12" y1="10" x2="16" y2="10"></line>
-                            <line x1="12" y1="14" x2="16" y2="14"></line>
-                            <line x1="12" y1="18" x2="16" y2="18"></line>
-                            <line x1="8" y1="10" x2="8" y2="10"></line>
-                            <line x1="8" y1="14" x2="8" y2="14"></line>
-                            <line x1="8" y1="18" x2="8" y2="18"></line>
-                        </svg>
-                        <span>Kalkulator</span>
-                    </a>
+                    <!-- Sitemap Dropdown -->
+                    <div class="tw-relative" x-data="{ open: false }" @click.away="open = false">
+                        <button @click="open = !open" class="tw-flex tw-items-center tw-space-x-1 tw-text-gray-700 hover:tw-text-primary tw-transition-colors link-underline">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="10" y1="6" x2="21" y2="6"></line>
+                                <line x1="10" y1="12" x2="21" y2="12"></line>
+                                <line x1="10" y1="18" x2="21" y2="18"></line>
+                                <polyline points="3 6 4 7 6 5"></polyline>
+                                <polyline points="3 12 4 13 6 11"></polyline>
+                                <polyline points="3 18 4 19 6 17"></polyline>
+                            </svg>
+                            <span>Sitemap</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div x-show="open" x-transition:enter="tw-transition tw-ease-out tw-duration-100" x-transition:enter-start="tw-transform tw-opacity-0 tw-scale-95" x-transition:enter-end="tw-transform tw-opacity-100 tw-scale-100" x-transition:leave="tw-transition tw-ease-in tw-duration-75" x-transition:leave-start="tw-transform tw-opacity-100 tw-scale-100" x-transition:leave-end="tw-transform tw-opacity-0 tw-scale-95" class="tw-absolute tw-z-50 tw-mt-2 tw-w-56 tw-rounded-md tw-shadow-lg tw-bg-white tw-border tw-border-gray-100" style="display: none;">
+                            <div class="tw-rounded-md tw-ring-1 tw-ring-black tw-ring-opacity-5 tw-py-1">
+                                <a href="{{ route('pemesanan') }}" class="tw-block tw-px-4 tw-py-2 tw-text-sm tw-text-gray-700 hover:tw-bg-gray-50 hover:tw-text-primary">Pesan Tanpa Daftar</a>
+                                <a href="{{ route('ketentuan.layanan') }}" class="tw-block tw-px-4 tw-py-2 tw-text-sm tw-text-gray-700 hover:tw-bg-gray-50 hover:tw-text-primary">Ketentuan Layanan</a>
+                                <a href="{{ route('contoh.pesanan') }}" class="tw-block tw-px-4 tw-py-2 tw-text-sm tw-text-gray-700 hover:tw-bg-gray-50 hover:tw-text-primary">Contoh Pesanan</a>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
 
                 <!-- Action Buttons -->
                 <div class="tw-hidden md:tw-flex tw-items-center tw-space-x-3">
-                    <button class="btn-outline tw-text-sm">
+                    <button class="btn-outline tw-text-sm" onclick="window.location.href='{{ route('login') }}'">
                         Masuk
                     </button>
-                    <button class="btn-primary tw-text-sm tw-flex tw-items-center tw-space-x-1 btn-glow">
+                    <button class="btn-primary tw-text-sm tw-flex tw-items-center tw-space-x-1 btn-glow" onclick="window.location.href='{{ route('register') }}'">
                         <span>Daftar</span>
                     </button>
                 </div>
@@ -177,6 +137,18 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="tw-fixed tw-inset-0 tw-z-40 tw-bg-white tw-pt-20 tw-px-6 tw-transform tw-transition-all tw-duration-300 tw-ease-in-out md:tw-hidden tw-translate-x-full">
+            <!-- Close Button -->
+            <button 
+                id="mobile-menu-close" 
+                class="tw-absolute tw-top-6 tw-right-6 tw-text-gray-700 hover:tw-text-primary tw-transition-colors"
+                aria-label="Close mobile menu"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-6 tw-h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            
             <div class="tw-flex tw-flex-col tw-space-y-6">
                 <a href="#" class="tw-flex tw-items-center tw-space-x-3 tw-text-gray-700 hover:tw-text-primary tw-transition-colors tw-py-3 tw-border-b tw-border-gray-100">
                     <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -185,39 +157,52 @@
                     </svg>
                     <span class="tw-font-medium">Beranda</span>
                 </a>
-                <a href="#" class="tw-flex tw-items-center tw-space-x-3 tw-text-gray-700 hover:tw-text-primary tw-transition-colors tw-py-3 tw-border-b tw-border-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <a href="{{ route('sitemap.kontak') }}" class="tw-flex tw-items-center tw-space-x-3 tw-text-gray-700 hover:tw-text-primary tw-transition-colors tw-py-3 tw-border-b tw-border-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                     </svg>
-                    <span class="tw-font-medium">Cek Transaksi</span>
+                    <span class="tw-font-medium">Kontak</span>
                 </a>
-                <a href="#" class="tw-flex tw-items-center tw-space-x-3 tw-text-gray-700 hover:tw-text-primary tw-transition-colors tw-py-3 tw-border-b tw-border-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <line x1="18" y1="20" x2="18" y2="10"></line>
-                        <line x1="12" y1="20" x2="12" y2="4"></line>
-                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                <a href="{{ route('dokumentasi') }}" class="tw-flex tw-items-center tw-space-x-3 tw-text-gray-700 hover:tw-text-primary tw-transition-colors tw-py-3 tw-border-b tw-border-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <line x1="10" y1="9" x2="8" y2="9"></line>
                     </svg>
-                    <span class="tw-font-medium">Leaderboard</span>
+                    <span class="tw-font-medium">Dokumentasi</span>
                 </a>
-                <a href="#" class="tw-flex tw-items-center tw-space-x-3 tw-text-gray-700 hover:tw-text-primary tw-transition-colors tw-py-3 tw-border-b tw-border-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
-                        <line x1="12" y1="10" x2="16" y2="10"></line>
-                        <line x1="12" y1="14" x2="16" y2="14"></line>
-                        <line x1="12" y1="18" x2="16" y2="18"></line>
-                        <line x1="8" y1="10" x2="8" y2="10"></line>
-                        <line x1="8" y1="14" x2="8" y2="14"></line>
-                        <line x1="8" y1="18" x2="8" y2="18"></line>
-                    </svg>
-                    <span class="tw-font-medium">Kalkulator</span>
-                </a>
+               
+                <div class="tw-py-3 tw-border-b tw-border-gray-100" x-data="{ open: false }">
+                    <button @click="open = !open" class="tw-flex tw-items-center tw-justify-between tw-w-full tw-text-gray-700 hover:tw-text-primary tw-transition-colors">
+                        <div class="tw-flex tw-items-center tw-space-x-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="10" y1="6" x2="21" y2="6"></line>
+                                <line x1="10" y1="12" x2="21" y2="12"></line>
+                                <line x1="10" y1="18" x2="21" y2="18"></line>
+                                <polyline points="3 6 4 7 6 5"></polyline>
+                                <polyline points="3 12 4 13 6 11"></polyline>
+                                <polyline points="3 18 4 19 6 17"></polyline>
+                            </svg>
+                            <span class="tw-font-medium">Sitemap</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" :class="{'tw-transform tw-rotate-180': open}" class="tw-w-5 tw-h-5 tw-transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div x-show="open" x-transition:enter="tw-transition tw-ease-out tw-duration-100" x-transition:enter-start="tw-transform tw-opacity-0 tw-scale-95" x-transition:enter-end="tw-transform tw-opacity-100 tw-scale-100" x-transition:leave="tw-transition tw-ease-in tw-duration-75" x-transition:leave-start="tw-transform tw-opacity-100 tw-scale-100" x-transition:leave-end="tw-transform tw-opacity-0 tw-scale-95" class="tw-pl-8 tw-mt-2 tw-space-y-2" style="display: none;">
+                        <a href="{{ route('pemesanan') }}" class="tw-block tw-py-2 tw-text-gray-600 hover:tw-text-primary tw-transition-colors">Pesan Tanpa Daftar</a>
+                        <a href="{{ route('ketentuan.layanan') }}" class="tw-block tw-py-2 tw-text-gray-600 hover:tw-text-primary tw-transition-colors">Ketentuan Layanan</a>
+                        <a href="{{ route('contoh.pesanan') }}" class="tw-block tw-py-2 tw-text-gray-600 hover:tw-text-primary tw-transition-colors">Contoh Pesanan</a>
+                    </div>
+                </div>
                 
                 <div class="tw-flex tw-flex-col tw-space-y-3 tw-pt-4">
-                    <button class="btn-outline tw-w-full">
+                    <button class="btn-outline tw-w-full" onclick="window.location.href='{{ route('login') }}'">
                         Masuk
                     </button>
-                    <button class="btn-primary tw-w-full btn-glow">
+                    <button class="btn-primary tw-w-full btn-glow" onclick="window.location.href='{{ route('register') }}'">
                         Daftar
                     </button>
                 </div>
@@ -235,7 +220,8 @@
     <x-get-started />
     
     <!-- Price List Section -->
-    <x-price-list />
+    
+    <x-price-list :prices="$servicesPrices"/>
     
     <!-- Features Section -->
     <x-features />
@@ -257,6 +243,7 @@
 
     <!-- JavaScript -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize AOS
@@ -279,11 +266,12 @@
             
             // Mobile menu functionality
             const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenuCloseButton = document.getElementById('mobile-menu-close');
             const mobileMenu = document.getElementById('mobile-menu');
             let isMenuOpen = false;
             
-            mobileMenuButton.addEventListener('click', function() {
-                isMenuOpen = !isMenuOpen;
+            function toggleMobileMenu(open) {
+                isMenuOpen = open;
                 if (isMenuOpen) {
                     mobileMenu.classList.remove('tw-translate-x-full');
                     mobileMenuButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="tw-w-6 tw-h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
@@ -291,26 +279,32 @@
                     mobileMenu.classList.add('tw-translate-x-full');
                     mobileMenuButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="tw-w-6 tw-h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
                 }
+            }
+            
+            mobileMenuButton.addEventListener('click', function() {
+                toggleMobileMenu(!isMenuOpen);
+            });
+            
+            mobileMenuCloseButton.addEventListener('click', function() {
+                toggleMobileMenu(false);
             });
             
             // Accordion functionality
             const accordionItems = document.querySelectorAll('.accordion-item');
             const accordionTriggers = document.querySelectorAll('.accordion-trigger');
             
-            // Set first item in each column as active
-            const firstItems = document.querySelectorAll('.accordion-item:first-child');
-            firstItems.forEach(item => {
-                item.classList.add('active');
+            // Initialize accordion items to closed state
+            accordionItems.forEach(item => {
                 const content = item.querySelector('.accordion-content');
                 if (content) {
-                    content.style.display = 'block';
+                    content.style.display = 'none';
                 }
                 
-                // Toggle plus/minus icons
+                // Set plus/minus icons to initial state
                 const plusIcon = item.querySelector('.plus');
                 const minusIcon = item.querySelector('.minus');
-                if (plusIcon) plusIcon.classList.add('hidden');
-                if (minusIcon) minusIcon.classList.remove('hidden');
+                if (plusIcon) plusIcon.classList.remove('hidden');
+                if (minusIcon) minusIcon.classList.add('hidden');
             });
             
             accordionTriggers.forEach(trigger => {

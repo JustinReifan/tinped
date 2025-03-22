@@ -23,19 +23,25 @@ export default {
                     950: "#241a57",
                 },
             },
-            fontFamily: {
-                sans: ["Inter var", "sans-serif"],
-            },
+            // fontFamily: {
+            //     sans: ["Inter var", "sans-serif"],
+            // },
             animation: {
-                carousel: "carousel 25s linear infinite",
+                carousel: "carousel 15s linear infinite",
+                carouselPrice: "carouselPrice 20s linear infinite",
                 "pulse-glow": "pulse-glow 3s ease-in-out infinite",
                 float: "float 4s ease-in-out infinite",
             },
             keyframes: {
                 carousel: {
                     "0%": { transform: "translateX(0)" },
-                    "100%": { transform: "translateX(-100%)" },
+                    "100%": { transform: "translateX(-50%)" },
                 },
+                carouselPrice: {
+                    "0%": { transform: "translateX(0)" },
+                    "100%": { transform: "translateX(-200%)" },
+                },
+
                 "pulse-glow": {
                     "0%, 100%": { opacity: "1", transform: "scale(1)" },
                     "50%": { opacity: "0.85", transform: "scale(1.05)" },

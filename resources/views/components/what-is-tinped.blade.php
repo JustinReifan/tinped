@@ -7,7 +7,7 @@
     <div class="tw-max-w-7xl tw-mx-auto">
         <div class="tw-flex tw-flex-col-reverse md:tw-flex-row tw-items-center tw-gap-8 lg:tw-gap-16">
             <!-- Text Content -->
-            <div class="tw-w-full md:tw-w-1/2 tw-space-y-6 tw-animate-fade-in">
+            <div class="tw-w-full md:tw-w-1/2 tw-space-y-6 tw-animate-fade-in" data-aos="fade-up">
                 <!-- Brand Badge -->
                 <div class="tw-bg-primary tw-bg-opacity-10 tw-backdrop-blur-sm tw-rounded-full tw-px-4 tw-py-1.5 tw-inline-flex tw-items-center tw-justify-center tw-border tw-border-primary-200">
                     <span class="tw-text-primary tw-font-semibold tw-text-sm">TINPED SMM</span>
@@ -22,8 +22,8 @@
                 </p>
                 
                 <div class="tw-pt-4">
-                    <button class="btn-outline tw-text-base tw-flex tw-items-center tw-group">
-                        <span>Learn More</span>
+                    <button class="btn-outline tw-text-base tw-flex tw-items-center tw-group" onclick="window.location.href='{{ route('register') }}'">
+                        <span>Daftar sekarang</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-4 tw-h-4 tw-ml-2 tw-transition-transform tw-duration-300 group-hover:tw-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                             <polyline points="12 5 19 12 12 19"></polyline>

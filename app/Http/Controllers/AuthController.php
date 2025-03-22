@@ -2,30 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Encryption;
+use Carbon\Carbon;
+use App\Models\Bot;
+use App\Models\Smm;
 use App\Mail\Forgot;
 use App\Mail\Verify;
-use App\Models\Bot;
+use App\Models\User;
 use App\Models\Config;
-use App\Models\LevelUser;
 use App\Models\LogMasuk;
 use App\Models\Referral;
-use App\Models\User;
+use App\Models\LevelUser;
 use App\Models\UserVerify;
-use Carbon\Carbon;
+use App\Helpers\Encryption;
 use Illuminate\Http\Request;
-use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Support\Facades\Auth;
+use PragmaRX\Google2FA\Google2FA;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
-use PragmaRX\Google2FA\Google2FA;
+use Illuminate\Session\Middleware\StartSession;
 
 class AuthController extends Controller
 {
     public function landing(Request $request)
     {
-        return view('landing.index');
+        $allowedSocialMedia = ['facebook', 'instagram', 'tiktok', 'youtube', 'twitch', 'twitter', 'website'];
+
+        // Ambil 1 harga termurah untuk setiap kata pertama kategori
+        $results = Smm::select(DB::raw('SUBSTRING_INDEX(category, " ", 1) as first_word'), DB::raw('MIN(price) as min_price'))
+            ->groupBy('first_word')
+            ->get();
+
+        // Siapkan array asosiatif untuk menyimpan hasil
+        $socialMediaPrices = [];
+
+        // Filter dan simpan data ke dalam array
+        foreach ($results as $result) {
+            if (in_array(strtolower($result->first_word), $allowedSocialMedia)) {
+                $socialMediaPrices[$result->first_word] = $result->min_price;
+            }
+        }
+
+        // Output hasil
+        // dump($socialMediaPrices);
+        // die;
+        return view('landing.index', [
+            'servicesPrices' => $socialMediaPrices
+        ]);
     }
     public function login()
     {

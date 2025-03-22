@@ -4,7 +4,7 @@
     <div class="tw-absolute tw-bottom-20 -tw-left-20 tw-w-40 tw-h-40 tw-bg-primary-200 tw-rounded-full tw-filter tw-blur-[80px] tw-opacity-40 tw-animate-float" style="animation-delay: 0.5s;"></div>
     
     <div class="tw-max-w-7xl tw-mx-auto">
-        <div class="tw-flex tw-flex-col tw-items-center tw-mb-14">
+        <div class="tw-flex tw-flex-col tw-items-center tw-mb-14" data-aos="fade-up">
             <!-- Section Badge -->
             <div class="tw-bg-primary tw-bg-opacity-10 tw-backdrop-blur-sm tw-rounded-full tw-px-4 tw-py-1.5 tw-flex tw-items-center tw-justify-center tw-mb-4 tw-border tw-border-primary-200">
                 <span class="tw-text-primary tw-font-semibold tw-text-sm">Payment Methods</span>
@@ -12,12 +12,12 @@
             
             <!-- Heading -->
             <h2 class="tw-text-3xl md:tw-text-4xl tw-font-bold tw-text-center tw-text-gray-900 tw-mb-4">
-                Multiple <span class="text-gradient">Secure Payment</span> Options
+                Beragam <span class="text-gradient">Metode Pembayaran</span> Populer
             </h2>
             
             <!-- Subheading -->
             <p class="tw-text-lg tw-text-gray-600 tw-text-center tw-max-w-2xl">
-                Choose from a variety of trusted payment methods for your convenience
+                Pilih dari berbagai metode pembayaran terpercaya untuk kenyamanan Anda.
             </p>
         </div>
         
@@ -66,10 +66,11 @@
                     "image" => "./landing/assets/images/pay-method/shopeepay.png"
                 ]
             ];
+            $delay = 200;
             @endphp
 
             @foreach($paymentMethods as $method)
-            <div class="tw-bg-white tw-rounded-xl tw-p-4 tw-shadow-sm hover:tw-shadow-glow-primary tw-border tw-border-primary-50 hover:tw-border-primary-200 tw-transition-all tw-duration-300 tw-flex tw-flex-col tw-items-center tw-justify-center">
+            <div class="tw-bg-white tw-rounded-xl tw-p-4 tw-shadow-sm hover:tw-shadow-glow-primary tw-border tw-border-primary-50 hover:tw-border-primary-200 tw-transition-all tw-duration-300 tw-flex tw-flex-col tw-items-center tw-justify-center" data-aos="fade-up" data-aos-delay="{{ $delay }}">
                 <div class="tw-w-12 tw-h-12 tw-relative tw-mb-2">
                     @if($method['image'])
                     <img 
@@ -86,6 +87,7 @@
                 </div>
                 <p class="tw-text-sm tw-font-medium tw-text-gray-700">{{ $method['name'] }}</p>
             </div>
+            @php $delay += 100; @endphp
             @endforeach
         </div>
     </div>

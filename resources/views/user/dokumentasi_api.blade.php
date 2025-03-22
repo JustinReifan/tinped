@@ -19,12 +19,20 @@
                         <tr>
                             <th>Api ID</th>
                             <td>
+                                @if (Auth::check())
+                                    
                                 {{ Auth::user()->api_id }}
+                                @else
+                                Dapatkan setelah login
+                                @endif
+
                             </td>
                         </tr>
                         <tr>
                             <th>API KEY</th>
+                            
                             <td>
+                                @if (Auth::check())
                                 <div class="input-group" style="margin-bottom: 10px;">
                                     <input type="text" class="form-control form-control-sm"
                                         value="******-******-******-******-******" readonly="">
@@ -32,6 +40,10 @@
                                 <button
                                     onclick="copy_text('API Key', '{{ App\Helpers\Encryption::decrypt(Auth::user()->api_key) }}');"
                                     class="btn btn-primary btn-sm">Copy</button>
+                                @else
+                                       
+                                Dapatkan setelah login
+                                @endif
                             </td>
                         </tr>
                         <tr>
@@ -81,7 +93,7 @@
 
             </ul>
 
-            <div class="tab-content mt-3">
+            <div class="mt-3 tab-content">
                 <div class="tab-pane show active" id="profile">
                     <b>URL Permintaan</b>
                     <div class="alert alert-secondary" style="margin: 10px 0; color: #000;">

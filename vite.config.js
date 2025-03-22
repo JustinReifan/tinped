@@ -5,7 +5,10 @@ import tailwindcss from "tailwindcss";
 export default defineConfig({
     plugins: [
         laravel({
-            input: ["resources/landing/css/landing.css", "resources/js/app.js"],
+            input: [
+                "resources/views/landing/css/landing.css",
+                "resources/js/app.js",
+            ],
             refresh: true,
         }),
     ],

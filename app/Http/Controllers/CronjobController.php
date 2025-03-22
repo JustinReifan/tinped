@@ -8,6 +8,7 @@ use App\Libraries\Tripay;
 use App\Livewire\Admin\LogSaldo;
 use App\Models\Category;
 use App\Models\Config;
+use App\Models\Deposit;
 use App\Models\History;
 use App\Models\HistoryOrder;
 use App\Models\HistoryRefill;
@@ -22,6 +23,9 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use iPaymu\iPaymu;
+use ZerosDev\TriPay\Callback;
+use ZerosDev\TriPay\Client as TriPayClient;
+
 
 class CronjobController extends Controller
 {
@@ -77,112 +81,112 @@ class CronjobController extends Controller
         //     }
         // } catch (\Throwable $e) {
         // }
-        // $tripay = new Tripay();
-        // $decode = json_decode($tripay->services());
-        // if ($decode->success == true) {
-        //     foreach ($decode->data as $row) {
-        //         $cek = MetodePembayaran::where([['provider', 'tripay'], ['code', $data->code]])->first();
-        //         if ($data->total_fee->flat != 0) {
-        //             $rate = 'fixed';
-        //         } else {
-        //             $rate = 'percent';
-        //         }
-        //         if ($cek) {
-        //             $cek->update([
-        //                 'provider' => 'tripay',
-        //                 'type_proses' => 'otomatis',
-        //                 'type_payment' => 'TRANSFER ' . $data->group,
-        //                 'code' => $data->code,
-        //                 'name' => $data->name,
-        //                 'rate_type' => $rate,
-        //                 'rate' => str_replace('%', '', $data->fee),
-        //                 'bonus' => '[]',
-        //                 'min_nominal' => $data->minimum_amount,
-        //                 'max_nominal' => $data->maximum_amount,
-        //                 'account_number' => 'POWERED BY TRIPAY',
-        //                 'account_name' => 'POWERED BY TRIPAY',
-        //                 'image' => $data->icon_url,
-        //                 'status' => 'active',
-        //             ]);
-        //         } else {
-        //             MetodePembayaran::create([
-        //                 'provider' => 'tripay',
-        //                 'type_proses' => 'otomatis',
-        //                 'type_payment' => 'TRANSFER ' . $data->group,
-        //                 'code' => $data->code,
-        //                 'name' => $data->name,
-        //                 'rate_type' => $rate,
-        //                 'rate' => str_replace('%', '', $data->fee),
-        //                 'bonus' => '[]',
-        //                 'min_nominal' => $data->minimum_amount,
-        //                 'max_nominal' => $data->maximum_amount,
-        //                 'account_number' => 'POWERED BY TRIPAY',
-        //                 'account_name' => 'POWERED BY TRIPAY',
-        //                 'image' => $data->icon_url,
-        //                 'status' => 'active',
-        //             ]);
-        //         }
-        //     }
-        // }
-        $ipaymu = new iPaymu(true);
-        $channel = json_decode($ipaymu->channel());
-
-        if ($channel->Status == 200 && $channel->Success == true) {
-            foreach ($channel->Data as $row) {
-                $cek = MetodePembayaran::where([['provider', 'ipaymu'], ['status', $row->Code]])->first();
-                if ($cek) {
-                    foreach ($row->Channels as $rows) {
-                        $fee = $rows->TransactionFee;
-                        if ($fee->ActualFeeType == 'FLAT') {
-                            $rate = 'fixed';
-                        } else {
-                            $rate = 'percent';
-                        }
-                        $cek->update([
-                            'provider' => 'ipaymu',
-                            'type_proses' => 'otomatis',
-                            'type_payment' => 'TRANSFER ' . strtoupper($row->Code),
-                            'code' => $rows->Code,
-                            'name' => $rows->Name,
-                            'rate_type' => $rate,
-                            'rate' =>  $fee->ActualFee,
-                            'bonus' => '[]',
-                            'min_nominal' => $rows->minimum ?? 0,
-                            'max_nominal' => $rows->maximum ?? 0,
-                            'account_number' => 'POWERED BY IPAYMU',
-                            'account_name' => 'POWERED BY IPAYMU',
-                            'image' => $rows->Logo,
-                            'status' => 'active',
-                        ]);
-                    }
+        $tripay = new Tripay();
+        $decode = json_decode($tripay->services());
+        if ($decode->success == true) {
+            foreach ($decode->data as $data) {
+                $cek = MetodePembayaran::where([['provider', 'tripay'], ['code', $data->code]])->first();
+                if ($data->total_fee->flat != 0) {
+                    $rate = 'fixed';
                 } else {
-                    foreach ($row->Channels as $rows) {
-                        $fee = $rows->TransactionFee;
-                        if ($fee->ActualFeeType == 'FLAT') {
-                            $rate = 'fixed';
-                        } else {
-                            $rate = 'percent';
-                        }
-                        MetodePembayaran::create([
-                            'provider' => 'ipaymu',
-                            'type_proses' => 'otomatis',
-                            'type_payment' => 'TRANSFER ' . strtoupper($row->Code),
-                            'code' => $rows->Code,
-                            'name' => $rows->Name,
-                            'rate_type' => $rate,
-                            'rate' =>  $fee->ActualFee,
-                            'bonus' => '[]',
-                            'min_nominal' => $rows->minimum ?? 0,
-                            'max_nominal' => $rows->maximum ?? 0,
-                            'account_number' => 'POWERED BY IPAYMU',
-                            'account_name' => 'POWERED BY IPAYMU',
-                            'image' => $rows->Logo,
-                            'status' => 'active',
-                        ]);
-                    }
+                    $rate = 'percent';
+                }
+                if ($cek) {
+                    $cek->update([
+                        'provider' => 'tripay',
+                        'type_proses' => 'otomatis',
+                        'type_payment' => 'TRANSFER ' . $data->group,
+                        'code' => $data->code,
+                        'name' => $data->name,
+                        'rate_type' => $rate,
+                        'rate' => str_replace('%', '', $data->fee),
+                        'bonus' => '[]',
+                        'min_nominal' => $data->minimum_amount,
+                        'max_nominal' => $data->maximum_amount,
+                        'account_number' => 'POWERED BY TRIPAY',
+                        'account_name' => 'POWERED BY TRIPAY',
+                        'image' => $data->icon_url,
+                        'status' => 'active',
+                    ]);
+                } else {
+                    MetodePembayaran::create([
+                        'provider' => 'tripay',
+                        'type_proses' => 'otomatis',
+                        'type_payment' => 'TRANSFER ' . $data->group,
+                        'code' => $data->code,
+                        'name' => $data->name,
+                        'rate_type' => $rate,
+                        'rate' => str_replace('%', '', $data->fee),
+                        'bonus' => '[]',
+                        'min_nominal' => $data->minimum_amount,
+                        'max_nominal' => $data->maximum_amount,
+                        'account_number' => 'POWERED BY TRIPAY',
+                        'account_name' => 'POWERED BY TRIPAY',
+                        'image' => $data->icon_url,
+                        'status' => 'active',
+                    ]);
                 }
             }
         }
+        // $ipaymu = new iPaymu(true);
+        // $channel = json_decode($ipaymu->channel());
+
+        // if ($channel->Status == 200 && $channel->Success == true) {
+        //     foreach ($channel->Data as $row) {
+        //         $cek = MetodePembayaran::where([['provider', 'ipaymu'], ['status', $row->Code]])->first();
+        //         if ($cek) {
+        //             foreach ($row->Channels as $rows) {
+        //                 $fee = $rows->TransactionFee;
+        //                 if ($fee->ActualFeeType == 'FLAT') {
+        //                     $rate = 'fixed';
+        //                 } else {
+        //                     $rate = 'percent';
+        //                 }
+        //                 $cek->update([
+        //                     'provider' => 'ipaymu',
+        //                     'type_proses' => 'otomatis',
+        //                     'type_payment' => 'TRANSFER ' . strtoupper($row->Code),
+        //                     'code' => $rows->Code,
+        //                     'name' => $rows->Name,
+        //                     'rate_type' => $rate,
+        //                     'rate' =>  $fee->ActualFee,
+        //                     'bonus' => '[]',
+        //                     'min_nominal' => $rows->minimum ?? 0,
+        //                     'max_nominal' => $rows->maximum ?? 0,
+        //                     'account_number' => 'POWERED BY IPAYMU',
+        //                     'account_name' => 'POWERED BY IPAYMU',
+        //                     'image' => $rows->Logo,
+        //                     'status' => 'active',
+        //                 ]);
+        //             }
+        //         } else {
+        //             foreach ($row->Channels as $rows) {
+        //                 $fee = $rows->TransactionFee;
+        //                 if ($fee->ActualFeeType == 'FLAT') {
+        //                     $rate = 'fixed';
+        //                 } else {
+        //                     $rate = 'percent';
+        //                 }
+        //                 MetodePembayaran::create([
+        //                     'provider' => 'ipaymu',
+        //                     'type_proses' => 'otomatis',
+        //                     'type_payment' => 'TRANSFER ' . strtoupper($row->Code),
+        //                     'code' => $rows->Code,
+        //                     'name' => $rows->Name,
+        //                     'rate_type' => $rate,
+        //                     'rate' =>  $fee->ActualFee,
+        //                     'bonus' => '[]',
+        //                     'min_nominal' => $rows->minimum ?? 0,
+        //                     'max_nominal' => $rows->maximum ?? 0,
+        //                     'account_number' => 'POWERED BY IPAYMU',
+        //                     'account_name' => 'POWERED BY IPAYMU',
+        //                     'image' => $rows->Logo,
+        //                     'status' => 'active',
+        //                 ]);
+        //             }
+        //         }
+        //     }
+        // }
     }
     public function layanan()
     {
@@ -195,6 +199,8 @@ class CronjobController extends Controller
             $provider = Cache::remember('active_providers', 30, function () {
                 return Provider::where('json', '!=', 'json')->where([['status', 'aktif'], ['proses_manual', '0']])->get();
             });
+
+
 
             foreach ($provider as $row) {
                 if (Schema::hasColumn('providers', 'auto_delete')) {
@@ -209,7 +215,7 @@ class CronjobController extends Controller
                 $decode = json_decode($row->json, true);
                 $permintaan = $decode['permintaan']['service'];
                 $data = [
-                    "key" => $decode['provider_key']
+                    $permintaan['provider_key'] => $decode['provider_key']
                 ];
 
                 if (!$decode['provider_id'] == '-' || !$permintaan['provider_id'] == null) {
@@ -224,6 +230,7 @@ class CronjobController extends Controller
                     $data[$permintaan['provider_secret']] = $decode['provider_secret'];
                 }
 
+                dd($data);
                 $smm = new Smm($row->nama);
                 // hasil response API request
                 $result = $smm->services($data);
@@ -792,4 +799,86 @@ class CronjobController extends Controller
     {
         return number_format($num, 0, ",", ".");
     }
+
+    // public function tripayCallback()
+    // {
+    //     $config = Config::first();
+    //     if ($config) {
+    //         // $merchantCode = 'T24304';
+    //         // $apiKey = 'DEV-tiNV5Xzhf8JAsTYxCqG1KycZ3OTKIVcOsrCdLO5g';
+    //         // $privateKey = 't4b2Z-z8PLe-BACMG-tedzn-ON0yi';
+    //         $decode = json_decode($config->provider_payment, true)['tripay'];
+    //         $merchantCode = $decode['merchant_code'];
+    //         $apiKey = $decode['api_key'];
+    //         $privateKey = $decode['merchant_code'];
+    //         $client = new TriPayClient($merchantCode, $apiKey, $privateKey, 'development');
+
+    //         $callback = new Callback($client);
+
+    //         $callback->enableDebug();
+    //         try {
+    //             $callback->validate();
+    //         } catch (Exception $e) {
+    //             echo $e->getMessage();
+    //             die;
+    //         }
+    //         $data = (array) $callback->data();
+    //         // dd($data);
+    //         $invoiceId = addslashes($data['merchant_ref']);
+    //         $status = strtoupper((string) $data['status']);
+
+    //         if ($data['is_closed_payment'] === 1) {
+    //             // $result = $checkout->getInvoiceUnpaid($invoiceId);
+    //             $result = Deposit::where('process', 'otomatis')->where('status', 'pending')->first();
+
+    //             if (! $result) {
+    //                 exit(json_encode([
+    //                     'success' => false,
+    //                     'message' => 'Invoice not found or already paid: ' . $invoiceId,
+    //                 ]));
+    //             }
+
+    //             switch ($status) {
+    //                 // handle status PAID
+
+    //                 case 'PAID':
+    //                     if (! Deposit::where('trxid', $result['merchant_ref'])->update(['status' => 'done'])) {
+    //                         return json_encode([
+    //                             'success' => false,
+    //                             'message' => 'Data gagal diproses 1',
+    //                         ]);
+    //                     }
+    //                     break;
+
+    //                 // handle status EXPIRED
+    //                 case 'EXPIRED':
+    //                     if (! Deposit::where('trxid', $result['merchant_ref'])->update(['status' => 'canceled'])) {
+    //                         return json_encode([
+    //                             'success' => false,
+    //                             'message' => 'Data gagal diproses 2',
+    //                         ]);
+    //                     }
+    //                     break;
+
+    //                 // handle status FAILED
+    //                 case 'FAILED':
+    //                     if (! Deposit::where('trxid', $result['merchant_ref'])->update(['status' => 'canceled'])) {
+    //                         return json_encode([
+    //                             'success' => false,
+    //                             'message' => 'Data gagal diproses 3',
+    //                         ]);
+    //                     }
+    //                     break;
+
+    //                 default:
+    //                     return json_encode([
+    //                         'success' => false,
+    //                         'message' => 'Unrecognized payment status',
+    //                     ]);
+    //             }
+
+    //             return json_encode(['success' => true]);
+    //         }
+    //     }
+    // }
 }
