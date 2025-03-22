@@ -3,6 +3,7 @@ export default {
     content: [
         "./resources/views/landing/**/*.blade.php",
         "./resources/views/components/**/*.blade.php",
+        "./resources/views/livewire/**/*.blade.php",
     ],
     prefix: "tw-",
     theme: {

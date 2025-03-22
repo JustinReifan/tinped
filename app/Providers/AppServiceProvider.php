@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Providers;
@@ -26,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
             $config = Config::first();
             $view->with('config', $config);
         });
-        
+
         // Force HTTPS in production
         if (env('APP_ENV') === 'production' || env('FORCE_HTTPS') === 'true') {
             URL::forceScheme('https');

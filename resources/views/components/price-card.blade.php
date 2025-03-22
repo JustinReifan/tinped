@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> 48ace307aa66724d897f29d0798437d20cc8f946
 @props(['service', 'key'])
 
 <div class="tw-flex tw-flex-row tw-items-center tw-justify-between tw-bg-white tw-rounded-xl tw-p-4 sm:tw-p-6 tw-shadow-sm hover:tw-shadow-glow-primary tw-border tw-border-primary-100 hover:tw-border-primary-300 tw-transition-all tw-duration-300 tw-w-[260px] sm:tw-w-[320px] md:tw-w-[380px]">
