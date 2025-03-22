@@ -11,25 +11,43 @@
             <div class="card">
                 <div class="card-header fw-bold p-3 text-xss"><i class="fas fa-tags me-2"></i> Daftar layanan</div>
                 <div class="card-body">
-                    <form method="get" class="row">
-                        <div class="col-md-3">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Tampilkan</span>
-                                </div>
-                                <select class="form-control" name="row" id="table-row" wire:model.change="perPage">>
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>
-                                <div class="input-group-append">
-                                    <span class="input-group-text">baris.</span>
-                                </div>
-                            </div>
+                    <!-- Category Filter Buttons Section -->
+                    <div class="tw-mb-6">
+                        <h5 class="tw-text-gray-700 tw-font-medium tw-mb-3">Filter by Platform</h5>
+                        <div class="tw-flex tw-flex-wrap tw-gap-2">
+                            <button wire:click="Categorys(false)" class="tw-px-4 tw-py-2 tw-rounded-lg tw-bg-white tw-border tw-border-gray-200 tw-shadow-sm hover:tw-shadow-md tw-transition-all {{ !$category ? 'tw-border-primary-300 tw-bg-primary-50 tw-text-primary-600' : 'tw-text-gray-600' }}">
+                                <i class="fas fa-globe tw-mr-2"></i> All
+                            </button>
+                            @forelse ($kategori as $row)
+                                @php
+                                    $iconClass = $row->icon ?? 'fas fa-tag';
+                                    $isActive = ($category == $row->kategori);
+                                @endphp
+                                <button wire:click="Categorys('{{ $row->kategori }}')" 
+                                    class="tw-px-4 tw-py-2 tw-rounded-lg tw-bg-white tw-border tw-border-gray-200 tw-shadow-sm hover:tw-shadow-md tw-transition-all tw-flex tw-items-center {{ $isActive ? 'tw-border-primary-300 tw-bg-primary-50 tw-text-primary-600' : 'tw-text-gray-600' }}">
+                                    <i class="{{ $iconClass }} tw-mr-2"></i> {{ $row->kategori }}
+                                </button>
+                            @empty
+                                <div class="tw-text-gray-500">No categories found</div>
+                            @endforelse
                         </div>
-                        <div class="col-md-6" wire:ignore>
-                            <select class="select2 form-control" style="width:100%" name="category" id="category">
+                    </div>
+
+                    <!-- Search and Display Controls -->
+                    <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-gap-4 tw-mb-4">
+                        <div>
+                            <label class="tw-text-sm tw-text-gray-600 tw-mb-1 tw-block">Show entries</label>
+                            <select class="form-control tw-rounded-lg tw-border tw-border-gray-200 tw-shadow-sm" wire:model.change="perPage">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                        
+                        <div wire:ignore>
+                            <label class="tw-text-sm tw-text-gray-600 tw-mb-1 tw-block">Select category</label>
+                            <select class="select2 form-control tw-rounded-lg tw-border tw-border-gray-200 tw-shadow-sm" style="width:100%" name="category" id="category">
                                 @if ($kate)
                                     <option value="{{ $kate }}">Kategori {{ $kate }}</option>
                                 @else
@@ -48,58 +66,107 @@
                                 @endforelse
                             </select>
                         </div>
-                        <div class="col-md-3">
-                            <div class="input-group mb-3">
-                                <input type="text" wire:model.live.debounce.300ms="search" class="form-control"
-                                    name="search" id="table-search" value="" placeholder="Cari...">
-                            </div>
+                        
+                        <div>
+                            <label class="tw-text-sm tw-text-gray-600 tw-mb-1 tw-block">Search</label>
+                            <input type="text" wire:model.live.debounce.300ms="search" 
+                                class="form-control tw-rounded-lg tw-border tw-border-gray-200 tw-shadow-sm"
+                                placeholder="Search for services...">
                         </div>
-                    </form>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                @if ($category)
-                                    <tr>
-                                        <th colspan="8" class="text-center">{{ $category }}</th>
+                    </div>
+                    
+                    <!-- Service Type Toggle -->
+                    <div class="tw-flex tw-flex-wrap tw-gap-3 tw-mb-5">
+                        <button wire:click="changeCustom('all')" 
+                            class="tw-px-4 tw-py-2 tw-rounded-lg tw-bg-white tw-border tw-shadow-sm hover:tw-shadow-md tw-transition-all {{ !$custom ? 'tw-border-primary-300 tw-bg-primary-50 tw-text-primary-600' : 'tw-text-gray-600 tw-border-gray-200' }}">
+                            All Services
+                        </button>
+                        <button wire:click="changeCustom('reguler')" 
+                            class="tw-px-4 tw-py-2 tw-rounded-lg tw-bg-white tw-border tw-shadow-sm hover:tw-shadow-md tw-transition-all {{ $custom == 'reguler' ? 'tw-border-primary-300 tw-bg-primary-50 tw-text-primary-600' : 'tw-text-gray-600 tw-border-gray-200' }}">
+                            Regular Services
+                        </button>
+                        <button wire:click="changeCustom('custom_comments')" 
+                            class="tw-px-4 tw-py-2 tw-rounded-lg tw-bg-white tw-border tw-shadow-sm hover:tw-shadow-md tw-transition-all {{ $custom == 'custom_comments' ? 'tw-border-primary-300 tw-bg-primary-50 tw-text-primary-600' : 'tw-text-gray-600 tw-border-gray-200' }}">
+                            Custom Comments
+                        </button>
+                        <button wire:click="changeCustom('custom_link')" 
+                            class="tw-px-4 tw-py-2 tw-rounded-lg tw-bg-white tw-border tw-shadow-sm hover:tw-shadow-md tw-transition-all {{ $custom == 'custom_link' ? 'tw-border-primary-300 tw-bg-primary-50 tw-text-primary-600' : 'tw-text-gray-600 tw-border-gray-200' }}">
+                            Custom Link
+                        </button>
+                    </div>
+
+                    <!-- Results Table -->
+                    <div class="tw-bg-white tw-rounded-lg tw-shadow tw-overflow-hidden tw-mb-4">
+                        @if ($category)
+                            <div class="tw-bg-primary-50 tw-text-primary-700 tw-py-2 tw-px-4 tw-text-center tw-font-medium">
+                                {{ $category }}
+                            </div>
+                        @endif
+                        
+                        <div class="tw-overflow-x-auto">
+                            <table class="tw-min-w-full tw-divide-y tw-divide-gray-200">
+                                <thead class="tw-bg-gray-50">
+                                    <tr class="tw-text-left tw-text-xs tw-font-medium tw-text-gray-500 tw-uppercase tw-tracking-wider">
+                                        <th class="tw-px-4 tw-py-3">ID</th>
+                                        <th class="tw-px-4 tw-py-3">Category</th>
+                                        <th class="tw-px-4 tw-py-3">Service Name</th>
+                                        <th class="tw-px-4 tw-py-3">Price / 1000</th>
+                                        <th class="tw-px-4 tw-py-3">Min Order</th>
+                                        <th class="tw-px-4 tw-py-3">Max Order</th>
+                                        <th class="tw-px-4 tw-py-3 tw-text-center">Details</th>
                                     </tr>
-                                @endif
-                                <tr class="text-uppercase">
-                                    <th>ID</th>
-                                    <th>Category</th>
-                                    <th>Nama Layanan</th>
-                                    <th>Harga/ 1000 </th>
-                                    <th>Min Pesan</th>
-                                    <th>Max Pesan</th>
-                                    <th class="text-center">Detail</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($layanan as $row)
-                                    <tr>
-                                        <td>{{ $row->service }}</td>
-                                        <td><i class="{{ $row->kategori->icon }} me-2"></i>{!! $row->category !!}</td>
-                                        <td>{{ $row->name }}</td>
-                                        <td>Rp {{ number_format($row->price, 0, ',', '.') }}</td>
-                                        <td>{{ number_format($row->min, 0, ',', '.') }}</td>
-                                        <td>{{ number_format($row->max, 0, ',', '.') }}</td>
-                                        <td class="col-1 text-nowrap">
-                                            <button type="button" class="btn btn-primary bg-gradient btn-sm w-100"
-                                                data-bs-toggle="modal" data-bs-target="#details"
-                                                onclick="detail('{{ $row->service }}')"><i
-                                                    class="fas fa-search fs-6 me-2"></i>Lihat detail</button>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="8" class="text-center">Tidak ada data</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                        {!! $layanan->links() !!}
+                                </thead>
+                                <tbody class="tw-bg-white tw-divide-y tw-divide-gray-200">
+                                    @forelse ($layanan as $row)
+                                        <tr class="hover:tw-bg-gray-50 tw-transition-colors">
+                                            <td class="tw-px-4 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-text-gray-900">{{ $row->service }}</td>
+                                            <td class="tw-px-4 tw-py-3 tw-whitespace-nowrap tw-text-sm">
+                                                <div class="tw-flex tw-items-center">
+                                                    <i class="{{ $row->kategori->icon }} tw-mr-2 tw-text-primary-500"></i>
+                                                    <span class="tw-text-gray-900">{!! $row->category !!}</span>
+                                                </div>
+                                            </td>
+                                            <td class="tw-px-4 tw-py-3 tw-text-sm tw-text-gray-900">{{ $row->name }}</td>
+                                            <td class="tw-px-4 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-primary-600">
+                                                Rp {{ number_format($row->price, 0, ',', '.') }}
+                                            </td>
+                                            <td class="tw-px-4 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-text-gray-900">
+                                                {{ number_format($row->min, 0, ',', '.') }}
+                                            </td>
+                                            <td class="tw-px-4 tw-py-3 tw-whitespace-nowrap tw-text-sm tw-text-gray-900">
+                                                {{ number_format($row->max, 0, ',', '.') }}
+                                            </td>
+                                            <td class="tw-px-4 tw-py-3 tw-whitespace-nowrap tw-text-center">
+                                                <button type="button" 
+                                                    class="tw-inline-flex tw-items-center tw-px-3 tw-py-2 tw-border tw-border-primary-300 tw-text-sm tw-font-medium tw-rounded-md tw-text-primary-700 tw-bg-white hover:tw-bg-primary-50 tw-transition-colors"
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#details"
+                                                    onclick="detail('{{ $row->service }}')">
+                                                    <i class="fas fa-search tw-mr-2"></i>
+                                                    View details
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="7" class="tw-px-6 tw-py-4 tw-text-center tw-text-gray-500">
+                                                No services found
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <div class="tw-px-4 tw-py-3 tw-bg-gray-50">
+                            {!! $layanan->links() !!}
+                        </div>
                     </div>
                 </div>
             </div>
+            
+            <!-- Modal for Rating -->
             <div class="modal fade" id="rating" tabindex="-1" aria-labelledby="modalsLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -114,8 +181,9 @@
                 </div>
             </div>
 
+            <!-- Modal for Service Details -->
             <div class="modal fade" id="details" tabindex="-1" aria-labelledby="modalsLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-scrollable modal-lg">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="title-detail"></h5>
@@ -130,6 +198,7 @@
         </div>
     </div>
 </div>
+
 @script
     <script>
         $('#category').change(function() {
@@ -138,6 +207,7 @@
         });
     </script>
 @endscript
+
 <script>
     function fav(id) {
         $.ajax({
@@ -260,8 +330,6 @@
     }
 
     $(document).ready(function() {
-
-
         function iformat(icon) {
             var originalOption = icon.element;
             if ($(originalOption).index() == 0) {

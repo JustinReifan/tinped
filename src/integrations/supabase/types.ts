@@ -9,7 +9,189 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      categories: {
+        Row: {
+          created_at: string
+          icon: string | null
+          id: number
+          kategori: string | null
+          nologin: boolean | null
+          provider: string | null
+          sid: string | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          icon?: string | null
+          id?: number
+          kategori?: string | null
+          nologin?: boolean | null
+          provider?: string | null
+          sid?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          icon?: string | null
+          id?: number
+          kategori?: string | null
+          nologin?: boolean | null
+          provider?: string | null
+          sid?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      configs: {
+        Row: {
+          color_default: string | null
+          created_at: string | null
+          cronjob: Json | null
+          default_image: string | null
+          description_website: string | null
+          favicon: string | null
+          footer_website: string | null
+          id: number
+          info_text: Json | null
+          keyword_website: string | null
+          konfigurasi_kategori: Json | null
+          konfigurasi_mail: Json | null
+          layanan_rekomendasi: string | null
+          meta_website: string | null
+          min_withdraw: number | null
+          name_panel: string | null
+          path: string | null
+          provider_payment: Json | null
+          rate_withdraw: number | null
+          sitemap: Json | null
+          theme_mode: string | null
+          title_website: string | null
+          tos_referral: string | null
+          updated_at: string | null
+          url_logo: string | null
+          version_source: Json | null
+          wa_sender: Json | null
+        }
+        Insert: {
+          color_default?: string | null
+          created_at?: string | null
+          cronjob?: Json | null
+          default_image?: string | null
+          description_website?: string | null
+          favicon?: string | null
+          footer_website?: string | null
+          id: number
+          info_text?: Json | null
+          keyword_website?: string | null
+          konfigurasi_kategori?: Json | null
+          konfigurasi_mail?: Json | null
+          layanan_rekomendasi?: string | null
+          meta_website?: string | null
+          min_withdraw?: number | null
+          name_panel?: string | null
+          path?: string | null
+          provider_payment?: Json | null
+          rate_withdraw?: number | null
+          sitemap?: Json | null
+          theme_mode?: string | null
+          title_website?: string | null
+          tos_referral?: string | null
+          updated_at?: string | null
+          url_logo?: string | null
+          version_source?: Json | null
+          wa_sender?: Json | null
+        }
+        Update: {
+          color_default?: string | null
+          created_at?: string | null
+          cronjob?: Json | null
+          default_image?: string | null
+          description_website?: string | null
+          favicon?: string | null
+          footer_website?: string | null
+          id?: number
+          info_text?: Json | null
+          keyword_website?: string | null
+          konfigurasi_kategori?: Json | null
+          konfigurasi_mail?: Json | null
+          layanan_rekomendasi?: string | null
+          meta_website?: string | null
+          min_withdraw?: number | null
+          name_panel?: string | null
+          path?: string | null
+          provider_payment?: Json | null
+          rate_withdraw?: number | null
+          sitemap?: Json | null
+          theme_mode?: string | null
+          title_website?: string | null
+          tos_referral?: string | null
+          updated_at?: string | null
+          url_logo?: string | null
+          version_source?: Json | null
+          wa_sender?: Json | null
+        }
+        Relationships: []
+      }
+      smm: {
+        Row: {
+          average_time: string | null
+          cancel: boolean | null
+          category: string | null
+          created_at: string
+          description: string | null
+          id: number
+          max: number | null
+          min: number | null
+          name: string | null
+          price: number | null
+          provider: string | null
+          refill: string | null
+          service: string | null
+          status: string | null
+          type: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          average_time?: string | null
+          cancel?: boolean | null
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: number
+          max?: number | null
+          min?: number | null
+          name?: string | null
+          price?: number | null
+          provider?: string | null
+          refill?: string | null
+          service?: string | null
+          status?: string | null
+          type?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          average_time?: string | null
+          cancel?: boolean | null
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: number
+          max?: number | null
+          min?: number | null
+          name?: string | null
+          price?: number | null
+          provider?: string | null
+          refill?: string | null
+          service?: string | null
+          status?: string | null
+          type?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
