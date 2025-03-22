@@ -32,7 +32,7 @@
     <meta name="author" content="Justin dev"><!-- Jangan di ganti bos -->
     {!! $config->meta_website !!}
     <link rel="icon" href="{{ url($config->favicon) }}" type="image/x-icon">
-    <!-- [Page specific CSS] start -->
+<!-- [Page specific CSS] start -->
 
     {{-- tailwind css --}}
     @vite(['resources/views/landing/css/landing.css', 'resources/js/app.js'])

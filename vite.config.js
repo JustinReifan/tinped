@@ -1,4 +1,3 @@
-
 import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
 import tailwindcss from "tailwindcss";
@@ -17,9 +16,5 @@ export default defineConfig(({ mode }) => ({
         postcss: {
             plugins: [tailwindcss()],
         },
-    },
-    server: {
-        port: 8080,
-        host: "::"
     },
 }));
