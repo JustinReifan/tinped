@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Middleware;
@@ -11,8 +12,8 @@ class VerifyCsrfToken extends Middleware
      *
      * @var array
      */
-    // protected $except = [
-    //     'https://',
-        
-    // ];
+    protected $except = [
+        // Add API endpoints that don't require CSRF protection
+        'api/*',
+    ];
 }
