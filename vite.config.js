@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
 import tailwindcss from "tailwindcss";
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
     plugins: [
         laravel({
             input: [
@@ -19,6 +19,7 @@ export default defineConfig({
         },
     },
     server: {
-        port: 8080
-    }
-});
+        port: 8080,
+        host: "::"
+    },
+}));
