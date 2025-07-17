@@ -1,28 +1,29 @@
 <?php
 
-use App\Helpers\Encryption;
-use App\Helpers\Smm as HelpersSmm;
-use App\Http\Controllers\ApiController;
-use App\Libraries\PclZip;
-use App\Mail\Verify;
+use Carbon\Carbon;
+use iPaymu\iPaymu;
 use App\Models\Bot;
-use App\Models\BotConfig;
+use App\Models\Smm;
+use App\Mail\Verify;
+use App\Models\User;
 use App\Models\Config;
 use App\Models\Deposit;
 use App\Models\History;
-use App\Models\HistoryOrder;
-use App\Models\IconLayanan;
-use App\Models\LogBalance;
 use App\Models\Provider;
-use App\Models\Smm;
-use App\Models\User;
-use Carbon\Carbon;
+use App\Libraries\PclZip;
+use App\Models\BotConfig;
+use App\Models\LogBalance;
+use App\Helpers\Encryption;
+use App\Models\IconLayanan;
+use App\Models\HistoryOrder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Helpers\Smm as HelpersSmm;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use iPaymu\iPaymu;
+use App\Http\Controllers\ApiController;
 
 Route::get('migrasi', function () {
     $user = DB::table('user')->get();
@@ -374,9 +375,9 @@ Route::post('callback/tripay', function (Request $request) {
 
     $deposit = Deposit::where('trxid', $data['merchant_ref'])->first();
     if ($deposit) {
-        if($deposit->status != 'done'){
-            
-            
+        if ($deposit->status != 'done') {
+
+
             //  return response()->json([
             //         'success' => false,
             //         'message' => $data['status']
@@ -412,7 +413,7 @@ Route::post('callback/tripay', function (Request $request) {
                     'message' => 'Pembayaran gagal',
                 ]);
             }
-        } else{
+        } else {
             return response()->json([
                 'success' => false,
                 'message' => 'Pembayaran sudah selesai',
@@ -476,6 +477,105 @@ Route::post('callback/tripay', function (Request $request) {
         }
     }
 });
+
+
+Route::post('callback/duitku', function (Request $request) {
+    try {
+        // Logging awal
+        Log::info("[DUITKU CALLBACK] Incoming: ", $request->all());
+
+        // Validasi minimum field
+        $requiredFields = ['merchantCode', 'amount', 'merchantOrderId', 'signature', 'resultCode'];
+        foreach ($requiredFields as $field) {
+            if (!$request->has($field)) {
+                Log::warning("[DUITKU CALLBACK] Missing field: $field");
+                return response()->json(['success' => false, 'message' => "Missing field: $field"], 400);
+            }
+        }
+
+        // Ambil konfigurasi API key
+        $config = Config::first();
+        if (!$config) {
+            Log::error("[DUITKU CALLBACK] Config not found.");
+            return response()->json(['success' => false, 'message' => "Server config error"], 500);
+        }
+
+        $decode = json_decode($config->provider_payment, true);
+        $apiKey = $decode['duitku']['api_key'] ?? null;
+        $expectedMerchantCode = $decode['duitku']['merchant_code'] ?? null;
+
+        if (!$apiKey || !$expectedMerchantCode) {
+            Log::error("[DUITKU CALLBACK] Missing Duitku credentials in config.");
+            return response()->json(['success' => false, 'message' => "Duitku config incomplete"], 500);
+        }
+
+        // Validasi signature
+        $rawSignature = $request->merchantCode . $request->amount . $request->merchantOrderId . $apiKey;
+        $calcSignature = md5($rawSignature);
+
+        if ($request->signature !== $calcSignature) {
+            Log::warning("[DUITKU CALLBACK] Invalid signature. Received: {$request->signature}, Expected: {$calcSignature}");
+            return response()->json(['success' => false, 'message' => "Invalid signature"], 403);
+        }
+
+        // Validasi merchantCode
+        if ($request->merchantCode !== $expectedMerchantCode) {
+            Log::warning("[DUITKU CALLBACK] Merchant code mismatch. Received: {$request->merchantCode}");
+            return response()->json(['success' => false, 'message' => "Invalid merchant code"], 403);
+        }
+
+        // Cek deposit berdasarkan merchantOrderId
+        $deposit = Deposit::where('trxid', $request->merchantOrderId)->first();
+
+        if (!$deposit) {
+            Log::warning("[DUITKU CALLBACK] Deposit not found for trxid: {$request->merchantOrderId}");
+            return response()->json(['success' => false, 'message' => "Deposit not found"], 404);
+        }
+
+        if ($deposit->status == 'done') {
+            Log::info("[DUITKU CALLBACK] Deposit already marked as done. trxid: {$deposit->trxid}");
+            return response()->json(['success' => true, 'message' => "Deposit already processed"]);
+        }
+
+        if ($request->resultCode === "00") {
+            // Success
+            $deposit->status = 'done';
+            $deposit->save();
+
+            $user = User::find($deposit->user_id);
+            if ($user) {
+                $before = $user->balance;
+                $user->balance += $deposit->diterima;
+                $user->save();
+
+                LogBalance::create([
+                    'user_id' => $user->id,
+                    'kategori' => 'deposit',
+                    'jumlah' => $deposit->diterima,
+                    'before_balance' => $before,
+                    'after_balance' => $user->balance,
+                    'description' => 'Deposit berhasil via Duitku #' . $deposit->trxid,
+                ]);
+            }
+
+            Log::info("[DUITKU CALLBACK] Deposit marked as done. trxid: {$deposit->trxid}");
+            return response()->json(['status' => true, 'message' => 'Deposit updated successfully']);
+        } else {
+            // Gagal / Canceled
+            $deposit->status = 'canceled';
+            $deposit->save();
+
+            Log::info("[DUITKU CALLBACK] Deposit marked as canceled. trxid: {$deposit->trxid}, resultCode: {$request->resultCode}");
+            return response()->json(['status' => false, 'message' => 'Pembayaran gagal']);
+        }
+    } catch (\Throwable $e) {
+        Log::error("[DUITKU CALLBACK] Exception: " . $e->getMessage());
+        return response()->json(['success' => false, 'message' => 'Server error occurred'], 500);
+    }
+});
+
+
+
 function checknumber($phone)
 {
     $config = BotConfig::first();

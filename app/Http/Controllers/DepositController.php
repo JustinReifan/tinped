@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Libraries\Paydisini;
-use App\Libraries\Tripay;
-use App\Models\Bot;
-use App\Models\Config;
-
-use App\Models\Deposit;
-use App\Models\MetodePembayaran;
-use Carbon\Carbon;
 use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+use Carbon\Carbon;
 use iPaymu\iPaymu;
+use App\Models\Bot;
+
+use App\Models\Config;
+use App\Models\Deposit;
+use App\Libraries\Duitku;
+use App\Libraries\Tripay;
+use Illuminate\Support\Str;
+use App\Libraries\Paydisini;
+use Illuminate\Http\Request;
+use App\Models\MetodePembayaran;
+use Illuminate\Support\Facades\Auth;
 
 class DepositController extends Controller
 {
@@ -256,6 +257,43 @@ class DepositController extends Controller
                             $order = json_decode($iPaymu->redirectPayment($data));
                             if ($order->Status == 200 && $order->Success == true) {
                                 return redirect($order->Data->Url);
+                            }
+                        } elseif (strtolower($metode->provider) == 'duitku') {
+                            $duitku = new Duitku();
+                            $response = $duitku->create($trxid, $metode->code, $fee, ['id' => Auth::user()->id], url('deposit/invoice/' . $trxid));
+
+
+                            if ($response->statusCode == 00) {
+
+                                Deposit::create([
+                                    'user_id' => auth()->user()->id,
+                                    'trxid' => $trxid,
+                                    'process' => $metode->type_proses,
+                                    'code' => $metode->type_payment,
+                                    'name_payment' => $metode->name,
+                                    'account_number' => Str::lower($metode->account_number),
+                                    'description' => $metode->description,
+                                    'amount' => $fee,
+                                    'diterima' => $diterima,
+                                    'expired' => Carbon::now()->addHours(2),
+                                    'payment_url' => $response->paymentUrl, // Duitku does not return a URL
+                                    'status' => 'pending',
+                                ]);
+                                if ($bot) {
+                                    if ($bot->switch_deposit == '1') {
+                                        $data = [
+                                            'order_id' => $trxid,
+                                            'channel' => $metode->name,
+                                            'nominal' => 'Rp ' . number_format($fee, 0, ",", "."),
+                                            'expired' => Carbon::now()->addHours(2)->format('d-m-Y H:i:s'),
+                                        ];
+                                        Senderwhatsapp('notif_deposit', $data);
+                                    }
+                                }
+                                setcookie('invoice', $trxid, time() + 7200, '/');
+                                return redirect('deposit/invoice/' . $trxid);
+                            } else {
+                                return redirect()->back()->with('error', 'Gagal memproses pembayaran, silahkan hubungi customer service melalui whatsapp');
                             }
                         } else {
                             Deposit::create([
