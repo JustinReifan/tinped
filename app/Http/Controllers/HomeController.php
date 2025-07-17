@@ -117,7 +117,7 @@ class HomeController extends Controller
                 try {
                     if (strtolower($metode->provider) == 'tripay') {
                         $tripay = new Tripay;
-                        $tripay = $tripay->production($trxid, $metode->code, $fee, $data);
+                        $tripay = $tripay->production($trxid, $metode->code, $fee, $data, url('invoice/' . $trxid));
                         $decode = json_decode($tripay);
                         if ($decode->success == true) {
                             HistoryOrder::create([
@@ -257,6 +257,10 @@ class HomeController extends Controller
         if ($smm) {
             $replace = str_replace('\r\n', '<br>', $smm->description);
             $rating = Rating::where('service_id', $smm->service)->avg('rating');
+            // return response()->json([
+            //     'status' => false,
+            //     'message' => json_encode(compact('smm', 'replace', 'rating'))
+            // ]);
             return response()->json([
                 'status' => true,
                 'deskripsi' => view('order.detailDeskripsi', compact('smm', 'replace', 'rating'))->render(),

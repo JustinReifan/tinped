@@ -60,7 +60,7 @@ class Tripay
 
         return empty($error) ? $response : $error;
     }
-    public function production($merchantRef, $method, $price, $data)
+    public function production($merchantRef, $method, $price, $data, $return_url = null)
     {
         $user = User::find($data['id'] ?? null);
         $config = Config::first();
@@ -91,7 +91,7 @@ class Tripay
                     'quantity'    => 1,
                 ],
             ],
-            'return_url'   => url('deposit/invoice/' . $merchantRef),
+            'return_url'   => $return_url ?? url('deposit/invoice/' . $merchantRef),
             'expired_time' => (time() + (1 * 60 * 60)),
             'signature'    => hash_hmac('sha256', $merchantCode . $merchantRef . $amount, $privateKey)
         ];

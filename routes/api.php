@@ -370,28 +370,61 @@ Route::post('callback/tripay', function (Request $request) {
             'message' => 'Invalid signature',
         ]));
     }
-    $data = json_decode($json);
+    $data = json_decode($json, true);
+
     $deposit = Deposit::where('trxid', $data['merchant_ref'])->first();
     if ($deposit) {
-        if ($data->status == 'Success') {
-            $deposit->status = 'done';
-            $deposit->save();
-            $user = User::find($deposit->user_id);
-            if ($user) {
-                $user->balance = $user->balance + $deposit->diterima;
-                $user->save();
+        if($deposit->status != 'done'){
+            
+            
+            //  return response()->json([
+            //         'success' => false,
+            //         'message' => $data['status']
+            //     ]);
+            if ($data['status'] == 'PAID') {
+                $deposit->status = 'done';
+                $deposit->save();
+                $user = User::find($deposit->user_id);
+                if ($user) {
+                    $user->balance = $user->balance + $deposit->diterima;
+                    $user->save();
+
+                    // tambahkan log balance deposit
+                    LogBalance::create([
+                        'user_id' => $deposit->user_id,
+                        'kategori' => 'deposit',
+                        'jumlah' => $deposit->diterima,
+                        'before_balance' => $user->balance - $deposit->diterima,
+                        'after_balance' => $user->balance,
+                        'description' => 'Melakukan deposit #' . $deposit->trxid
+                    ]);
+
+                    return response()->json([
+                        'status' => true,
+                        'message' => "Berhasil mengubah status deposit"
+                    ]);
+                }
+            } else {
+                $deposit->status = 'canceled';
+                $deposit->save();
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Pembayaran gagal',
+                ]);
             }
-        } else {
-            $deposit->status = 'canceled';
-            $deposit->save();
+        } else{
+            return response()->json([
+                'success' => false,
+                'message' => 'Pembayaran sudah selesai',
+            ]);
         }
-        return response()->json(['status' => true]);
     } else {
-        $history = HistoryOrder::where('trxid', $data->merchant_ref)->first();
+        $history = HistoryOrder::where('trxid', $data['merchant_ref'])->first();
         if ($history) {
-            if ($data->status == 'PAID') {
+            if ($data['status'] == 'PAID') {
                 $smm = Smm::where('service', $history->service_id)->first();
                 $history->status_payment = 'done';
+                $history->save();
                 if ($smm) {
                     $provider = Provider::where('nama', $smm->provider)->first();
                     if (!$provider) {
@@ -416,11 +449,12 @@ Route::post('callback/tripay', function (Request $request) {
                     }
                     $ord = new HelpersSmm($smm->provider);
                     $order = $ord->order($data);
+
                     $dataresponse = $decode['response']['order']['order_id'];
                     $validate = getValueByPath2($order, $dataresponse);
                     if ($validate != false) {
-                        $user = User::find($deposit->user_id);
-                        return response()->json(['status' => true]);
+                        // $user = User::find($deposit->user_id);
+                        return response()->json(['status' => true, 'message' => 'Order ID : ' . $validate]);
                     } else {
                         $history->status = 'error';
                         $history->save();

@@ -18,6 +18,7 @@ use App\Http\Controllers\CronjobController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\ReferralController;
 
+
 Route::middleware('guest')->group(function () {
     Route::get('/', AuthController::class . '@landing')->name('landing');
 
@@ -82,7 +83,7 @@ Route::middleware('guest')->group(function () {
         Route::post('ambil/deskripsi', 'getDeskripsi')->name('ambil.detail.layanan');
         Route::post('ambil/metode', 'get_methode')->name('ambil.metode');
         Route::post('proses-order', 'prosesOrder')->name('proses.order');
-        Route::get('invoice/{order_id}', 'invoice')->name('invoice');
+        Route::get('invoice/{order_id}', 'invoice')->name('home.invoice');
     });
 });
 Route::get('dokumentasi-api', [UserController::class, 'dokumentasi'])->name('dokumentasi');
@@ -121,6 +122,7 @@ Route::middleware('auth')->group(function () {
         Route::get('logout', 'logout')->name('logout');
     });
     Route::controller(OrderController::class)->group(function () {
+
         Route::get('order/single', 'single')->name('order.single');
         Route::post('get/layanan', 'getLayanan')->name('get.layanan');
         Route::post('get/service/search-id', 'getLayananSearchId')->name('search-id');
@@ -144,6 +146,7 @@ Route::middleware('auth')->group(function () {
         Route::post('favorit/service', 'favoritService')->name('favorit.service');
         Route::post('unfav/service', 'unfavService')->name('unfav.service');
         Route::post('get/layanan/favorite', 'getLayananFavorite')->name('get.layanan.favorite');
+        Route::post('get/layanan/recommended', 'getLayananRecommended')->name('get.layanan.recommended');
         Route::get('layanan/favorit', 'LayananFavorit')->name('list.layanan');
         Route::post('favorit/delete', 'favoritDelete')->name('favorit.delete');
     });

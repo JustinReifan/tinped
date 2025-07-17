@@ -18,7 +18,7 @@
             
             <!-- Subheading -->
             <p class="tw-text-lg tw-text-gray-600 tw-text-center tw-max-w-2xl">
-                List perbandingan keunggulan TINPED dengan kompetitor
+                List perbandingan keunggulan Pusat Panel SMM TINPED dengan kompetitor
             </p>
         </div>
         

@@ -20,7 +20,7 @@
 
         <!-- Sub Heading - Improved width constraints -->
         <p class="subheading-animation tw-text-base sm:tw-text-lg md:tw-text-xl tw-text-gray-600 tw-text-center tw-max-w-[95vw] sm:tw-max-w-xl md:tw-max-w-2xl tw-mb-6 sm:tw-mb-8 tw-leading-relaxed tw-px-2 sm:tw-px-4" data-aos="fade-up" data-aos-delay="400">
-            Dapatkan layanan SMM high quality untuk semua platform media sosial anda. Pengiriman instant, real profile, 24/7 support.
+            Dapatkan layanan SMM berkualitas tinggi untuk semua platform media sosial anda. Pengiriman instant, real profile, 24/7 support.
         </p>
 
         <!-- CTA Buttons - Improved mobile layout -->

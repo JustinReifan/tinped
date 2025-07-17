@@ -13,21 +13,21 @@
                     <div class="row">
                         @if (collect($decodes->list_kategori)->count() == 0)
                             <div class="alert alert-danger">
-                                <div class="alert-body text-center">
+                                <div class="text-center alert-body">
                                     <i class="fas fa-exclamation-triangle fs-4"></i>
                                     <h6 class="mt-3">Tidak ada kategori yang tersedia.</h6>
                                 </div>
                             </div>
                         @else
                             <div class="col-6 col-lg-4 col-xl-3 d-grid">
-                                <button type="button" class="btn btn-primary btn-md d-block mb-2 btn-category"
+                                <button type="button" class="mb-2 btn btn-primary btn-md d-block btn-category"
                                     id="btn-Semua"onclick="filterCategory('Semua');"><span
                                         class="d-flex align-items-center"><i class="fas fa-adjust fs-4"></i><span
                                             style="margin-left:8px; margin-top:1px;">Semua</span></span></button>
                             </div>
                             @foreach (collect($decodes->list_kategori)->sortBy('key') as $nama => $iconClass)
                                 <div class="col-6 col-lg-4 col-xl-3 d-grid">
-                                    <button type="button" class="btn btn-outline-primary btn-md d-block mb-2 btn-category"
+                                    <button type="button" class="mb-2 btn btn-outline-primary btn-md d-block btn-category"
                                         id="btn-{{ $nama }}" onclick="filterCategory('{{ $nama }}');"><span
                                             class="d-flex align-items-center"><i class="{!! $iconClass !!}"></i><span
                                                 style="margin-left:8px; margin-top:1px;">{{ ucfirst($nama) }}</span></span></button>
@@ -64,7 +64,7 @@
                 </div>
             @endif
             <div class="card">
-                <div class="card-header fw-bold p-3 text-xss">
+                <div class="p-3 card-header fw-bold text-xss">
                     <div class="row">
                         <div class="col-md">
                             <i class="fas fa-cart-plus me-2"></i>Pesanan baru
@@ -78,23 +78,30 @@
                 </div>
                 <div class="card-body" id="ajax-result">
                     @csrf
-                    <ul class="nav nav-pills mb-2" role="tablist" style="margin-bottom:13px;">
+                    <ul class="mb-2 nav nav-pills" role="tablist" style="margin-bottom:13px;">
                         <li class="nav-item waves-effect waves-light">
                             <a class="nav-link active" data-bs-toggle="tab" href="#general" id="btn-general" role="tab"
                                 style="padding:0.785rem 1rem !important;">
-                                <i class="fas fa-adjust me-1 align-middle"></i> <span class="d-md-inline-block">Umum</span>
+                                <i class="align-middle fas fa-adjust me-1"></i> <span class="d-md-inline-block">Umum</span>
+                            </a>
+                        </li>
+                        <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link" data-bs-toggle="tab" href="#recommended" id="btn-recommended" role="tab"
+                                style="padding:0.785rem 1rem !important;">
+                                <i class="align-middle fa-regular fa-thumbs-up me-1"></i> <span
+                                    class="d-md-inline-block">Rekomendasi</span>
                             </a>
                         </li>
                         <li class="nav-item waves-effect waves-light">
                             <a class="nav-link" data-bs-toggle="tab" href="#favorite" id="btn-favorite" role="tab"
                                 style="padding:0.785rem 1rem !important;">
-                                <i class="far fa-star me-1 align-middle"></i> <span class="d-md-inline-block">Favorit</span>
+                                <i class="align-middle far fa-star me-1"></i> <span class="d-md-inline-block">Favorit</span>
                             </a>
                         </li>
                         <li class="nav-item waves-effect waves-light">
                             <a class="nav-link" data-bs-toggle="tab" href="#cariID" id="btn-cariID" role="tab"
                                 style="padding:0.785rem 1rem !important;">
-                                <i class="fas fa-search me-1 align-middle"></i> <span class="d-md-inline-block">Cari
+                                <i class="align-middle fas fa-search me-1"></i> <span class="d-md-inline-block">Cari
                                     ID</span>
                             </a>
                         </li>
@@ -130,16 +137,43 @@
                                     <div class="d-flex justify-content-between" bis_skin_checked="1">
                                         <label class="form-label">Layanan <span class="text-danger">*</span> <span
                                                 id="fav_service" style="cursor:pointer;"></span></label>
-                                                <div class="fw-bolder text-secondary small mt-1">
+                                        <div class="mt-1 fw-bolder text-secondary small">
 
-                                                    <span class="mx-2" id="is_refill"><i
-                                                            class="fas fa-question-circle"></i> Refill</span>
-                                                    <span class="" id="is_cancel"><i
-                                                            class="fas fa-question-circle"></i> Cancel</span>
-                                                </div>
+                                            <span class="mx-2" id="is_refill"><i class="fas fa-question-circle"></i>
+                                                Refill</span>
+                                            <span class="" id="is_cancel"><i class="fas fa-question-circle"></i>
+                                                Cancel</span>
+                                        </div>
                                     </div>
                                     <select class="select2 form-control" style="width:100%" name="layanan"
                                         id="layanan">
+                                        <option value="0">Pilih Kategori Dahulu</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="recommended" role="tabpanel">
+                                <div class="mb-3">
+                                    <p class="mb-2 text-info">Layanan berikut adalah layanan yang direkomendasikan langsung
+                                        oleh admin (di update berkala)</p>
+                                    <label class="form-label">Kategori <span class="text-danger">*</span></label>
+                                    <select class="select2 form-control" style="width:100%" name="recommended_category"
+                                        id="recommended_category">
+                                        <option value="0">Pilih...</option>
+                                        @forelse ($KategoriLayananRekomendasi as $row)
+                                            <option value="{{ $row->id }}"
+                                                data-icon="<i class='{!! $row->icon ?? null !!}'></i>">
+                                                {{ $row->kategori ?? null }}
+                                            </option>
+
+                                        @empty
+                                            <option data-icon="" value="0">Tidak ada kategori</option>
+                                        @endforelse
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Layanan <span class="text-danger">*</span></label>
+                                    <select class="select2 form-control" style="width:100%" name="layanan3"
+                                        id="layanan3">
                                         <option value="0">Pilih Kategori Dahulu</option>
                                     </select>
                                 </div>
@@ -187,12 +221,12 @@
                         </div>
                         <div id="form-services"></div>
                         <div class="mb-3" id="deskripsi_umum">
-                            <label class="form-label">Deskripsi <span class="text-danger">*</span></label>
-                            <div class="border border-primary rounded p-3 mb-3" id="infoDesc">Deskripsi
+                            <label class="form-label">Detail layanan <span class="text-danger">*</span></label>
+                            <div class="p-3 mb-3 border rounded border-primary text-secondary" id="infoDesc">Deskripsi
                                 layanan.
                             </div>
                         </div>
-                        <div class="form-group mb-3">
+                        <div class="mb-3 form-group">
                             <label>Link/Target <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" placeholder="Masukkan target" name="target"
                                 id="target">
@@ -241,7 +275,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-0 mt-3 float-end">
+                        <div class="mt-3 mb-0 float-end">
                             <button type="submit" class="btn btn-primary float-end"><i
                                     class="fas fa-cart-plus fs-6 me-2"></i>Pesan</button>
                             <button type="reset" class="btn btn-danger float-end me-2"><i
@@ -253,7 +287,7 @@
         </div>
         <div class="col-md">
             <div class="card">
-                <div class="card-header fw-bold p-3 text-xss"><i class="fas fa-info-circle me-1"></i> Informasi</div>
+                <div class="p-3 card-header fw-bold text-xss"><i class="fas fa-info-circle me-1"></i> Informasi</div>
                 <div class="card-body">
                     @php
                         $decode = json_decode($config->info_text);
@@ -285,6 +319,12 @@
                 allowHtml: true
             });
             $('#category_fav').select2({
+                width: "100%",
+                templateSelection: iformat,
+                templateResult: iformat,
+                allowHtml: true
+            });
+            $('#recommended_category').select2({
                 width: "100%",
                 templateSelection: iformat,
                 templateResult: iformat,
@@ -359,7 +399,31 @@
                 }
             });
         });
-        $('#layanan,#layanan2').change(function() {
+        $('#recommended_category').change(function() {
+            var value = $(this).val();
+
+            $.ajax({
+                url: "{{ route('get.layanan.recommended') }}",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    id: value,
+                },
+                dataType: "html",
+                success: function(response) {
+                    $('#layanan3').html(response);
+
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                    });
+                }
+            });
+        });
+        $('#layanan,#layanan2,#layanan3').change(function() {
             var value = $(this).val();
             $.ajax({
                 url: "{{ route('get.detail.layanan') }}",
@@ -529,7 +593,8 @@
                         $('#form-services').html('');
                     }
                 },
-                error: function(xhr) {
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',

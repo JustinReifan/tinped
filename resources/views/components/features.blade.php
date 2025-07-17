@@ -18,7 +18,7 @@
             
             <!-- Subheading -->
             <p class="tw-text-lg tw-text-gray-600 tw-text-center tw-max-w-2xl">
-                Solusi terbaik - kami hadir untuk memberikan layanan berkualitas tinggi yang memenuhi setiap kebutuhan media sosial Anda.
+                Solusi terbaik - kami hadir sebagai Pusat Panel SMM yang memberikan layanan berkualitas tinggi untuk memenuhi setiap kebutuhan media sosial Anda.
             </p>
         </div>
         
@@ -27,7 +27,7 @@
             <div class="tw-relative tw-group">
                 <!-- Screenshot with mask -->
                 <div class="tw-relative tw-z-10 tw-bg-white tw-rounded-2xl tw-overflow-hidden tw-shadow-lg tw-border tw-border-primary-200 tw-max-w-4xl tw-transition-all tw-duration-300 group-hover:tw-shadow-lg">
-                    <img src="/landing/assets/images/landing/featuresUI.png" alt="">
+                    <img src="/landing/assets/images/landing/featuresUI.webp" alt="">
                 </div>
                 
                 <!-- Enhanced glow effect behind screenshot -->

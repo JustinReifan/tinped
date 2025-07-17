@@ -191,10 +191,20 @@ class Deposit extends Component
             if ($this->search) {
                 $this->resetPage();
             }
-            $history = ModelsDeposit::search($this->search)->with('user')->where('status', 'like', '%' . $this->status . '%')
-                ->orderBy('id', 'desc')
-                ->where('process', 'like', '%' . $this->type . '%')
-                ->Paginate($this->perPage);
+            $history = ModelsDeposit::with(['user' => function($query) {
+                if ($this->search) {
+                    $query->where('username', 'like', '%' . $this->search . '%');
+                }
+            }])
+            ->whereHas('user', function($query) {
+                if ($this->search) {
+                    $query->where('username', 'like', '%' . $this->search . '%');
+                }
+            })
+            ->where('status', 'like', '%' . $this->status . '%')
+            ->orderBy('id', 'desc')
+            ->where('process', 'like', '%' . $this->type . '%')
+            ->Paginate($this->perPage);
             return view('livewire.admin.deposit', compact('history'));
         }
     }

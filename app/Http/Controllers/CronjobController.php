@@ -230,7 +230,6 @@ class CronjobController extends Controller
                     $data[$permintaan['provider_secret']] = $decode['provider_secret'];
                 }
 
-                dd($data);
                 $smm = new Smm($row->nama);
                 // hasil response API request
                 $result = $smm->services($data);
@@ -580,8 +579,9 @@ class CronjobController extends Controller
                         }
                         $smm = new Smm($row->provider);
                         $smm = $smm->status($data);
-                        dump($smm);
+
                         if (isset($smm['status']) or isset($smm['success']) or isset($smm['response']) == true) {
+                            // dd($smm);
                             $total = 0;
                             $count = 0;
                             $status = strtolower(getValueByPath2($smm, $decode['response']['status']['status']));
@@ -596,17 +596,19 @@ class CronjobController extends Controller
                             } elseif ($status == strtolower($decode['status_value']['status']['partial'])) {
                                 if ($user) {
                                     $kurang = $row->quantity - $remains;
-                                    $total = ($row->price / 1000) * $kurang;
-                                    $total = ceil($total);
+                                    $pricePerItem = $row->price / $row->quantity;
+                                    $totalBayar = ceil($pricePerItem * $kurang);
+                                    $totalRemain = ceil($pricePerItem * $remains);
                                     LogBalance::create([
                                         'user_id' => $row->user_id,
                                         'kategori' => 'refund',
-                                        'jumlah' => $row->price,
+                                        'jumlah' => $totalRemain,
                                         'before_balance' => $user->balance,
-                                        'after_balance' => $user->balance + $row->price,
-                                        'description' => 'Partial Order #' . $row->trxid . ' dengan jumlah pengembalian Rp ' . $this->format($row->price),
+                                        'after_balance' => $user->balance + $totalRemain,
+                                        'description' => 'Partial Order #' . $row->trxid . ' harga Rp ' . $this->format($row->price) . ' dengan jumlah bayar Rp ' . $this->format($totalBayar) . ' dan jumlah pengembalian Rp ' . $this->format($totalRemain),
                                     ]);
-                                    $user->balance = $user->balance + $total;
+
+                                    $user->balance = $user->balance + $totalRemain;
                                     $user->save();
                                 }
                                 $status = 'partial';

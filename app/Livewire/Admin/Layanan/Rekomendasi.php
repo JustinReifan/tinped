@@ -2,82 +2,82 @@
 
 namespace App\Livewire\Admin\Layanan;
 
-use App\Models\Config;
 use App\Models\Smm;
+use App\Models\Config;
+use Livewire\Component;
+use App\Models\Category;
+use App\Helpers\Encryption;
+use App\Models\LayananRekomendasi;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Livewire\Component;
+use App\Models\KategoriLayananRekomendasi;
 
 class Rekomendasi extends Component
 {
-    public function deleteRekomendasi($id, $provider)
+
+    public function deleteRekomendasi($id)
     {
-        $config = Config::first();
-        if ($config) {
-            $teks = $id . '||' . $provider;
-            $pairs = explode(',', $config->layanan_rekomendasi);
+        try {
+            // Cari data berdasarkan id DAN provider
+            $layanan = LayananRekomendasi::where('id', $id)
+                ->first();
 
-            $indexToRemove = null;
-            foreach ($pairs as $i => $pair) {
-                list($pairId, $pairProvider) = explode('||', $pair);
-                if ($pairId == $id && $pairProvider == $provider) {
-                    $indexToRemove = $i;
-                    break;
-                }
-            }
-
-            if ($indexToRemove !== null) {
-                unset($pairs[$indexToRemove]);
-                $newLayananRekomendasi = implode(',', $pairs);
-                if (empty($newLayananRekomendasi)) {
-                    $newLayananRekomendasi = '';
-                }
-
-                $config->update([
-                    'layanan_rekomendasi' => $newLayananRekomendasi,
-                ]);
-
-                $this->dispatch('swal:modal', [
-                    'title' => 'Berhasil',
-                    'text' => 'Layanan berhasil dihapus dari rekomendasi.',
-                    'type' => 'success',
-                ]);
-            } else {
+            if (!$layanan) {
                 $this->dispatch('swal:modal', [
                     'title' => 'Gagal',
-                    'text' => 'Data tidak ditemukan.',
-                    'type' => 'error',
-                ]);
-            }
-        } else {
-            $this->dispatch('swal:modal', [
-                'title' => 'Gagal',
-                'text' => 'Data tidak ditemukan.',
-                'type' => 'error',
-            ]);
-        }
-    }
-    public function tambah($id, $provider)
-    {
-        $config = Config::first();
-        if ($config) {
-            $cek = Smm::where([['provider', $provider], ['service', $id]])->first();
-            if (!$cek) {
-                $this->dispatch('swal:modal', [
-                    'title' => 'Gagal',
-                    'text' => 'Data tidak ditemukan.',
+                    'text' => 'Data layanan tidak ditemukan ',
                     'type' => 'error',
                 ]);
                 return;
             }
-            if (strpos($config->layanan_rekomendasi, $id) === false) {
-                if ($config->layanan_rekomendasi) {
-                    $layanan = $config->layanan_rekomendasi . ',' . $id . '||' . $provider;
-                } else {
-                    $layanan = $id . '||' . $provider;
-                }
-                $config->update([
-                    'layanan_rekomendasi' => $layanan,
+
+            $layanan->delete();
+
+            $this->dispatch('swal:modal', [
+                'title' => 'Berhasil',
+                'text' => 'Layanan berhasil dihapus dari rekomendasi.',
+                'type' => 'success',
+            ]);
+
+            // Refresh data setelah delete
+            $this->dispatch('refreshData');
+        } catch (\Exception $e) {
+            $this->dispatch('swal:modal', [
+                'title' => 'Error',
+                'text' => 'Gagal menghapus layanan: ' . $e->getMessage(),
+                'type' => 'error',
+            ]);
+        }
+    }
+    public function tambah($idLayanan, $idKategoriRekomendasi)
+    {
+        $kategoriRekomendasi = KategoriLayananRekomendasi::find($idKategoriRekomendasi);
+        if ($kategoriRekomendasi) {
+            $decrypt = Encryption::decrypt($idLayanan);
+            $explode = explode('|', $decrypt);
+            if (count($explode) < 2) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Layanan tidak ditemukan'
+                ]);
+            }
+            $service = $explode[0];
+            $provider = $explode[1];
+            $cek = Smm::where([['provider', $provider], ['service', $service], ['status', 'aktif']])->first();
+            if (!$cek) {
+                $this->dispatch('swal:modal', [
+                    'title' => 'Gagal',
+                    'text' => 'Layanan tidak ditemukan.',
+                    'type' => 'error',
+                ]);
+                return;
+            }
+            if (!$kategoriRekomendasi->layananRekomendasi()->where('service', $service)->where('provider', $provider)->exists()) {
+
+                $kategoriRekomendasi->layananRekomendasi()->create([
+                    'kategori_rekomendasi_id' => $kategoriRekomendasi->id,
+                    'service' => $service,
+                    'provider' => $provider,
                 ]);
                 $this->dispatch('swal:modal', [
                     'title' => 'Berhasil',
@@ -94,20 +94,30 @@ class Rekomendasi extends Component
         } else {
             $this->dispatch('swal:modal', [
                 'title' => 'Gagal',
-                'text' => 'Data tidak ditemukan.',
+                'text' => 'Data kategori rekomendasi tidak ditemukan.',
                 'type' => 'error',
             ]);
         }
     }
     public function render()
     {
-        $config = Config::first();
-        if ($config) {
-            if (strpos($config->layanan_rekomendasi, '||') === false) {
-                $config->layanan_rekomendasi = '';
-                $config->save();
-            }
-        }
-        return view('livewire.admin.layanan.rekomendasi');
+        // Query dengan eager loading dan optimasi
+        $layanan_rekomendasi = LayananRekomendasi::query()
+            ->with([
+                'kategori',
+                'smm' => function ($query) {
+                    $query->where('status', 'aktif'); // Ambil kolom spesifik
+                }
+            ])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $kategori_layanan_rekomendasi = KategoriLayananRekomendasi::all();
+        $kategori = Category::where('status', 'aktif')->with('smm')->get();
+        return view('livewire.admin.layanan.rekomendasi', [
+            'kategori' => $kategori,
+            'layanan_rekomendasi' => $layanan_rekomendasi,
+            'kategori_layanan_rekomendasi' => $kategori_layanan_rekomendasi
+        ]);
     }
 }

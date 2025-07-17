@@ -28,7 +28,7 @@
                 [
                     "id" => 1,
                     "name" => "Alfamart",
-                    "image" => "./landing/assets/images/pay-method/alfamart.png"
+                    "image" => "./landing/assets/images/pay-method/alfamart.webp"
                 ],
                 [
                     "id" => 2,
@@ -38,7 +38,7 @@
                 [
                     "id" => 3,
                     "name" => "BCA VA",
-                    "image" => "./landing/assets/images/pay-method/bcava.jpg"
+                    "image" => "./landing/assets/images/pay-method/bcava.webp"
                 ],
                 [
                     "id" => 4,
@@ -48,22 +48,22 @@
                 [
                     "id" => 5,
                     "name" => "Dana",
-                    "image" => "./landing/assets/images/pay-method/danasymbol.png"
+                    "image" => "./landing/assets/images/pay-method/danasymbol.webp"
                 ],
                 [
                     "id" => 6,
                     "name" => "Ovo",
-                    "image" => "./landing/assets/images/pay-method/ovosymbol.png"
+                    "image" => "./landing/assets/images/pay-method/ovosymbol.webp"
                 ],
                 [
                     "id" => 7,
                     "name" => "BRI VA",
-                    "image" => "./landing/assets/images/pay-method/briva.jpg"
+                    "image" => "./landing/assets/images/pay-method/briva.webp"
                 ],
                 [
                     "id" => 8,
                     "name" => "Shopeepay",
-                    "image" => "./landing/assets/images/pay-method/shopeepay.png"
+                    "image" => "./landing/assets/images/pay-method/shopeepay.webp"
                 ]
             ];
             $delay = 200;

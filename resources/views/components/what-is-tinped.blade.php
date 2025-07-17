@@ -10,7 +10,7 @@
             <div class="tw-w-full md:tw-w-1/2 tw-space-y-6 tw-animate-fade-in" data-aos="fade-up">
                 <!-- Brand Badge -->
                 <div class="tw-bg-primary tw-bg-opacity-10 tw-backdrop-blur-sm tw-rounded-full tw-px-4 tw-py-1.5 tw-inline-flex tw-items-center tw-justify-center tw-border tw-border-primary-200">
-                    <span class="tw-text-primary tw-font-semibold tw-text-sm">TINPED SMM</span>
+                    <span class="tw-text-primary tw-font-semibold tw-text-sm">TINPED | Pusat Panel SMM</span>
                 </div>
                 
                 <h2 class="tw-text-3xl md:tw-text-4xl lg:tw-text-5xl tw-font-bold tw-text-gray-900">
@@ -18,7 +18,7 @@
                 </h2>
                 
                 <p class="tw-text-base md:tw-text-lg tw-text-gray-600 tw-leading-relaxed">
-                    Tinped SMM adalah penyedia layanan Social Media Marketing (SMM) yang dirancang untuk membantu Anda meningkatkan performa media sosial secara optimal. Sebagai panel SMM premium, kami menawarkan solusi lengkap untuk meningkatkan followers, jangkauan, engagement, dan kredibilitas di berbagai platform media sosial populer seperti Instagram, TikTok, Facebook, YouTube, dan lainnya.
+                    Tinped SMM adalah pusat panel SMM (Social Media Marketing) yang dirancang untuk membantu Anda meningkatkan performa media sosial secara optimal. Sebagai pusat panel smm, kami menawarkan solusi lengkap untuk meningkatkan followers, jangkauan, engagement, dan kredibilitas di berbagai platform media sosial populer seperti Instagram, TikTok, Facebook, YouTube, dan lainnya.
                 </p>
                 
                 <div class="tw-pt-4">
@@ -45,8 +45,8 @@
                             <div class="tw-absolute tw-right-10 tw-bottom-1/4 tw-w-14 tw-h-14 tw-bg-gradient-to-br tw-from-primary-300 tw-to-primary-500 tw-rounded-lg tw-rotate-12 tw-shadow-lg tw-animate-float" style="animation-duration: 9s; animation-delay: 0.5s; z-index: 20;"></div>
                             
                             <!-- Phone Content -->
-                            <div class="tw-absolute tw-inset-0 tw-p-4 tw-flex tw-flex-col tw-gap-3">
-                                <div class="tw-w-full tw-h-2 tw-bg-white/20 tw-rounded-full"></div>
+                            <div class="tw-absolute tw-inset-0">
+                                {{-- <div class="tw-w-full tw-h-2 tw-bg-white/20 tw-rounded-full"></div>
                                 <div class="tw-w-2/3 tw-h-8 tw-bg-white/30 tw-rounded-lg tw-mt-2"></div>
                                 <div class="tw-w-full tw-h-20 tw-bg-white/20 tw-rounded-lg tw-mt-2"></div>
                                 <div class="tw-flex tw-gap-2 tw-mt-2">
@@ -55,7 +55,8 @@
                                     <div class="tw-w-1/3 tw-h-16 tw-bg-white/30 tw-rounded-lg"></div>
                                 </div>
                                 <div class="tw-w-full tw-h-12 tw-bg-white/20 tw-rounded-lg tw-mt-2"></div>
-                                <div class="tw-w-2/3 tw-h-10 tw-bg-primary-500 tw-rounded-lg tw-mt-2 tw-self-center"></div>
+                                <div class="tw-w-2/3 tw-h-10 tw-bg-primary-500 tw-rounded-lg tw-mt-2 tw-self-center"></div> --}}
+                                <img src="./landing/assets/images/phonecontent2.webp" alt="" >
                             </div>
                         </div>
                         

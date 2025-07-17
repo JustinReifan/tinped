@@ -3,11 +3,11 @@
         use Carbon\Carbon;
     @endphp
     <div class="card">
-        <div class="card-header fw-bold p-3 text-xss"><i class="fas fa-money-check me-2"></i>Kelola Deposit</div>
+        <div class="p-3 card-header fw-bold text-xss"><i class="fas fa-money-check me-2"></i>Kelola Deposit</div>
         <div class="card-body">
             <form method="get" class="row">
                 <div class="col-md-3">
-                    <div class="input-group mb-3">
+                    <div class="mb-3 input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Tampilkan</span>
                         </div>
@@ -25,7 +25,7 @@
                 <div class="col-md-6">
                 </div>
                 <div class="col-md-3">
-                    <div class="input-group mb-3">
+                    <div class="mb-3 input-group">
                         <input type="text" wire:model.live.debounce.300ms="search" class="form-control"
                             name="search" id="table-search" value="" placeholder="Cari...">
                     </div>
@@ -62,8 +62,8 @@
                                 </td>
                                 <td>
                                     <div class="kotak">
-                                        <div class="label">Name</div>
-                                        <div class="value text-primary">{{ $row->user->name }}</div>
+                                        <div class="label">Username</div>
+                                        <div class="value text-primary">{{ $row->user->username }}</div>
                                         <div class="label">Email</div>
                                         <div class="value text-success">{{ $row->user->email }}</div>
                                         <div class="label">METODE</div>
@@ -134,14 +134,14 @@
                                 <td>{{ tanggal(Carbon::parse($row->created_at)->format('Y-m-d')) }}
                                     {{ Carbon::parse($row->created_at)->format('H:i:s') }}</td>
                                 <td x-data="{ depositId: {{ $row->id }}, toggleEdit: false }">
-                                    <button class="btn btn-sm btn-success bg-gradient w-100 mb-1"
+                                    <button class="mb-1 btn btn-sm btn-success bg-gradient w-100"
                                         onclick="konfirmasi('{{ $row->id }}')"
                                         @if ($row->status == 'done') disabled @endif>Konfirmasi</button>
-                                    <button class="btn btn-primary bg-gradient btn-sm w-100 mb-1"
+                                    <button class="mb-1 btn btn-primary bg-gradient btn-sm w-100"
                                         wire:click="EditDeposit('{{ $row->id }}')">Edit</button>
                                     <button type="button" @if ($row->status == 'canceled') disabled @endif
                                         onclick="batalkan('{{ $row->id }}')"
-                                        class="btn btn-danger bg-gradient btn-sm w-100 mb-1">
+                                        class="mb-1 btn btn-danger bg-gradient btn-sm w-100">
                                         Batalkan</button>
                                 </td>
                             </tr>

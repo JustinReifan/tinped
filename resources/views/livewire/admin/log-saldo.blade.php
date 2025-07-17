@@ -1,7 +1,7 @@
 <div class="row">
     <div id="title-page" data-value="Riwayat Mutasi" data-value2="Log"></div>
     <div class="col-md-12">
-        <div class="btn-group flex-wrap mb-2">
+        <div class="flex-wrap mb-2 btn-group">
             <button wire:click="changeKategori('all')"
                 class="btn btn-outline-primary mt-2 me-1 @if ($kategori == false) active @endif mt-2  ">Semua</button>
             <button wire:click="changeKategori('pesanan')"
@@ -14,11 +14,11 @@
     </div>
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header fw-bold p-3 text-xss"><i class="mdi mdi-account-convert me-1"></i>Log Saldo</div>
+            <div class="p-3 card-header fw-bold text-xss"><i class="mdi mdi-account-convert me-1"></i>Log Saldo</div>
             <div class="card-body">
                 <form method="get" class="row">
                     <div class="col-md">
-                        <div class="input-group mb-3">
+                        <div class="mb-3 input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Tampilkan</span>
                             </div>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="col-md">
-                        <div class="input-group mb-3">
+                        <div class="mb-3 input-group">
                             <input type="text" wire:model.live.debounce.300ms="search" class="form-control"
                                 name="search" id="table-search" value="" placeholder="Cari...">
                         </div>
@@ -60,8 +60,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                         <div class="kotak">
-                                            <div class="label">Name</div>
-                                            <div class="value text-primary">{{ $row->user->name }}</div>
+                                            <div class="label">Username</div>
+                                            <div class="value text-primary">{{ $row->user->username }}</div>
                                             <div class="label">Email</div>
                                             <div class="value text-success">{{ $row->user->email }}</div>
                                         </div>

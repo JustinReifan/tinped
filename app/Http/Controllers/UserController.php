@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Encryption;
-use App\Models\Category;
-use App\Models\Config;
-use App\Models\Favorit;
-use App\Models\LogMasuk;
-use App\Models\Session;
 use App\Models\Smm;
 use App\Models\User;
-use chillerlan\QRCode\QRCode;
+use App\Models\Config;
+use App\Models\Favorit;
+use App\Models\Session;
+use App\Models\Category;
+use App\Models\LogMasuk;
+use App\Helpers\Encryption;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use chillerlan\QRCode\QRCode;
 use PragmaRX\Google2FA\Google2FA;
+use App\Models\LayananRekomendasi;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -28,7 +29,13 @@ class UserController extends Controller
                 $session->save();
             }
         }
-        return view('user.dashboard');
+
+        $layananRekomendasi = LayananRekomendasi::with(['smm' => function ($query) {
+            $query->where('status', 'aktif')->orderBy('price', 'asc');
+        }])->paginate(2);
+        // dd($layananRekomendasi->first());
+
+        return view('user.dashboard', compact('layananRekomendasi'));
     }
     public function logout()
     {

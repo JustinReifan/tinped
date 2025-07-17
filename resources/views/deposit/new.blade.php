@@ -33,7 +33,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header fw-bold p-3 text-xss"><i class="mdi mdi-wallet-plus-outline me-1"></i>Deposit Baru
+                <div class="p-3 card-header fw-bold text-xss"><i class="mdi mdi-wallet-plus-outline me-1"></i>Deposit Baru
                 </div>
                 <div class="card-body">
                     <form action="{{ url('deposit/proses') }}" method="POST">
@@ -60,15 +60,15 @@
                             <input type="number" class="form-control" id="nominal" placeholder="Masukkan nominal deposit"
                                 name="nominal">
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-md-6 mb-3">
+                        <div class="mt-2 row">
+                            <div class="mb-3 col-md-6">
                                 <label class="form-label">Jumlah Transfer <span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <span class="input-group-text">Rp.</span>
                                     <input type="text" class="form-control" id="jmlh" name="jmlh" readonly>
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="mb-3 col-md-6">
                                 <label class="form-label">Saldo Diterima <span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <span class="input-group-text">Rp.</span>
@@ -76,9 +76,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group float-end mt-2">
-                            <button type="reset" class="btn btn-danger mt-2 mr-1" id="reset">Reset</button>
-                            <button type="submit" class="btn btn-primary mt-2 ">Submit</button>
+                        <div class="mt-2 form-group float-end">
+                            <button type="reset" class="mt-2 mr-1 btn btn-danger" id="reset">Reset</button>
+                            <button type="submit" class="mt-2 btn btn-primary ">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -86,7 +86,7 @@
         </div>
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header fw-bold p-3 text-xss"><i class="mdi mdi-information-outline me-1"></i>Informasi
+                <div class="p-3 card-header fw-bold text-xss"><i class="mdi mdi-information-outline me-1"></i>Informasi
                 </div>
                 <div class="card-body">
                     <strong>Cara Melakukan Deposit Baru :</strong>
@@ -201,7 +201,18 @@
                 .append('<option value="0">-- Pilih metode deposit --</option>')
                 .val('0');
         });
-        $('#nominal,#metod').change(function() {
+
+    
+        function debounce(fn, delay) {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => fn.apply(this, args), delay);
+            };
+        }
+
+
+        const handleInput = debounce(function() {
             var nominal = $('#nominal').val();
             var metod = $('#metod').val();
             if (nominal) {
@@ -232,7 +243,13 @@
                     }
                 })
             }
-        });
+        }, 300); // 👈 debounce 300 ms
+
+        $('#nominal').on('input', handleInput);
+        $('#metod').on('change', handleInput);
+        
+
+
         $('.select2').select2();
     </script>
 @endsection

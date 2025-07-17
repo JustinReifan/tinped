@@ -47,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-8">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
@@ -65,11 +65,17 @@
                         <div class="flex-grow-1 ms-3">
                             <p class="mb-1">Deposit Selesai</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h4 class="mb-0 ">Rp {{ number_format($sum, 0, ',', '.') }}</h4>
+                                <h4 class="mb-0">Rp {{ number_format($sum, 0, ',', '.') }}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="font-light alert alert-info fs-6">
+                ⚠️ Ingin punya website seperti ini? Konsultasi gratis disini <a class="text-decoration-underline"
+                    href="https://wa.me/6285931018333">Klik</a> 👈
             </div>
         </div>
         <div class="col-md-5">
@@ -85,59 +91,47 @@
                     <div id="Service1" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <table class="table table-sm align-middle m-0">
-                                @php
-                                    $explode = explode(',', $config->layanan_rekomendasi);
-                                    $i = 1;
-                                @endphp
-                                @if (isset($explode[1]))
-                                    @forelse ($explode as $exp)
+                            <table class="table m-0 align-middle table-sm">
+
+                                @if ($layananRekomendasi->first())
+                                    @forelse ($layananRekomendasi as $service)
                                         @php
-                                            $explode = explode('||', $exp);
-                                            $service = App\Models\Smm::where([['service', $explode[0]]])->first();
+                                            $text = $service->service . '||' . $service->provider;
+                                            $encrypt = App\Helpers\Encryption::encrypt($text);
                                         @endphp
-                                        @if ($service)
-                                            <tr>
-                                                <td class=" text-muted">{{ $i++ }}</td>
-                                                <td class>
-                                                    {{ $service->name }}
-                                                </td>
-                                                <td class="text-center ">
-                                                    <a href="{{ url('order/single?id=' . $service->service) }}"
-                                                        class="btn btn-sm btn-primary bg-gradient ms-2"><i
-                                                            class="ti ti-shopping-cart"></i></a>
-                                                </td>
-                                            </tr>
-                                        @else
-                                        @endif
+                                        <tr>
+                                            <td class="text-muted">{{ $loop->iteration }}</td>
+                                            <td class>
+                                                {{ $service->smm()->first()->name }}
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="{{ url('order/single?id=' . $encrypt) }}"
+                                                    class="btn btn-sm btn-primary bg-gradient ms-2"><i
+                                                        class="ti ti-shopping-cart"></i></a>
+                                            </td>
+                                        </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="3" class="text-center">Tidak ada data</td>
+                                            <td colspan="3" class="text-center">Layanan rekomendasi kosong</td>
                                         </tr>
                                     @endforelse
                                 @else
-                                    @if ($config->layanan_rekomendasi)
-                                        @php
-                                            $service = App\Models\Smm::where([
-                                                ['service', $config->layanan_rekomendasi],
-                                            ])->first();
-                                        @endphp
-                                        @if ($service)
-                                            <tr>
-                                                <td class=" text-muted">{{ $i++ }}</td>
-                                                <td class>
-                                                    {{ $service->name }}
-                                                </td>
-                                                <td class="text-center ">
-                                                    <a href="{{ url('order/single?id=' . $service->service) }}"
-                                                        class="btn btn-sm btn-primary bg-gradient ms-2"><i
-                                                            class="ti ti-shopping-cart"></i></a>
-                                                </td>
-                                            </tr>
-                                        @endif
-                                    @endif
+                                    <tr>
+                                        <td colspan="3" class="text-center">Tidak ada data</td>
+                                    </tr>
                                 @endif
                             </table>
+
+                            {{-- tombol lihat selengkapnya --}}
+                            @if ($layananRekomendasi->hasMorePages())
+                                <div class="mt-1 text-center">
+                                    <a href="{{ route('order.single') }}?active_tab=recommended"
+                                        class="text-primary lihat-selengkapnya">
+                                        Lihat Selengkapnya
+                                        <i class="ti ti-chevron-down ms-1"></i>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -151,7 +145,7 @@
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <table class="table table-sm align-middle m-0">
+                            <table class="table m-0 align-middle table-sm">
                                 @php
                                     $m = date('m');
                                     $month = date('m');
@@ -173,11 +167,11 @@
                                 @endphp
                                 @forelse ($layananTerlaris as $row)
                                     <tr>
-                                        <td class=" text-muted">
+                                        <td class="text-muted">
                                             {{ $i++ }}</td>
                                         <td class>
                                             {{ $row->layanan }}</td>
-                                        <td class="text-center ">
+                                        <td class="text-center">
                                             <a href="{{ url('order/single?id=' . $row->service_id) }}"
                                                 class="btn btn-sm btn-primary bg-gradient ms-2"><i
                                                     class="ti ti-shopping-cart"></i></a>
@@ -203,7 +197,7 @@
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <table class="table table-sm align-middle m-0">
+                            <table class="table m-0 align-middle table-sm">
                                 @php
                                     $layananCount = App\Models\History::select(
                                         'service_id',
@@ -220,11 +214,11 @@
                                 @endphp
                                 @forelse ($layananCount as $row)
                                     <tr>
-                                        <td class=" text-muted">
+                                        <td class="text-muted">
                                             {{ $i++ }}</td>
                                         <td class>
                                             {{ $row->layanan }}</td>
-                                        <td class="text-center ">
+                                        <td class="text-center">
                                             <a href="{{ url('order/single?id=' . $row->service_id) }}"
                                                 class="btn btn-sm btn-primary bg-gradient ms-2"><i
                                                     class="ti ti-shopping-cart"></i></a>
@@ -253,7 +247,7 @@
                             // Ambil data history 1 bulan terakhir
                         @endphp
                         <div class="accordion-body">
-                            <table class="table table-sm align-middle m-0">
+                            <table class="table m-0 align-middle table-sm">
                                 @php
                                     $terakhir = App\Models\History::distinct()
                                         ->where('user_id', Auth::user()->id)
@@ -265,11 +259,11 @@
                                 @endphp
                                 @forelse ($terakhir as $row)
                                     <tr>
-                                        <td class=" text-muted">
+                                        <td class="text-muted">
                                             {{ $i++ }}</td>
                                         <td class>
                                             {{ $row->layanan }}</td>
-                                        <td class="text-center ">
+                                        <td class="text-center">
                                             <a href="{{ url('order/single?id=' . $row->service_id) }}"
                                                 class="btn btn-sm btn-primary bg-gradient ms-2"><i
                                                     class="ti ti-shopping-cart"></i></a>
@@ -288,8 +282,8 @@
         </div>
         <div class="col-md-7">
             <div class="card">
-                <div class="card-header fw-bold p-3 text-xss"><i class="fas fa-bullhorn me-2"></i>Informasi Terbaru</div>
-                <div class="card-body pb-3" style="max-height: 401px; overflow: auto;">
+                <div class="p-3 card-header fw-bold text-xss"><i class="fas fa-bullhorn me-2"></i>Informasi Terbaru</div>
+                <div class="pb-3 card-body" style="max-height: 401px; overflow: auto;">
                     <ul class="list-group list-group-flush border-top-0">
                         @php
                             $berita = App\Models\Announcement::orderBy('id', 'DESC')->limit(3)->get();
@@ -308,11 +302,11 @@
                                     $text = 'Layanan';
                                 }
                             @endphp
-                            <li class="list-group-item pt-0 px-0">
-                                <div class="d-flex align-items-start ">
-                                    <div class="flex-grow-1 me-2 mt-3">
+                            <li class="px-0 pt-0 list-group-item">
+                                <div class="d-flex align-items-start">
+                                    <div class="mt-3 flex-grow-1 me-2">
                                         <span class="mb-0"><span
-                                                class="fs-5 badge text-white fw-bold bg-primary rounded-pill"><i
+                                                class="text-white fs-5 badge fw-bold bg-primary rounded-pill"><i
                                                     class="fas fa-info-circle me-2"></i>{{ strtoupper($row->type) }}
                                             </span><small
                                                 class="fw-normal float-end">{{ tanggal(Carbon::parse($row->created_at)->format('Y-m-d')) }}
@@ -343,8 +337,18 @@
                     </ul>
                     <hr class="mt-0">
                     <div class="d-grid">
-                        <a href="{{ url('news/berita') }}" class="btn btn-primary mb-0">Lihat Semua</a>
+                        <a href="{{ url('news/berita') }}" class="mb-0 btn btn-primary">Lihat Semua</a>
                     </div>
+                </div>
+            </div>
+            <div class="max-w-xl mt-4 overflow-hidden border rounded shadow-sm w-100 border-primary"
+                style="max-width: 36rem;">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/L0RSC-aVCVA?si=tiQuC-_8fabL_CVp"
+                        title="TINPED SMM Tutorial" frameborder="0"
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen loading="lazy">
+                    </iframe>
                 </div>
             </div>
         </div>

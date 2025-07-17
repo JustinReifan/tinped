@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Livewire\User;
@@ -123,7 +122,7 @@ class ListLayanan extends Component
                 ->pluck('name')
                 ->map(function ($name) {
                     // Extract service type keywords (likes, views, followers, etc.)
-                    $keywords = ['Likes', 'Views', 'Followers', 'Comments', 'Subscribers', 'Plays', 'Saves', 'Shares'];
+                    $keywords = ['Like', 'View', 'Follower', 'Comment', 'Subscriber', 'Play', 'Save', 'Share'];
                     foreach ($keywords as $keyword) {
                         if (stripos($name, $keyword) !== false) {
                             return $keyword;
@@ -136,7 +135,7 @@ class ListLayanan extends Component
                 ->values();
 
             $serviceGroups = $serviceNamesForCategory;
-            
+
             // Get categories that match the selected platform
             $filteredCategories = Smm::where('status', 'aktif')
                 ->where('category', 'like', $this->category . '%')

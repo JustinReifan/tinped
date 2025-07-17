@@ -17,7 +17,7 @@
             
             <!-- Subheading -->
             <p class="tw-text-lg tw-text-gray-600 tw-text-center tw-max-w-2xl">
-                Cerita nyata dari customer kami yang telah mengubah performa media sosial mereka.
+                Cerita nyata dari customer kami mengenai TINPED SMM Panel
             </p>
         </div>
         
@@ -27,45 +27,45 @@
             $testimonials = [
                 [
                     "id" => 1,
-                    "text" => "Berkat TINPED SMM, strategi marketing media sosial saya jadi lebih efektif. Followers yang saya dapatkan juga ternyata terlihat aktif",
-                    "name" => "Sarah Johnson",
+                    "text" => "Jujur sejak kenal Tinped, Strategi marketing media sosial saya jadi jauh lebih efektif, Panel terbaik sejauh ini!",
+                    "name" => "Rendy J.",
                     "role" => "Digital Marketer",
-                    "image" => "https://randomuser.me/api/portraits/women/1.jpg"
+                    "image" => "https://randomuser.me/api/portraits/men/9.jpg"
                 ],
                 [
                     "id" => 2,
-                    "text" => "Sudah mencoba banyak panel SMM sebelumnya, tapi panel ini benar-benar beda! Kualitas layanan dan dukungan pelanggannya luar biasa. Channel YouTube saya tumbuh pesat berkat mereka",
-                    "name" => "Michael Chen",
+                    "text" => "Sudah mencoba banyak panel SMM sebelumnya, tapi yang ini benar-benar beda. Kualitas layanan dan dukungan pelanggannya luar biasa buat saya.",
+                    "name" => "Michael C.",
                     "role" => "Content Creator",
                     "image" => "https://randomuser.me/api/portraits/men/2.jpg"
                 ],
                 [
                     "id" => 3,
-                    "text" => "Sebagai pemilik usaha kecil, saya butuh solusi media sosial yang terjangkau tapi efektif. TINPED benar-benar melebihi ekspektasi saya!",
-                    "name" => "Jessica Williams",
-                    "role" => "Boutique Owner",
-                    "image" => "https://randomuser.me/api/portraits/women/3.jpg"
+                    "text" => "Sebagai pemilik usaha kecil, saya butuh solusi marketing media sosial yang terjangkau tapi efektif. Menggunakan layanan tinped adalah keputusan yang tepat untuk saya!",
+                    "name" => "Jessica W.",
+                    "role" => "Business Owner",
+                    "image" => "https://randomuser.me/api/portraits/women/18.jpg"
                 ],
                 [
                     "id" => 4,
-                    "text" => "Kecepatan pengirimannya luar biasa! Saya pesan, dan hasilnya langsung masuk dalam hitungan menit. Udah langganan disini",
-                    "name" => "David Rodriguez",
+                    "text" => "Kecepatan pengirimannya cepet bangett! Baru 5 menit langsung masuk followersnya. Siap langganan disini😁",
+                    "name" => "David S.",
                     "role" => "Musician",
                     "image" => "https://randomuser.me/api/portraits/men/4.jpg"
                 ],
                 [
                     "id" => 5,
-                    "text" => "TINPED membantu saya meningkatkan followers Instagram saya sebanyak 10 ribu hanya dalam satu bulan. Engagement nya luar biasa dan terlihat natural.",
-                    "name" => "Emma Thompson",
+                    "text" => "Terimakasih tinped karena udah bantuin akun instagram aku naik 10.000 Followers sekejap😋. Ga expect secepet itu",
+                    "name" => "Emma T.",
                     "role" => "Lifestyle Influencer",
                     "image" => "https://randomuser.me/api/portraits/women/5.jpg"
                 ],
                 [
                     "id" => 6,
-                    "text" => "CS-nya sangat responsif dan membantu. Semua kendala langsung ditangani dengan cepat. Hanya disini juga refill layanan dapat sangat mudah",
-                    "name" => "James Wilson",
+                    "text" => "CS-nya sangat responsif dan membantu. Semua kendala saya langsung ditangani dengan cepat. Recommended.",
+                    "name" => "James W.",
                     "role" => "Startup Founder",
-                    "image" => "https://randomuser.me/api/portraits/men/6.jpg"
+                    "image" => "https://randomuser.me/api/portraits/men/65.jpg"
                 ]
             ];
             @endphp

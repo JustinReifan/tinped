@@ -56,6 +56,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/select2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" />
 
+    <link rel="canonical" href="https://tinped.com" />
+
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.rateyo.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/select2.min.js') }}"></script>
@@ -915,12 +917,21 @@
             if (value == 'light') {
                 document.cookie = "dark=false;max-age=999999999";
                 layout_change('light');
+                htmlElement.classList.remove('dark');
+                // Simpan preferensi di localStorage
+                localStorage.setItem('theme', 'light');
+                
             } else {
                 document.cookie = "dark=true;max-age=999999999";
                 layout_change('dark');
+                htmlElement.classList.add('dark');
+                // Simpan preferensi di localStorage
+                localStorage.setItem('theme', 'dark');
             }
         }
         $(document).ready(function() {
+            const htmlElement = document.documentElement;
+
             @if (!Request::is('sitemap/*') && !Request::is('list-layanan'))
                 if (document.cookie.indexOf('read_popup=true') == -1) {
                     $('#info_modal').modal('show');
@@ -929,8 +940,12 @@
             // Cek cookie dark apabila ada text "true" maka ganti layout ke dark
             if (document.cookie.indexOf('dark=true') != -1) {
                 layout_change('dark');
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
             } else {
                 layout_change('light');
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
             }
         });
 

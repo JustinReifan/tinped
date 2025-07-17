@@ -27,7 +27,13 @@ class LogSaldo extends Component
         if ($this->search) {
             $this->resetPage();
         }
-        $log = LogBalance::search($this->search)->orderBy('id', 'desc')
+        $log = LogBalance::with('user')
+        ->whereHas('user', function($query) {
+            if ($this->search) {
+                $query->where('username', 'like', '%' . $this->search . '%')
+                ->orWhere('email', 'like', '%'.$this->search.'%');
+            }
+        })->orderBy('id', 'desc')
             ->where('kategori', 'like', '%' . $this->kategori . '%')
             ->Paginate($this->perPage);
         return view('livewire.admin.log-saldo', compact('log'));

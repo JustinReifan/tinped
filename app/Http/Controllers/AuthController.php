@@ -175,6 +175,7 @@ class AuthController extends Controller
                 return redirect()->back()->with('error', 'Nomor whatsapp harus diawali dengan 62');
             }
             $referral = $_COOKIE['referral'] ?? random(6);
+
             $config = Config::first();
             $decode = json_decode($config->konfigurasi_mail);
             $code = random(20);
@@ -217,6 +218,16 @@ class AuthController extends Controller
                 'zona' => $request->timezone,
                 'status' => $status,
             ]);
+
+            if (isset($_COOKIE['referral'])) {
+                $code = $_COOKIE['referral'];
+                $referral = Referral::where('code', $code)->first();
+                if ($referral) {
+                    $referral->registered = $referral->registered + 1;
+                    $referral->save();
+                }
+            }
+
             if ($status == 'active') {
                 return redirect('auth/login')->with('success', 'Registrasi berhasil, silahkan login');
             } else {

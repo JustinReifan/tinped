@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $config->name_panel }}</title>
+    <title>{{ $config->title_website }}</title>
     <meta name="description" content="{{ $config->description_website }}">
     <meta name="keywords" content="{{ $config->keyword_website }}">
     <meta name="author" content="Justin Code">
@@ -34,7 +34,9 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url('assets') }}/views/landing/css/landing.css">
+    {{-- <link rel="stylesheet" href="{{ url('assets') }}/views/landing/css/landing.css"> --}}
+
+    <link rel="canonical" href="https://tinped.com" />
     
     
 </head>
@@ -49,7 +51,7 @@
                         <div class="tw-relative tw-h-8 tw-w-8 tw-overflow-hidden">
                             <div class="tw-absolute tw-inset-0 tw-rounded-lg tw-animate-pulse-glow"></div>
                             <div class="tw-absolute tw-inset-0.5 tw-rounded-lg tw-flex tw-items-center tw-justify-center">
-                                <img src="/landing/assets/images/logo/logo-tinped.png" alt="TINPED SMM Logo" loading="lazy">
+                                <img src="/landing/assets/images/logo/logo-tinped.webp" alt="TINPED SMM Logo" loading="lazy">
                             </div>
                         </div>
                         <span class="tw-font-bold tw-text-gray-800 tw-hidden sm:tw-block">TINPED <span class="tw-text-primary">SMM</span></span>
@@ -350,35 +352,7 @@
                 });
             });
             
-            // Lazy loading for images
-            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
             
-            if ('loading' in HTMLImageElement.prototype) {
-                // Browser supports native lazy loading
-                lazyImages.forEach(img => {
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                    }
-                });
-            } else {
-                // Fallback for browsers that don't support native lazy loading
-                const lazyImageObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const lazyImage = entry.target;
-                            if (lazyImage.dataset.src) {
-                                lazyImage.src = lazyImage.dataset.src;
-                            }
-                            lazyImage.removeAttribute('data-src');
-                            lazyImageObserver.unobserve(lazyImage);
-                        }
-                    });
-                });
-                
-                lazyImages.forEach(lazyImage => {
-                    lazyImageObserver.observe(lazyImage);
-                });
-            }
         });
     </script>
 </body>

@@ -20,37 +20,39 @@ use App\Models\HistoryCancel;
 use App\Models\HistoryRefill;
 use App\Models\ConfigReferral;
 use App\Helpers\Smm as HelpersSmm;
+use App\Models\LayananRekomendasi;
 use Illuminate\Support\Facades\Auth;
+use App\Models\KategoriLayananRekomendasi;
 
 class OrderController extends Controller
 {
     public function single(Request $request)
     {
+
         $id = urldecode($request->id ?? null);
         $id = str_replace(' ', '+', $id);
-        $config = Config::first();
         $decrypt = Encryption::decrypt($id);
-        $pairs = collect(explode(',', $config->layanan_rekomendasi))
+
+        $pairs = collect(explode(',', $decrypt))
             ->map(function ($pair) {
                 return explode('||', $pair);
             });
 
-        $provider = $pairs->firstWhere(0, $id)[1] ?? null;
-
         if ($id) {
             if ($decrypt) {
-                $explode = explode('||', $decrypt);
-                $id = $explode[0] ?? null;
-                $provider = $explode[1] ?? null;
-            }
-            $ct = Smm::where('service', $id)
-                ->where('provider', $provider)
-                ->first();
+                // $layananRekomendasi = LayananRekomendasi::where('provider', $pairs->first()[1])->first();
+                $provider = $pairs->first()[1] ?? null;
+                $id = $pairs->first()[0] ?? null;
 
-            if ($ct) {
-                $ct = Smm::where('category', $ct->category)->first()->id;
-            } else {
-                return abort(404);
+                $ct = Smm::where('service', $id)
+                    ->where('provider', $provider)
+                    ->first();
+
+                if ($ct) {
+                    $ct = Smm::where('category', $ct->category)->first()->id;
+                } else {
+                    return abort(404);
+                }
             }
         } else {
             $ct = null;
@@ -62,7 +64,11 @@ class OrderController extends Controller
             ->orderBy('category', 'asc')
             ->get(['category']);
 
-        return view('order.single', compact('kategori', 'favoritCategory', 'id', 'ct'));
+        $KategoriLayananRekomendasi = KategoriLayananRekomendasi::whereHas('layananRekomendasi.smm', function ($query) {
+            $query->where('status', 'aktif');
+        })->get();
+
+        return view('order.single', compact('kategori', 'favoritCategory', 'id', 'ct', 'KategoriLayananRekomendasi'));
     }
     public function getLayanan(Request $request)
     {
@@ -83,6 +89,8 @@ class OrderController extends Controller
             return '<option value="">Layanan tidak tersedia</option>';
         }
     }
+
+
     public function getLayananMassal(Request $request)
     {
         $id = Smm::find($request->id);
@@ -143,7 +151,9 @@ class OrderController extends Controller
             ]
         );
         $quantity = str_replace('.', '', $request->quantity);
-        $decrypt = Encryption::decrypt($request->layanan == '0' ? $request->layanan2 : $request->layanan);
+        $decrypt = Encryption::decrypt(
+            $request->layanan !== '0' ? $request->layanan : ($request->layanan2 !== '0' ? $request->layanan2 : ($request->layanan3 !== '0' ? $request->layanan3 : null))
+        );
         $explode = explode('|', $decrypt);
         if (count($explode) == 2) {
             $service = $explode[0];
@@ -824,27 +834,66 @@ class OrderController extends Controller
             }
         }
     }
+
+    public function getLayananRecommended(Request $request)
+    {
+        $services = LayananRekomendasi::with(['smm' => function ($query) {
+            $query->where('status', 'aktif');
+        }])->where('kategori_rekomendasi_id', $request->id)->get();
+
+        if ($services->first()) {
+            printf('<option value="%s" disabled selected>%s</option>', '0', 'Pilih Layanan');
+            foreach ($services as $service) {
+                $smm = $service->smm()->first();
+                if ($smm) {
+                    $encrypt = Encryption::encrypt($smm->service . '|' . $smm->provider);
+                    printf('<option value="%s">%s</option>', $encrypt, $smm->name);
+                }
+            }
+        } else {
+            return '<option value="">Layanan belum tersedia</option>';
+        }
+    }
+
     public function getLayananSearchId(Request $request)
     {
-        $smm = Smm::where([['service', $request->id], ['status', 'aktif']])->get();
-        if ($smm) {
-            $replace = str_replace("\r\n", '<br>', $smm->first()->description);
-            $replace = str_replace("\n", '<br>', $replace);
-            $rating = Rating::where('service_id', $smm->first()->service)->avg('rating');
+        try {
+            $smm = Smm::where([['service', $request->id], ['status', 'aktif']])->get();
+
+            if ($smm->isEmpty()) {
+                return response()->json([
+                    'status'  => false,
+                    'message' => 'Layanan tidak ditemukan'
+                ]);
+            }
+
+            $smmFirst = $smm->first();
+            $serviceId = $smmFirst->service;
+
+            // Handle deskripsi
+            $replace = str_replace(["\r\n", "\n"], '<br>', $smmFirst->description ?? '-');
+
+            // Handle rating (beri default 0 jika null)
+            $rating = Rating::where('service_id', $serviceId)->avg('rating') ?? 0;
+            $rating = round($rating, 1); // Format ke 1 desimal
+
+            // Hitung count rating (pastikan aman)
+            $count = Rating::where('service_id', $serviceId)->count() ?? 0;
+
             return response()->json([
-                'status' => true,
-                'html' => view('order.search_id', compact('smm'))->render(),
-                'deskripsi' => view('order.detailDeskripsi', compact('smm', 'replace', 'rating'))->render(),
-                'type' => strtolower(str_replace(' ', '_', $smm->first()->type)),
-                'price' => $smm->first()->price,
-                'min' => $smm->first()->min,
-                'max' => $smm->first()->max,
+                'status'    => true,
+                'html'      => view('order.search_id', compact('smm'))->render(),
+                'deskripsi' => view('order.detailDeskripsi', compact('smm', 'replace', 'rating', 'count'))->render(),
+                'type'      => strtolower(str_replace(' ', '_', $smmFirst->type ?? '')),
+                'price'     => $smmFirst->price ?? 0,
+                'min'       => $smmFirst->min ?? 0,
+                'max'       => $smmFirst->max ?? 0,
             ]);
-        } else {
+        } catch (\Exception $e) {
             return response()->json([
-                'status' => false,
-                'message' => 'Layanan tidak ditemukan'
-            ]);
+                'status'  => false,
+                'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+            ], 500);
         }
     }
     public function getDeskripsi(Request $request)

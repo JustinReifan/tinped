@@ -53,6 +53,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/select2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" />
 
+    <link rel="canonical" href="https://tinped.com" />
+
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.rateyo.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/select2.min.js') }}"></script>
@@ -400,7 +402,7 @@
                                                     aria-label="scrollable content"
                                                     style="height: auto; overflow: hidden;">
                                                     <div class="simplebar-content" style="padding: 0px;">
-                                                        <div class="d-flex mb-1">
+                                                        <div class="mb-1 d-flex">
                                                             <div class="flex-shrink-0"><img
                                                                     src="{{ url($config->default_image) }}"
                                                                     alt="user-image" class="user-avtar wid-35"></div>
@@ -409,9 +411,9 @@
                                                                 <span>{{ strtoupper(Auth::user()->role) }}</span>
                                                             </div>
                                                         </div>
-                                                        <p class="text-span mt-3">Manage</p>
-                                                        <hr class="border-secondary border-opacity-50">
-                                                        <div class="d-grid mb-3"><a href="{{ url('logout') }}"
+                                                        <p class="mt-3 text-span">Manage</p>
+                                                        <hr class="border-opacity-50 border-secondary">
+                                                        <div class="mb-3 d-grid"><a href="{{ url('logout') }}"
                                                                 class="btn btn-primary"><svg class="pc-icon me-2">
                                                                     <use xlink:href="#custom-logout-1-outline"></use>
                                                                 </svg>Logout</a>
@@ -481,7 +483,7 @@
     <footer class="pc-footer">
         <div class="footer-wrapper container-fluid">
             <div class="row">
-                <div class="col my-1">
+                <div class="my-1 col">
                     @php
 
                         $pola = '/\(\((.*?)\)\)/';
@@ -519,19 +521,19 @@
     </script>
     <div class="pct-c-btn"><a href="javascript:void(0)" data-bs-toggle="offcanvas"
             data-bs-target="#offcanvas_pc_layout"><i class="ph-duotone ph-gear-six"></i></a></div>
-    <div class="offcanvas border-0 pct-offcanvas offcanvas-end" tabindex="-1" id="offcanvas_pc_layout">
+    <div class="border-0 offcanvas pct-offcanvas offcanvas-end" tabindex="-1" id="offcanvas_pc_layout">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title">Settings</h5><button type="button"
                 class="btn btn-icon btn-link-danger ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"><i
                     class="ti ti-x"></i></button>
         </div>
         <div class="pct-body customizer-body">
-            <div class="offcanvas-body py-0">
+            <div class="py-0 offcanvas-body">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <div class="pc-dark">
                             <h6 class="mb-1">Theme Mode</h6>
-                            <p class="text-muted text-sm">Choose light or dark mode or Auto</p>
+                            <p class="text-sm text-muted">Choose light or dark mode or Auto</p>
                             <div class="row theme-color theme-layout">
                                 <div class="col-4">
                                     <div class="d-grid"><button class="preset-btn btn active" data-value="true"

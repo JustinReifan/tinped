@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\LayananRekomendasi;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Smm extends Model
 {
@@ -50,5 +52,11 @@ class Smm extends Model
     {
         return $this->hasMany(IconLayanan::class, 'kategori', 'category')
             ->where('kategori', 'like', '%' . $this->category . '%');
+    }
+
+
+    public function layananRekomendasi(): HasOne
+    {
+        return $this->hasOne(LayananRekomendasi::class, 'service', 'service');
     }
 }
