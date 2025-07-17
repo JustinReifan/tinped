@@ -100,11 +100,11 @@
                                     <td>
                                         <div class="kotak">
                                             <div class="label">Service ID</div>
-                                            <div class="value text-success">{{ $row->smm()->first()->service }}</div>
+                                            <div class="value text-success">{{ $row->smm()->first()?->service }}</div>
                                             <div class="label">Kategori</div>
-                                            <div class="value text-success">{{ $row->smm()->first()->category }}</div>
+                                            <div class="value text-success">{{ $row->smm()->first()?->category }}</div>
                                             <div class="label">Layanan</div>
-                                            <div class="value text-primary">{{ $row->smm()->first()->name }}</div>
+                                            <div class="value text-primary">{{ $row->smm()->first()?->name }}</div>
                                         </div>
                                     </td>
                                     <td class="text-center">{{ $row->provider }}</td>

@@ -95,6 +95,8 @@
 
                                 @if ($layananRekomendasi->first())
                                     @forelse ($layananRekomendasi as $service)
+                                        @if ($service->smm()->first())
+
                                         @php
                                             $text = $service->service . '||' . $service->provider;
                                             $encrypt = App\Helpers\Encryption::encrypt($text);
@@ -110,6 +112,7 @@
                                                         class="ti ti-shopping-cart"></i></a>
                                             </td>
                                         </tr>
+                                        @endif
                                     @empty
                                         <tr>
                                             <td colspan="3" class="text-center">Layanan rekomendasi kosong</td>
@@ -123,7 +126,7 @@
                             </table>
 
                             {{-- tombol lihat selengkapnya --}}
-                            @if ($layananRekomendasi->hasMorePages())
+                            {{-- @if ($layananRekomendasi->hasMorePages())
                                 <div class="mt-1 text-center">
                                     <a href="{{ route('order.single') }}?active_tab=recommended"
                                         class="text-primary lihat-selengkapnya">
@@ -131,7 +134,7 @@
                                         <i class="ti ti-chevron-down ms-1"></i>
                                     </a>
                                 </div>
-                            @endif
+                            @endif --}}
                         </div>
                     </div>
                 </div>
