@@ -70,6 +70,7 @@ class OrderController extends Controller
 
         return view('order.single', compact('kategori', 'favoritCategory', 'id', 'ct', 'KategoriLayananRekomendasi'));
     }
+
     public function getLayanan(Request $request)
     {
         $id = Smm::find($request->id);
