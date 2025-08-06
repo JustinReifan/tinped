@@ -39,6 +39,34 @@
             </div>
         </div>
     </div>
+    <!-- Quick Start Guide for New Users -->
+    @if(Auth::user()->balance == 0 && !session()->has('hide_guide'))
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-lightbulb fs-4 me-3"></i>
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1">🎉 Selamat datang! Mari mulai dengan langkah mudah:</h6>
+                        <ol class="mb-0 small">
+                            <li><strong>Pilih layanan:</strong> Mulai dengan tab "Rekomendasi" untuk layanan terbaik</li>
+                            <li><strong>Top up saldo:</strong> Klik tombol "Top Up" di samping saldo untuk mengisi saldo</li>
+                            <li><strong>Lakukan pemesanan:</strong> Masukkan target dan jumlah, lalu klik "Pesan"</li>
+                        </ol>
+                        <div class="mt-2">
+                            <a href="{{ route('deposit') }}" class="btn btn-sm btn-success me-2">
+                                <i class="fas fa-wallet me-1"></i>Top Up Sekarang
+                            </a>
+                            <small class="text-muted">Saldo minimum Rp 10.000 untuk mulai berbelanja</small>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="hideGuide()"></button>
+            </div>
+        </div>
+    </div>
+    @endif
+
     <div class="row">
         <div class="col-md-8">
 
@@ -111,7 +139,34 @@
                     <form action="{{ url('order/single-proses') }}" method="POST">
                         <div class="tab-content">
                             @csrf
-                            <div class="tab-pane active" id="general" role="tabpanel">
+                            <div class="tab-pane active" id="recommended" role="tabpanel">
+                                <div class="mb-3">
+                                    <p class="mb-2 text-info">Layanan berikut adalah layanan yang direkomendasikan langsung
+                                        oleh admin (di update berkala)</p>
+                                    <label class="form-label">Kategori <span class="text-danger">*</span></label>
+                                    <select class="select2 form-control" style="width:100%" name="recommended_category"
+                                        id="recommended_category">
+                                        <option value="0">Pilih...</option>
+                                        @forelse ($KategoriLayananRekomendasi as $row)
+                                            <option value="{{ $row->id }}"
+                                                data-icon="<i class='{!! $row->icon ?? null !!}'></i>">
+                                                {{ $row->kategori ?? null }}
+                                            </option>
+
+                                        @empty
+                                            <option data-icon="" value="0">Tidak ada kategori</option>
+                                        @endforelse
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Layanan <span class="text-danger">*</span></label>
+                                    <select class="select2 form-control" style="width:100%" name="layanan3"
+                                        id="layanan3">
+                                        <option value="0">Pilih Kategori Dahulu</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="general" role="tabpanel">
                                 <div class="mb-3">
                                     <label class="form-label">Kategori <span class="text-danger">*</span></label>
                                     <select class="select2 form-control" id="category">
@@ -149,33 +204,6 @@
                                     </div>
                                     <select class="select2 form-control" style="width:100%" name="layanan"
                                         id="layanan">
-                                        <option value="0">Pilih Kategori Dahulu</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="recommended" role="tabpanel">
-                                <div class="mb-3">
-                                    <p class="mb-2 text-info">Layanan berikut adalah layanan yang direkomendasikan langsung
-                                        oleh admin (di update berkala)</p>
-                                    <label class="form-label">Kategori <span class="text-danger">*</span></label>
-                                    <select class="select2 form-control" style="width:100%" name="recommended_category"
-                                        id="recommended_category">
-                                        <option value="0">Pilih...</option>
-                                        @forelse ($KategoriLayananRekomendasi as $row)
-                                            <option value="{{ $row->id }}"
-                                                data-icon="<i class='{!! $row->icon ?? null !!}'></i>">
-                                                {{ $row->kategori ?? null }}
-                                            </option>
-
-                                        @empty
-                                            <option data-icon="" value="0">Tidak ada kategori</option>
-                                        @endforelse
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Layanan <span class="text-danger">*</span></label>
-                                    <select class="select2 form-control" style="width:100%" name="layanan3"
-                                        id="layanan3">
                                         <option value="0">Pilih Kategori Dahulu</option>
                                     </select>
                                 </div>
@@ -288,13 +316,111 @@
             </div>
         </div>
         <div class="col-md">
-            <div class="card">
-                <div class="p-3 card-header fw-bold text-xss"><i class="fas fa-info-circle me-1"></i> Informasi</div>
+            <!-- User Balance Card -->
+            <div class="card mb-3">
                 <div class="card-body">
-                    @php
-                        $decode = json_decode($config->info_text);
-                    @endphp
-                    {!! $decode->single !!}
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="avtar bg-light-primary"><i class="fas fa-wallet f-18"></i></div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <p class="mb-1">Saldo Anda</p>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0">Rp {{ number_format(Auth::user()->balance, 0, ',', '.') }}</h4>
+                                <a href="{{ route('deposit') }}" class="btn btn-sm btn-success">
+                                    <i class="fas fa-plus me-1"></i>Top Up
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="row mb-3">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body text-center p-2">
+                            <div class="avtar bg-light-success mx-auto mb-1"><i class="fas fa-check-circle f-16"></i></div>
+                            <p class="mb-1 small">Pesanan Selesai</p>
+                            <h6 class="mb-0">Rp {{ number_format($userStats['completed_orders'], 0, ',', '.') }}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body text-center p-2">
+                            <div class="avtar bg-light-info mx-auto mb-1"><i class="fas fa-money-bill-transfer f-16"></i></div>
+                            <p class="mb-1 small">Deposit Selesai</p>
+                            <h6 class="mb-0">Rp {{ number_format($userStats['completed_deposits'], 0, ',', '.') }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommended Services Card -->
+            <div class="card mb-3">
+                <div class="card-header fw-bold p-3 text-xss">
+                    <i class="fas fa-star me-2"></i>Layanan Rekomendasi
+                </div>
+                <div class="card-body">
+                    <div style="max-height: 300px; overflow-y: auto;">
+                        @php $hasValidService = false; @endphp
+                        @foreach ($layananRekomendasi as $service)
+                            @if ($service->smm()->first())
+                                @php
+                                    $hasValidService = true;
+                                    $text = $service->service . '||' . $service->provider;
+                                    $encrypt = App\Helpers\Encryption::encrypt($text);
+                                @endphp
+                                <div class="d-flex align-items-center justify-content-between mb-2 p-2 border rounded">
+                                    <div class="flex-grow-1">
+                                        <small class="fw-medium">{{ Str::limit($service->smm()->first()->name, 40) }}</small>
+                                        <br><span class="text-muted small">Rp {{ number_format($service->smm()->first()->price, 0, ',', '.') }}/K</span>
+                                    </div>
+                                    <a href="{{ url('order/single?id=' . $encrypt) }}" class="btn btn-sm btn-primary">
+                                        <i class="ti ti-shopping-cart"></i>
+                                    </a>
+                                </div>
+                            @endif
+                        @endforeach
+                        
+                        @if (!$hasValidService)
+                            <p class="text-center text-muted">Layanan rekomendasi kosong</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latest News -->
+            <div class="card">
+                <div class="card-header fw-bold p-3 text-xss">
+                    <i class="fas fa-bullhorn me-2"></i>Informasi Terbaru
+                </div>
+                <div class="card-body" style="max-height: 300px; overflow-y: auto;">
+                    @forelse ($berita as $row)
+                        <div class="mb-3 pb-2 border-bottom">
+                            <div class="d-flex align-items-start">
+                                <div class="flex-grow-1">
+                                    <span class="badge bg-primary mb-1">{{ strtoupper($row->type) }}</span>
+                                    <small class="text-muted float-end">{{ \Carbon\Carbon::parse($row->created_at)->format('d/m H:i') }}</small>
+                                    <p class="mb-0 small">
+                                        @php
+                                            $message = Str::limit(strip_tags($row->message), 100);
+                                            $message = preg_replace(
+                                                '/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/',
+                                                '<a href="$0" target="_blank">$0</a>',
+                                                $message,
+                                            );
+                                        @endphp
+                                        {!! $message !!}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="text-center text-muted">Tidak ada informasi terbaru</p>
+                    @endforelse
                 </div>
             </div>
         </div>
@@ -675,6 +801,39 @@
 
         $("form").on("submit", function() {
             $("button[type=submit]").attr('disabled', 'true')
+        });
+
+        // Hide guide function
+        function hideGuide() {
+            fetch('/api/hide-guide', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json'
+                }
+            });
+        }
+
+        // Enhanced UX: Auto-focus first available input in active tab
+        $('.nav-link').on('shown.bs.tab', function (e) {
+            setTimeout(function() {
+                $(e.target.getAttribute('href')).find('select:first').focus();
+            }, 100);
+        });
+
+        // Enhanced UX: Show loading states
+        $('form').on('submit', function() {
+            $(this).find('button[type=submit]').html('<i class="fas fa-spinner fa-spin me-2"></i>Memproses...');
+        });
+
+        // Auto-trigger recommended services on page load for better UX
+        $(document).ready(function() {
+            // Focus on the first recommended category option if available
+            if ($('#recommended_category option').length > 1) {
+                setTimeout(function() {
+                    $('#recommended_category').focus();
+                }, 500);
+            }
         });
     </script>
     <script>

@@ -68,7 +68,21 @@ class OrderController extends Controller
             $query->where('status', 'aktif');
         })->get();
 
-        return view('order.single', compact('kategori', 'favoritCategory', 'id', 'ct', 'KategoriLayananRekomendasi'));
+        // Add dashboard data to order page for better UX
+        $layananRekomendasi = LayananRekomendasi::with(['smm' => function ($query) {
+            $query->where('status', 'aktif')->orderBy('price', 'asc');
+        }])->paginate(5);
+
+        // Latest news/announcements
+        $berita = \App\Models\Announcement::orderBy('id', 'DESC')->limit(3)->get();
+
+        // User statistics
+        $userStats = [
+            'completed_orders' => \App\Models\History::where('user_id', Auth::user()->id)->where('status', 'done')->sum('price'),
+            'completed_deposits' => \App\Models\Deposit::where('user_id', Auth::user()->id)->where('status', 'done')->sum('diterima'),
+        ];
+
+        return view('order.single', compact('kategori', 'favoritCategory', 'id', 'ct', 'KategoriLayananRekomendasi', 'layananRekomendasi', 'berita', 'userStats'));
     }
 
     public function getLayanan(Request $request)

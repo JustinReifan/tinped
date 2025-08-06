@@ -93,7 +93,7 @@ class AuthController extends Controller
                 'ip' => $request->ip(),
                 'user_agent' => $request->header('User-Agent'),
             ]);
-            return redirect()->route('dashboard');
+            return redirect()->route('order.single');
         } elseif (auth()->attempt(['email' => $email, 'password' => $password], $remember)) {
             if ($user->google2fa == '1') {
                 $user->is_verified = '0';
@@ -104,7 +104,7 @@ class AuthController extends Controller
                 'ip' => $request->ip(),
                 'user_agent' => $request->header('User-Agent'),
             ]);
-            return redirect()->route('dashboard');
+            return redirect()->route('order.single');
         } else {
             return redirect()->back()->with('error', 'Username atau password salah');
         }
@@ -351,7 +351,7 @@ class AuthController extends Controller
     public function authenticate()
     {
         if (auth()->user()->is_verified == '1') {
-            return redirect('dashboard');
+            return redirect()->route('order.single');
         }
         return view('auth.authenticate');
     }
@@ -371,7 +371,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Verifikasi berhasil',
-                'direct' => 'dashboard'
+                'direct' => 'order/single'
             ], 200);
         } else {
             return response()->json([

@@ -122,7 +122,7 @@ Route::middleware('auth')->group(function () {
         Route::get('logout', 'logout')->name('logout');
     });
     Route::controller(OrderController::class)->group(function () {
-
+        // Main page after login - redirect to single order page
         Route::get('order/single', 'single')->name('order.single');
         Route::post('get/layanan', 'getLayanan')->name('get.layanan');
         Route::post('get/service/search-id', 'getLayananSearchId')->name('search-id');
@@ -273,6 +273,12 @@ function sendmessage($data)
     );
     $pusher->trigger('chat', 'chat-live', $data);
 }
+// API route to hide the guide for users
+Route::post('/api/hide-guide', function() {
+    session(['hide_guide' => true]);
+    return response()->json(['status' => 'success']);
+})->middleware('auth');
+
 Route::get('decrypt', function () {
     return view('user.decrypt');
 });
