@@ -5,73 +5,73 @@
                 <div class="card-body border-bottom" style="padding-bottom:.5rem;">
                     <div class="row" wire:ignore>
                         <div class="col-6 col-lg-4 col-xl-3 d-grid">
-                            <button type="button" class="btn btn-outline-primary btn-md d-block mb-2 btn-category"
+                            <button type="button" class="mb-2 btn btn-outline-primary btn-md d-block btn-category"
                                 id="btn-Semua"onclick="filterCategory('Semua');"><span
                                     class="d-flex align-items-center"><i class="fas fa-adjust fs-4"></i><span
                                         style="margin-left:8px; margin-top:1px;">Semua</span></span></button>
                         </div>
                         <div class="col-6 col-lg-4 col-xl-3 d-grid">
-                            <button type="button" class="btn btn-outline-primary btn-md d-block mb-2 btn-category"
+                            <button type="button" class="mb-2 btn btn-outline-primary btn-md d-block btn-category"
                                 id="btn-Instagram"onclick="filterCategory('Instagram');"><span
                                     class="d-flex align-items-center"><i class="fab fa-instagram fs-4"></i><span
                                         style="margin-left:8px; margin-top:1px;">Instagram</span></span></button>
                         </div>
                         <div class="col-6 col-lg-4 col-xl-3 d-grid">
-                            <button type="button" class="btn btn-outline-primary btn-md d-block mb-2 btn-category"
+                            <button type="button" class="mb-2 btn btn-outline-primary btn-md d-block btn-category"
                                 id="btn-Facebook"onclick="filterCategory('Facebook');"><span
                                     class="d-flex align-items-center"><i class="fab fa-facebook fs-4"></i><span
                                         style="margin-left:8px; margin-top:1px;">Facebook</span></span></button>
                         </div>
                         <div class="col-6 col-lg-4 col-xl-3 d-grid">
-                            <button type="button" class="btn btn-outline-primary btn-md d-block mb-2 btn-category"
+                            <button type="button" class="mb-2 btn btn-outline-primary btn-md d-block btn-category"
                                 id="btn-Youtube"onclick="filterCategory('Youtube');"><span
                                     class="d-flex align-items-center"><i class="fab fa-youtube fs-4"></i><span
                                         style="margin-left:8px; margin-top:1px;">Youtube</span></span></button>
                         </div>
                         <div class="col-6 col-lg-4 col-xl-3 d-grid">
-                            <button type="button" class="btn btn-outline-primary btn-md d-block mb-2 btn-category"
+                            <button type="button" class="mb-2 btn btn-outline-primary btn-md d-block btn-category"
                                 id="btn-Twitter"onclick="filterCategory('Twitter');"><span
                                     class="d-flex align-items-center"><i class="fab fa-twitter fs-4"></i><span
                                         style="margin-left:8px; margin-top:1px;">Twitter</span></span></button>
                         </div>
                         <div class="col-6 col-lg-4 col-xl-3 d-grid">
-                            <button type="button" class="btn btn-outline-primary btn-md d-block mb-2 btn-category"
+                            <button type="button" class="mb-2 btn btn-outline-primary btn-md d-block btn-category"
                                 id="btn-Spotify"onclick="filterCategory('Spotify');"><span
                                     class="d-flex align-items-center"><i class="fab fa-spotify fs-4"></i><span
                                         style="margin-left:8px; margin-top:1px;"> Spotify</span></span></button>
                         </div>
                         <div class="col-6 col-lg-4 col-xl-3 d-grid">
-                            <button type="button" class="btn btn-outline-primary btn-md d-block mb-2 btn-category"
+                            <button type="button" class="mb-2 btn btn-outline-primary btn-md d-block btn-category"
                                 id="btn-Tiktok"onclick="filterCategory('Tiktok');"><span
                                     class="d-flex align-items-center"><i class="fa fa-music fs-4"></i><span
                                         style="margin-left:8px; margin-top:1px;"> Tiktok</span></span></button>
                         </div>
                         <div class="col-6 col-lg-4 col-xl-3 d-grid">
-                            <button type="button" class="btn btn-outline-primary btn-md d-block mb-2 btn-category"
+                            <button type="button" class="mb-2 btn btn-outline-primary btn-md d-block btn-category"
                                 id="btn-Twitch"onclick="filterCategory('Twitch');"><span
                                     class="d-flex align-items-center"><i class="fab fa-linkedin fs-4"></i><span
                                         style="margin-left:8px; margin-top:1px;"> Linkedin</span></span></button>
                         </div>
                         <div class="col-6 col-lg-4 col-xl-3 d-grid">
-                            <button type="button" class="btn btn-outline-primary btn-md d-block mb-2 btn-category"
+                            <button type="button" class="mb-2 btn btn-outline-primary btn-md d-block btn-category"
                                 id="btn-Google"onclick="filterCategory('Google');"><span
                                     class="d-flex align-items-center"><i class="fab fa-google fs-4"></i><span
                                         style="margin-left:8px; margin-top:1px;"> Google</span></span></button>
                         </div>
                         <div class="col-6 col-lg-4 col-xl-3 d-grid">
-                            <button type="button" class="btn btn-outline-primary btn-md d-block mb-2 btn-category"
+                            <button type="button" class="mb-2 btn btn-outline-primary btn-md d-block btn-category"
                                 id="btn-Telegram"onclick="filterCategory('Telegram');"><span
                                     class="d-flex align-items-center"><i class="fab fa-telegram fs-4"></i><span
                                         style="margin-left:8px; margin-top:1px;"> Telegram</span></span></button>
                         </div>
                         <div class="col-6 col-lg-4 col-xl-3 d-grid">
-                            <button type="button" class="btn btn-outline-primary btn-md d-block mb-2 btn-category"
+                            <button type="button" class="mb-2 btn btn-outline-primary btn-md d-block btn-category"
                                 id="btn-Website"onclick="filterCategory('Website');"><span
                                     class="d-flex align-items-center"><i class="fa fa-globe fs-4"></i><span
                                         style="margin-left:8px; margin-top:1px;"> Web Traffic</span></span></button>
                         </div>
                         <div class="col-6 col-lg-4 col-xl-3 d-grid">
-                            <button type="button" class="btn btn-outline-primary btn-md d-block mb-2 btn-category"
+                            <button type="button" class="mb-2 btn btn-outline-primary btn-md d-block btn-category"
                                 id="btn-Discord"onclick="filterCategory('Discord');"><span
                                     class="d-flex align-items-center"><i class="fab fa-discord fs-4"></i><span
                                         style="margin-left:8px; margin-top:1px;"> Discord</span></span></button>
@@ -108,9 +108,9 @@
     <div class="row">
         <div class="col-md-7">
             <div class="card">
-                {{-- <div class="card-header fw-bold p-3 text-xss"><i class="mdi mdi-cart-arrow-up me-1"></i>Pesanan Baru</h5> --}}
+                {{-- <div class="p-3 card-header fw-bold text-xss"><i class="mdi mdi-cart-arrow-up me-1"></i>Pesanan Baru</h5> --}}
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="card-title m-0"><i class="mdi mdi-cart-plus me-1"></i> Buat Pesanan</h4>
+                    <h4 class="m-0 card-title"><i class="mdi mdi-cart-plus me-1"></i> Buat Pesanan</h4>
                     <a href="javascript:;" onclick="toggleCard('#catGroup')"
                         class="btn btn-sm btn-primary bg-gradient">
                         <i class="fas fa-fw fa-tags me-1"></i> Kategori
@@ -118,18 +118,18 @@
                 </div>
                 <div class="card-body" id="ajax-result">
                     @csrf
-                    <ul class="nav nav-pills mb-2" role="tablist" wire:ignore style="margin-bottom:13px;">
+                    <ul class="mb-2 nav nav-pills" role="tablist" wire:ignore style="margin-bottom:13px;">
                         <li class="nav-item waves-effect waves-light"wire:click="activated('Umum')">
                             <a class="nav-link active" data-bs-toggle="tab" href="#general" id="btn-general"
                                 role="tab" style="padding:0.785rem 1rem !important;">
-                                <i class="fas fa-adjust me-1 align-middle"></i> <span
+                                <i class="align-middle fas fa-adjust me-1"></i> <span
                                     class="d-md-inline-block">Umum</span>
                             </a>
                         </li>
                         <li class="nav-item waves-effect waves-light" wire:click="activated('Favorit')">
                             <a class="nav-link" data-bs-toggle="tab" href="#favorite" id="btn-favorite"
                                 role="tab" style="padding:0.785rem 1rem !important;">
-                                <i class="far fa-star me-1 align-middle"></i> <span
+                                <i class="align-middle far fa-star me-1"></i> <span
                                     class="d-md-inline-block">Favorit</span>
                             </a>
                         </li>
@@ -160,7 +160,7 @@
                                     </select>
                                 </div>
                                 {{-- <div class="row">
-                                    <div class="col-md-4 mb-3">
+                                    <div class="mb-3 col-md-4">
                                         <label class="form-label">Harga / 1000</label>
                                         <div class="input-group">
                                             <div class="input-group-text">Rp</div>
@@ -168,12 +168,12 @@
                                                 value="0" name="price" id="price" readonly>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mb-3">
+                                    <div class="mb-3 col-md-4">
                                         <label class="form-label">Min</label>
                                         <input type="text" class="form-control" wire:model="min" value="0"
                                             id="min-amount" readonly>
                                     </div>
-                                    <div class="col-md-4 mb-3">
+                                    <div class="mb-3 col-md-4">
                                         <label class="form-label">Max</label>
                                         <input type="text" class="form-control" wire:model="max" value="0"
                                             id="max-amount" readonly>
@@ -186,31 +186,31 @@
                                         @php
                                             $src = App\Models\Smm::where('service', $layanan)->first();
                                         @endphp
-                                        <div class="border border-primary rounded p-3 mb-3" id="infoDesc">
-                                            <p class="fw-medium mb-0">{{ $src->name }}</p>
+                                        <div class="p-3 mb-3 border rounded border-primary" id="infoDesc">
+                                            <p class="mb-0 fw-medium">{{ $src->name }}</p>
                                             <p class="mb-3 fw-bold">Harga: Rp 3.071.600/K</p>
-                                            <p class="border-top small fw-bold mb-1 pt-1">Deskripsi:</p>Discord 1K
+                                            <p class="pt-1 mb-1 border-top small fw-bold">Deskripsi:</p>Discord 1K
                                             Members
-                                            (Organic Crypto-NFT Members)<p class="border-top small fw-bold mb-1 pt-1">
+                                            (Organic Crypto-NFT Members)<p class="pt-1 mb-1 border-top small fw-bold">
                                                 Waktu
                                                 Rata-Rata:</p>
                                             <p class="mb-1">Belum ada data.</p>
-                                            <p class="border-top small fw-bold mb-1 pt-1">Rating:</p><i
+                                            <p class="pt-1 mb-1 border-top small fw-bold">Rating:</p><i
                                                 class="fa fa-fw fa-star text-secondary"></i><i
                                                 class="fa fa-fw fa-star text-secondary"></i><i
                                                 class="fa fa-fw fa-star text-secondary"></i><i
                                                 class="fa fa-fw fa-star text-secondary"></i><i
                                                 class="fa fa-fw fa-star text-secondary"></i>
-                                            <p class="small fw-medium mb-0">(0 rating dari 0 penilaian.)</p>
+                                            <p class="mb-0 small fw-medium">(0 rating dari 0 penilaian.)</p>
                                         </div>
                                     @endif
                                 </div>
-                                <div class="form-group mb-3">
+                                <div class="mb-3 form-group">
                                     <label>Average Time <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" wire:model.lazy="average_time"
                                         disabled placeholder="Average Time">
                                 </div>
-                                <div class="form-group mb-3">
+                                <div class="mb-3 form-group">
                                     <label>Target <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" wire:model.lazy="target"
                                         placeholder="Masukkan target" name="target" id="target">
@@ -256,7 +256,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mb-0 mt-3 float-end">
+                                <div class="mt-3 mb-0 float-end">
                                     <button type="reset" class="btn btn-danger waves-effect waves-light"
                                         wire:click="refresh"><i class="mdi mdi-refresh me-1"></i>Ulangi</button>
                                     <button type="submit" class="btn btn-primary waves-effect waves-light"><i
@@ -296,7 +296,7 @@
                                     </select>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4 mb-3">
+                                    <div class="mb-3 col-md-4">
                                         <label class="form-label">Harga / 1000</label>
                                         <div class="input-group">
                                             <div class="input-group-text">Rp</div>
@@ -304,12 +304,12 @@
                                                 value="0" name="price" id="price" readonly>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mb-3">
+                                    <div class="mb-3 col-md-4">
                                         <label class="form-label">Min</label>
                                         <input type="text" class="form-control" wire:model="min_fav"
                                             value="0" id="min-amount" readonly>
                                     </div>
-                                    <div class="col-md-4 mb-3">
+                                    <div class="mb-3 col-md-4">
                                         <label class="form-label">Max</label>
                                         <input type="text" class="form-control" wire:model="max_fav"
                                             value="0" id="max-amount" readonly>
@@ -319,12 +319,12 @@
                                     <label class="form-label">Deskripsi <span class="text-danger">*</span></label>
                                     <textarea class="form-control" id="description" wire:model="deskripsi_fav" style="height: 100px" readonly>Deskripsi layanan.</textarea>
                                 </div>
-                                <div class="form-group mb-3">
+                                <div class="mb-3 form-group">
                                     <label>Average Time <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" wire:model.lazy="average_time_fav"
                                         disabled placeholder="Average Time">
                                 </div>
-                                <div class="form-group mb-3">
+                                <div class="mb-3 form-group">
                                     <label>Target <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" wire:model.lazy="target_fav"
                                         placeholder="Masukkan jumlah pesanan" name="target" id="target">
@@ -370,7 +370,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mb-0 mt-3 float-end">
+                                <div class="mt-3 mb-0 float-end">
                                     <button type="reset" class="btn btn-danger waves-effect waves-light"
                                         wire:click="refresh"><i class="mdi mdi-refresh me-1"></i>Ulangi</button>
                                     <button type="submit" class="btn btn-primary waves-effect waves-light"><i
@@ -384,7 +384,7 @@
         </div>
         <div class="col-lg">
             <div class="card">
-                <div class="card-header fw-bold p-3 text-xss"><i
+                <div class="p-3 card-header fw-bold text-xss"><i
                         class="mdi mdi-information-outline me-1"></i>Informasi
                     <div class="float-end" style="cursor: pointer;">
                         <i class="mdi mdi-arrow-down"></i>

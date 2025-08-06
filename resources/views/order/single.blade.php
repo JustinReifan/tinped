@@ -80,18 +80,20 @@
                     @csrf
                     <ul class="mb-2 nav nav-pills" role="tablist" style="margin-bottom:13px;">
                         <li class="nav-item waves-effect waves-light">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#general" id="btn-general" role="tab"
-                                style="padding:0.785rem 1rem !important;">
-                                <i class="align-middle fas fa-adjust me-1"></i> <span class="d-md-inline-block">Umum</span>
-                            </a>
-                        </li>
-                        <li class="nav-item waves-effect waves-light">
-                            <a class="nav-link" data-bs-toggle="tab" href="#recommended" id="btn-recommended" role="tab"
+                            <a class="nav-link active" data-bs-toggle="tab" href="#recommended" id="btn-recommended" role="tab"
                                 style="padding:0.785rem 1rem !important;">
                                 <i class="align-middle fa-regular fa-thumbs-up me-1"></i> <span
                                     class="d-md-inline-block">Rekomendasi</span>
                             </a>
                         </li>
+                        
+                        <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link " data-bs-toggle="tab" href="#general" id="btn-general" role="tab"
+                                style="padding:0.785rem 1rem !important;">
+                                <i class="align-middle fas fa-adjust me-1"></i> <span class="d-md-inline-block">Umum</span>
+                            </a>
+                        </li>
+                        
                         <li class="nav-item waves-effect waves-light">
                             <a class="nav-link" data-bs-toggle="tab" href="#favorite" id="btn-favorite" role="tab"
                                 style="padding:0.785rem 1rem !important;">
