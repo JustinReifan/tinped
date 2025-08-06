@@ -155,7 +155,7 @@
     <nav class="pc-sidebar">
         <div class="navbar-wrapper">
             <div class="m-header">
-                <a href="{{ url('/') }}" class="b-brand" style="color: var(--pc-heading-color)">
+                <a href="{{ route('order.single') }}" class="b-brand" style="color: var(--pc-heading-color)">
                     <!-- ========   Change your logo from here   ============ -->
                     <span class="fs-3 fw-bold">{{ $config->name_panel }}</span>
                 </a>
@@ -191,15 +191,16 @@
                 <ul class="pc-navbar">
                     @auth
 
-                        <li class="pc-item pc-caption"><label>Home</label></li>
+                        {{-- <li class="pc-item pc-caption"><label>Home</label></li>
                         <li class="pc-item"><a href="{{ url('dashboard') }}" class="pc-link">
-                                <span class="pc-micon">
-                                    <i class="fas fa-house-chimney-user"></i>
-                                </span>
-                                <span class="pc-mtext">Dashboard</span>
-                            </a>
-                        </li>
-                        @if (Auth::user()->role == 'admin')
+                            <span class="pc-micon">
+                                <i class="fas fa-house-chimney-user"></i>
+                            </span>
+                            <span class="pc-mtext">Dashboard</span>
+                        </a>
+                    </li> --}}
+                    @if (Auth::user()->role == 'admin')
+                        <li class="pc-item pc-caption"><label>Admin</label></li>
                             <li class="pc-item"><a href="{{ url('admin') }}" class="pc-link">
                                     <span class="pc-micon">
                                         <i class="fas fa-user-tie"></i>
@@ -568,7 +569,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route("order.single") }}">Home</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0)" id="namepage">Membership</a>
                             </li>
                             <li class="breadcrumb-item" id="page2" aria-current="page">Dashboard</li>

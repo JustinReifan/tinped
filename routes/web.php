@@ -219,7 +219,7 @@ Route::middleware(isAdmin::class, 'auth')->group(function () {
         Route::get('tambah-berita', 'tambahBerita')->name('tambah.berita');
         Route::get('tiket', 'tiket')->name('tiket');
         Route::get('tiket/chat/{ticket:ticket_id}', 'chat')->name('tiket.chat');
-        Route::get('deposit', 'deposit')->name('deposit');
+        Route::get('deposit', 'deposit')->name('admin.deposit');
         Route::prefix('pemesanan')->group(function () {
             Route::get('konfigurasi', 'konfigurasi')->name('pemesanan.konfigurasi');
             Route::get('riwayat', 'riwayat')->name('pemesanan.riwayat');
@@ -274,7 +274,7 @@ function sendmessage($data)
     $pusher->trigger('chat', 'chat-live', $data);
 }
 // API route to hide the guide for users
-Route::post('/api/hide-guide', function() {
+Route::post('/api/hide-guide', function () {
     session(['hide_guide' => true]);
     return response()->json(['status' => 'success']);
 })->middleware('auth');

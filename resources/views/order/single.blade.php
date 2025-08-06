@@ -40,32 +40,35 @@
         </div>
     </div>
     <!-- Quick Start Guide for New Users -->
-    @if(Auth::user()->balance == 0 && !session()->has('hide_guide'))
-    <div class="row mb-3">
-        <div class="col-12">
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-lightbulb fs-4 me-3"></i>
-                    <div class="flex-grow-1">
-                        <h6 class="mb-1">🎉 Selamat datang! Mari mulai dengan langkah mudah:</h6>
-                        <ol class="mb-0 small">
-                            <li><strong>Pilih layanan:</strong> Mulai dengan tab "Rekomendasi" untuk layanan terbaik</li>
-                            <li><strong>Top up saldo:</strong> Klik tombol "Top Up" di samping saldo untuk mengisi saldo</li>
-                            <li><strong>Lakukan pemesanan:</strong> Masukkan target dan jumlah, lalu klik "Pesan"</li>
-                        </ol>
-                        <div class="mt-2">
-                            <a href="{{ route('deposit') }}" class="btn btn-sm btn-success me-2">
-                                <i class="fas fa-wallet me-1"></i>Top Up Sekarang
-                            </a>
-                            <small class="text-muted">Saldo minimum Rp 10.000 untuk mulai berbelanja</small>
+    @if (Auth::user()->balance == 0 && !session()->has('hide_guide'))
+        <div class="mb-3 row">
+            <div class="col-12">
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">🎉 Selamat datang! Mari mulai dengan langkah mudah:</h6>
+                            <ol class="mb-0 small">
+                                <li><strong>Pilih layanan:</strong> Mulai dengan tab "Rekomendasi" untuk layanan terbaik
+                                </li>
+                                <li><strong>Top up saldo:</strong> Klik tombol "Top Up" di samping saldo untuk mengisi saldo
+                                </li>
+                                <li><strong>Lakukan pemesanan:</strong> Masukkan target dan jumlah, lalu klik "Pesan"</li>
+                            </ol>
+                            <div class="mt-2">
+                                <a href="{{ route('deposit') }}" class="btn btn-sm btn-success me-2">
+                                    <i class="fas fa-wallet me-1"></i>Top Up Sekarang
+                                </a>
+                                <small class="text-muted">Minimal Deposit Rp 1.000</small>
+                            </div>
                         </div>
                     </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                        onclick="hideGuide()"></button>
                 </div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="hideGuide()"></button>
             </div>
         </div>
-    </div>
     @endif
+
 
     <div class="row">
         <div class="col-md-8">
@@ -97,35 +100,36 @@
                         <div class="col-md">
                             <i class="fas fa-cart-plus me-2"></i>Pesanan baru
                         </div>
-                        <div class="col-md">
+                        {{-- <div class="col-md">
                             <div class="d-flex justify-content-end">
                                 <button class="btn btn-sm btn-primary" onclick="toggleCategory()">Kategori</button>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="card-body" id="ajax-result">
                     @csrf
                     <ul class="mb-2 nav nav-pills" role="tablist" style="margin-bottom:13px;">
                         <li class="nav-item waves-effect waves-light">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#recommended" id="btn-recommended" role="tab"
-                                style="padding:0.785rem 1rem !important;">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#recommended" id="btn-recommended"
+                                onclick="closeCategory()" role="tab" style="padding:0.785rem 1rem !important;">
                                 <i class="align-middle fa-regular fa-thumbs-up me-1"></i> <span
                                     class="d-md-inline-block">Rekomendasi</span>
                             </a>
                         </li>
-                        
+
                         <li class="nav-item waves-effect waves-light">
-                            <a class="nav-link " data-bs-toggle="tab" href="#general" id="btn-general" role="tab"
-                                style="padding:0.785rem 1rem !important;">
+                            <a class="nav-link" data-bs-toggle="tab" href="#general" id="btn-general" role="tab"
+                                onclick="toggleCategory()" style="padding:0.785rem 1rem !important;">
                                 <i class="align-middle fas fa-adjust me-1"></i> <span class="d-md-inline-block">Umum</span>
                             </a>
                         </li>
-                        
+
                         <li class="nav-item waves-effect waves-light">
                             <a class="nav-link" data-bs-toggle="tab" href="#favorite" id="btn-favorite" role="tab"
                                 style="padding:0.785rem 1rem !important;">
-                                <i class="align-middle far fa-star me-1"></i> <span class="d-md-inline-block">Favorit</span>
+                                <i class="align-middle far fa-star me-1"></i> <span
+                                    class="d-md-inline-block">Favorit</span>
                             </a>
                         </li>
                         <li class="nav-item waves-effect waves-light">
@@ -141,8 +145,7 @@
                             @csrf
                             <div class="tab-pane active" id="recommended" role="tabpanel">
                                 <div class="mb-3">
-                                    <p class="mb-2 text-info">Layanan berikut adalah layanan yang direkomendasikan langsung
-                                        oleh admin (di update berkala)</p>
+
                                     <label class="form-label">Kategori <span class="text-danger">*</span></label>
                                     <select class="select2 form-control" style="width:100%" name="recommended_category"
                                         id="recommended_category">
@@ -314,10 +317,26 @@
                     </form>
                 </div>
             </div>
+            <div class="mb-3 row">
+                <div class="col-12">
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <small class="mb-1 fw-medium">Pastikan akun target tidak private & jangan mengubah username
+                                    agar pesanan dapat masuk.. Khusus layanan Instagram laporan
+                                    tinjau wajib
+                                    dinonaktifkan</small>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                            onclick="hideGuide()"></button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md">
             <!-- User Balance Card -->
-            <div class="card mb-3">
+            <div class="mb-3 card">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-shrink-0">
@@ -337,11 +356,12 @@
             </div>
 
             <!-- Quick Stats -->
-            <div class="row mb-3">
+            <div class="mb-3 row">
                 <div class="col-6">
                     <div class="card">
-                        <div class="card-body text-center p-2">
-                            <div class="avtar bg-light-success mx-auto mb-1"><i class="fas fa-check-circle f-16"></i></div>
+                        <div class="p-2 text-center card-body">
+                            <div class="mx-auto mb-1 avtar bg-light-success"><i class="fas fa-check-circle f-16"></i>
+                            </div>
                             <p class="mb-1 small">Pesanan Selesai</p>
                             <h6 class="mb-0">Rp {{ number_format($userStats['completed_orders'], 0, ',', '.') }}</h6>
                         </div>
@@ -349,8 +369,9 @@
                 </div>
                 <div class="col-6">
                     <div class="card">
-                        <div class="card-body text-center p-2">
-                            <div class="avtar bg-light-info mx-auto mb-1"><i class="fas fa-money-bill-transfer f-16"></i></div>
+                        <div class="p-2 text-center card-body">
+                            <div class="mx-auto mb-1 avtar bg-light-info"><i class="fas fa-money-bill-transfer f-16"></i>
+                            </div>
                             <p class="mb-1 small">Deposit Selesai</p>
                             <h6 class="mb-0">Rp {{ number_format($userStats['completed_deposits'], 0, ',', '.') }}</h6>
                         </div>
@@ -359,8 +380,8 @@
             </div>
 
             <!-- Recommended Services Card -->
-            <div class="card mb-3">
-                <div class="card-header fw-bold p-3 text-xss">
+            <div class="mb-3 card">
+                <div class="p-3 card-header fw-bold text-xss">
                     <i class="fas fa-star me-2"></i>Layanan Rekomendasi
                 </div>
                 <div class="card-body">
@@ -373,10 +394,12 @@
                                     $text = $service->service . '||' . $service->provider;
                                     $encrypt = App\Helpers\Encryption::encrypt($text);
                                 @endphp
-                                <div class="d-flex align-items-center justify-content-between mb-2 p-2 border rounded">
+                                <div class="p-2 mb-2 border rounded d-flex align-items-center justify-content-between">
                                     <div class="flex-grow-1">
-                                        <small class="fw-medium">{{ Str::limit($service->smm()->first()->name, 40) }}</small>
-                                        <br><span class="text-muted small">Rp {{ number_format($service->smm()->first()->price, 0, ',', '.') }}/K</span>
+                                        <small
+                                            class="fw-medium">{{ Str::limit($service->smm()->first()->name, 40) }}</small>
+                                        <br><span class="text-muted small">Rp
+                                            {{ number_format($service->smm()->first()->price, 0, ',', '.') }}/K</span>
                                     </div>
                                     <a href="{{ url('order/single?id=' . $encrypt) }}" class="btn btn-sm btn-primary">
                                         <i class="ti ti-shopping-cart"></i>
@@ -384,7 +407,7 @@
                                 </div>
                             @endif
                         @endforeach
-                        
+
                         @if (!$hasValidService)
                             <p class="text-center text-muted">Layanan rekomendasi kosong</p>
                         @endif
@@ -394,16 +417,17 @@
 
             <!-- Latest News -->
             <div class="card">
-                <div class="card-header fw-bold p-3 text-xss">
+                <div class="p-3 card-header fw-bold text-xss">
                     <i class="fas fa-bullhorn me-2"></i>Informasi Terbaru
                 </div>
                 <div class="card-body" style="max-height: 300px; overflow-y: auto;">
                     @forelse ($berita as $row)
-                        <div class="mb-3 pb-2 border-bottom">
+                        <div class="pb-2 mb-3 border-bottom">
                             <div class="d-flex align-items-start">
                                 <div class="flex-grow-1">
-                                    <span class="badge bg-primary mb-1">{{ strtoupper($row->type) }}</span>
-                                    <small class="text-muted float-end">{{ \Carbon\Carbon::parse($row->created_at)->format('d/m H:i') }}</small>
+                                    <span class="mb-1 badge bg-primary">{{ strtoupper($row->type) }}</span>
+                                    <small
+                                        class="text-muted float-end">{{ \Carbon\Carbon::parse($row->created_at)->format('d/m H:i') }}</small>
                                     <p class="mb-0 small">
                                         @php
                                             $message = Str::limit(strip_tags($row->message), 100);
@@ -465,6 +489,10 @@
 
         function toggleCategory() {
             $('#catGroup').slideToggle();
+        }
+
+        function closeCategory() {
+            $('#catGroup').slideUp();
         }
     </script>
 
@@ -815,7 +843,7 @@
         }
 
         // Enhanced UX: Auto-focus first available input in active tab
-        $('.nav-link').on('shown.bs.tab', function (e) {
+        $('.nav-link').on('shown.bs.tab', function(e) {
             setTimeout(function() {
                 $(e.target.getAttribute('href')).find('select:first').focus();
             }, 100);
