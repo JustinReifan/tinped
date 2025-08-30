@@ -162,7 +162,7 @@
     <nav class="pc-sidebar">
         <div class="navbar-wrapper">
             <div class="m-header">
-            <a href="{{ url('/') }}" class="b-brand" style="color: var(--pc-heading-color)">
+                <a href="{{ route('order.single') }}" class="b-brand" style="color: var(--pc-heading-color)">
                     <!-- ========   Change your logo from here   ============ -->
                     <span class="fs-3 fw-bold">{{ $config->name_panel }}</span>
                 </a>
@@ -182,7 +182,7 @@
                 </div>
                 <ul class="pc-navbar">
                     <li class="pc-item pc-caption"><label>Navigation</label></li>
-                    <li class="pc-item"><a href="{{ url('dashboard') }}" class="pc-link">
+                    <li class="pc-item"><a href="{{ route('order.single') }}" class="pc-link">
                             <span class="pc-micon">
                                 <i class="fas fa-house-chimney-user"></i>
                             </span>

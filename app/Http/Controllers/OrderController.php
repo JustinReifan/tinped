@@ -71,7 +71,7 @@ class OrderController extends Controller
         // Add dashboard data to order page for better UX
         $layananRekomendasi = LayananRekomendasi::with(['smm' => function ($query) {
             $query->where('status', 'aktif')->orderBy('price', 'asc');
-        }])->paginate(5);
+        }])->get();
 
         // Latest news/announcements
         $berita = \App\Models\Announcement::orderBy('id', 'DESC')->limit(3)->get();

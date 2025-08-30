@@ -399,7 +399,7 @@
                                         <small
                                             class="fw-medium">{{ Str::limit($service->smm()->first()->name, 40) }}</small>
                                         <br><span class="text-muted small">Rp
-                                            {{ number_format($service->smm()->first()->price, 0, ',', '.') }}/K</span>
+                                            {{ number_format($service->smm()->first()->price, 0, ',', '.') }}/1K</span>
                                     </div>
                                     <a href="{{ url('order/single?id=' . $encrypt) }}" class="btn btn-sm btn-primary">
                                         <i class="ti ti-shopping-cart"></i>
@@ -445,6 +445,9 @@
                     @empty
                         <p class="text-center text-muted">Tidak ada informasi terbaru</p>
                     @endforelse
+                </div>
+                <div class="p-3 card-footer text-end">
+                    <a href="{{ route('user.berita') }}" class="btn btn-primary">Lihat Semua Berita</a>
                 </div>
             </div>
         </div>

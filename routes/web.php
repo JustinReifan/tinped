@@ -113,12 +113,13 @@ Route::get('authenticate', AuthController::class . '@authenticate')->name('authe
 Route::post('proses/authenticator', AuthController::class . '@authenticateVerify')->name('proses.authenticate');
 Route::middleware('auth')->group(function () {
     Route::controller(UserController::class)->group(function () {
+        // Route::get('/', '')
         Route::get('dashboard', 'dashboard')->name('dashboard');
         Route::get('kontak-kami', 'kontak')->name('kontak');
         Route::get('page/log-login', 'logLogin')->name('log.login');
         Route::get('page/log-balance', 'logBalance')->name('log.balance');
 
-        Route::get('news/berita', 'news')->name('berita');
+        Route::get('news/berita', 'news')->name('user.berita');
         Route::get('logout', 'logout')->name('logout');
     });
     Route::controller(OrderController::class)->group(function () {
